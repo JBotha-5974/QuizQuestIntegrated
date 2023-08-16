@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -64,9 +65,12 @@ public class gameScreen extends AppCompatActivity {
             progress.setMax(questions.size()+1);
             btnHint.setOnClickListener(view -> {
                 //first check if player has hints
+                List<Button> shuffleButtons = Arrays.asList(answerBtn1,answerBtn2,answerBtn3,answerBtn4);
+                Collections.shuffle(shuffleButtons);
                 btnHint.setEnabled(false);
-                for (Button b:btns){
-                    if (!b.getText().equals(questions.get(curIndex-1))){
+                btnHint.setVisibility(View.INVISIBLE);
+                for (Button b:shuffleButtons){
+                    if (!(b.getText().equals(questions.get(curIndex-1).getCorrectAnswer()))){
                         b.setVisibility(View.INVISIBLE);
                         return;
                     }
@@ -93,8 +97,7 @@ public class gameScreen extends AppCompatActivity {
     }
     private void obtainQuestions() throws Exception {
         try {
-            Database db = new Database();
-            questions = db.LoadQuestions();
+            questions = Database.LoadQuestions();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -142,5 +145,7 @@ public class gameScreen extends AppCompatActivity {
         }
         crossImg.setVisibility(View.INVISIBLE);
         tickImg.setVisibility(View.INVISIBLE);
+        skipArrow.setVisibility(View.VISIBLE);
+        btnHint.setVisibility(View.VISIBLE);
     }
 }
