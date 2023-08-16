@@ -1,5 +1,7 @@
 package wrrv.quizquest;
 
+import java.util.ArrayList;
+
 public class Question {
     private int questionID;
     private String categoryID;
@@ -73,5 +75,8 @@ public class Question {
 
     public void setIncorrectAnswer3(String incorrectAnswer3) {
         this.incorrectAnswer3 = incorrectAnswer3;
+    }
+    public String[] getIncorrectAnswers(){
+        return new String[]{incorrectAnswer1,incorrectAnswer2, incorrectAnswer3};
     }
 }

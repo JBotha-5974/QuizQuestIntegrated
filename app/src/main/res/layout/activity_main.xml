@@ -12,7 +12,10 @@
         android:layout_width="138dp"
         android:layout_height="62dp"
         android:fontFamily="@font/default_font"
+        android:onClick="startGame"
         android:text="@string/start"
+        android:background="@color/orange"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -28,6 +31,7 @@
         android:layout_marginBottom="304dp"
         android:scaleX="2.5"
         android:scaleY="2.5"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.691"
@@ -42,6 +46,7 @@
         android:layout_marginBottom="304dp"
         android:scaleX="2.5"
         android:scaleY="2.5"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -52,10 +57,14 @@
         android:id="@+id/ImageLogo"
         android:layout_width="283dp"
         android:layout_height="133dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321"
         app:srcCompat="@drawable/mainlogo" />
 
     <CheckBox
@@ -66,6 +75,7 @@
         android:layout_marginBottom="304dp"
         android:scaleX="2.5"
         android:scaleY="2.5"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.305"
@@ -117,7 +127,7 @@
         app:srcCompat="@drawable/coins" />
 
     <TextView
-        android:id="@+id/txtCoinNum"
+        android:id="@+id/txtCoinsNum"
         android:layout_width="65dp"
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
@@ -160,7 +170,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/txtHintsNum"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtCoinNum"
+        app:layout_constraintStart_toEndOf="@+id/txtCoinsNum"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lightbulb" />
 

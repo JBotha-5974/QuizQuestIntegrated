@@ -3,4 +3,8 @@
     <string name="quiz_quest">Quiz Quest</string>
     <string name="start">START</string>
     <string name="zeroScore">0</string>
+    <string name="use_hint">Use Hint</string>
+    <string name="default_time">00:20</string>
+    <string name="answer">ANSWER</string>
+    <string name="placeholder_question">placeholder question</string>
 </resources>
