@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         txtHintsNum.setText(""+Josh.getPlayerHints());
     }
     public void startGame(View view) {
-        Intent intent = new Intent(this,gameScreen.class);
+        Intent intent = new Intent(this,GameScreen.class);
 //        intent.putExtra("player",new Player());
         startActivity(intent);
     }

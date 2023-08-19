@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class gameScreen extends AppCompatActivity {
+public class GameScreen extends AppCompatActivity {
     private TextView txtQuestion;
     private Button btnHint;
     private ImageButton skipArrow;
