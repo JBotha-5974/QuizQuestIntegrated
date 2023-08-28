@@ -82,8 +82,6 @@ public class GameScreen extends AppCompatActivity {
     }
     private void mapQuestions(){
         resetBtns();
-        skipArrow.setEnabled(true);
-        btnHint.setEnabled(true);
         Question temp = questions.get(curIndex);
         txtQuestion.setText(temp.getQuestionText());
         List<String> options = Arrays.asList(temp.getCorrectAnswer(),temp.getIncorrectAnswer1(),temp.getIncorrectAnswer2(),temp.getIncorrectAnswer3());
@@ -130,12 +128,7 @@ public class GameScreen extends AppCompatActivity {
                 }
             }
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mapQuestions();
-            }
-        }, 1500);
+        new Handler().postDelayed(this::mapQuestions, 1500);
     }
     private void resetBtns(){
         for (Button btn: btns){
@@ -143,6 +136,8 @@ public class GameScreen extends AppCompatActivity {
             btn.setVisibility(View.VISIBLE);
             btn.setText("");
         }
+        skipArrow.setEnabled(true);
+        btnHint.setEnabled(true);
         crossImg.setVisibility(View.INVISIBLE);
         tickImg.setVisibility(View.INVISIBLE);
         skipArrow.setVisibility(View.VISIBLE);

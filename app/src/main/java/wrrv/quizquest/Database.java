@@ -1,11 +1,16 @@
 package wrrv.quizquest;
 
 import android.os.StrictMode;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Database {
     private static ResultSet resultSet = null;
@@ -15,7 +20,17 @@ public class Database {
     public static ArrayList<Question> LoadQuestions() throws Exception {
         if (establishConnection()){
             questions = new ArrayList<>();
-            resultSet = statement.executeQuery("SELECT * FROM question");
+            resultSet = statement.executeQuery("SELECT COUNT(*) FROM question");
+            resultSet.next();
+            int numQuestions = resultSet.getInt(1);
+            Set<Integer> selectedIndices = new HashSet<>();
+            Random random = new Random();
+            while (selectedIndices.size() < 10){selectedIndices.add(random.nextInt(numQuestions)+ 1);}
+            String selectedIndicesStr = selectedIndices.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(","));
+            String query = "SELECT * FROM question WHERE questionID IN (" + selectedIndicesStr + ")";
+            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String category = resultSet.getString(2);
@@ -36,7 +51,7 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
