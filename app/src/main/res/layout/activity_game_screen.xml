@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8ECA8218"
+    tools:context=".gameScreen">
+
+    <Button
+        android:id="@+id/answerBtn4"
+        android:layout_width="249dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:fontFamily="@font/default_font"
+        android:gravity="center"
+        android:onClick="checkAnswer"
+        android:text="@string/answer"
+        android:textColor="@color/brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerBtn3"
+        app:layout_wrapBehaviorInParent="vertical_only" />
+
+    <Button
+        android:id="@+id/answerBtn1"
+        android:layout_width="249dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:fontFamily="@font/default_font"
+        android:gravity="center"
+        android:onClick="checkAnswer"
+        android:text="@string/answer"
+        android:textColor="@color/brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtQuestion"
+        app:layout_wrapBehaviorInParent="vertical_only" />
+
+    <Button
+        android:id="@+id/answerBtn2"
+        android:layout_width="249dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:fontFamily="@font/default_font"
+        android:gravity="center"
+        android:onClick="checkAnswer"
+        android:text="@string/answer"
+        android:textColor="@color/brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerBtn1"
+        app:layout_wrapBehaviorInParent="vertical_only" />/>
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/default_font"
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textColor="@color/brown"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="404dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="4dp"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnHint"
+        android:layout_width="96dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/default_font"
+        android:text="@string/use_hint"
+        android:textColor="@color/brown"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_wrapBehaviorInParent="vertical_only" />
+
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="345dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:fontFamily="@font/default_font"
+        android:gravity="center"
+        android:text="@string/placeholder_question"
+        android:textAllCaps="true"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTimer" />
+
+    <Button
+        android:id="@+id/answerBtn3"
+        android:layout_width="249dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:fontFamily="@font/default_font"
+        android:gravity="center"
+        android:onClick="checkAnswer"
+        android:text="@string/answer"
+        android:textColor="@color/brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerBtn2"
+        app:layout_wrapBehaviorInParent="vertical_only" />
+
+    <ImageButton
+        android:id="@+id/skipArrow"
+        android:layout_width="143dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerBtn4"
+        app:srcCompat="@drawable/skiparrow" />
+
+    <ImageView
+        android:id="@+id/tickImg"
+        android:layout_width="45dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="150dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/answerBtn2"
+        app:layout_constraintTop_toBottomOf="@+id/txtQuestion"
+        app:srcCompat="@drawable/tick" />
+
+    <ImageView
+        android:id="@+id/crossImg"
+        android:layout_width="45dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/answerBtn3"
+        app:layout_constraintTop_toBottomOf="@+id/tickImg"
+        app:srcCompat="@drawable/cross" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
