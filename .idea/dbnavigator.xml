@@ -13,7 +13,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f90b84e9-5275-46d3-9ff0-3c4df3ffa559">
-      <console name="QuizQuestDB" type="STANDARD" schema="quizquest" session="Main"><![CDATA[SELECT * FROM leaderboard;]]></console>
+      <console name="QuizQuestDB" type="STANDARD" schema="quizquest" session="Main"><![CDATA[SELECT * FROM player;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
