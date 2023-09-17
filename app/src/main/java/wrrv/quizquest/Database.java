@@ -45,7 +45,6 @@ public class Database {
             disconnect();
             return questions;
         }
-        Log.i("push","github");
         return null;
     }
     private static boolean establishConnection() throws Exception{
