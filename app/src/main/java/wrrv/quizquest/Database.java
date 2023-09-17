@@ -1,6 +1,7 @@
 package wrrv.quizquest;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,6 +45,7 @@ public class Database {
             disconnect();
             return questions;
         }
+        Log.i("push","github");
         return null;
     }
     private static boolean establishConnection() throws Exception{
