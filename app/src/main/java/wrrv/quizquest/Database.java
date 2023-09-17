@@ -69,6 +69,7 @@ public class Database {
             resultSet.close();
             resultSet = null;
         }catch (Exception e){
+            Log.i("pull test","pull");
             e.printStackTrace();
         }
     }
