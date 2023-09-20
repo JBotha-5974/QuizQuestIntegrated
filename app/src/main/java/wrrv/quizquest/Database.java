@@ -52,7 +52,7 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.202.204.72:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
