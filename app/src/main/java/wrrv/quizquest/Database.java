@@ -1,6 +1,7 @@
 package wrrv.quizquest;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,26 +18,6 @@ public class Database {
     private static Connection connection = null;
     private static Statement statement = null;
     private static ArrayList<Question> questions;
-    private static ArrayList<Player> players;
-    public static ArrayList<Player> getPlayers() throws Exception {
-        if (establishConnection()){
-            players = new ArrayList<>();
-            resultSet = statement.executeQuery("SELECT * FROM player");
-            while (resultSet.next()){
-                String userName = resultSet.getString(1);
-                String password = resultSet.getString(2);
-                int playerScore = resultSet.getInt(3);
-                int playerCoins = resultSet.getInt(4);
-                int playerLevel = resultSet.getInt(5);
-                int playerHints = resultSet.getInt(6);
-                int leaderboardID = resultSet.getInt(7);
-                players.add(new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID));
-            }
-            disconnect();
-            return players;
-        }
-        return null;
-    }
     public static ArrayList<Question> LoadQuestions() throws Exception {
         if (establishConnection()){
             questions = new ArrayList<>();
@@ -71,7 +52,7 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.102:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
