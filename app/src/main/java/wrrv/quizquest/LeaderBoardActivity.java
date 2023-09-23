@@ -15,8 +15,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import wrpv.assignment02.Contacts.EqualSpaceItem;
-
 public class LeaderBoardActivity extends AppCompatActivity {
     private ArrayList<Player> playerList;
     private PlayerAdapter adapter;
