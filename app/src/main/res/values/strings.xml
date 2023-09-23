@@ -11,11 +11,32 @@
     <string name="help_msg">Every week, all players compete to get to the top of the leaderboard,
     since the 3 highest ranked players get the coolest inventory items for their sprites!\n\nThe leaderboard
         resets all scores to zero at the end of the week, so hurry up and do a quiz!</string>
-    <string name="congratulations_quiz_completed"><b>Congratulations!\nQuiz Completed</b></string>
-    <string name="performance"><u>Performance:</u></string>
-    <string name="questions_correct">Questions correct: %d</string>
-    <string name="continue_string">Continue</string>
-    <string name="points">Points: %d</string>
-    <string name="coins">Coins: %d</string>
-    <string name="games_msg">You\'ve already played 3 games today, come back tomorrow for more!</string>
+
+    <string name="questionLabel">Question</string>
+    <string name="answerLabel">Answer</string>
+    <string name="categoryLabel">Category</string>
+    <string name="incorrectLabel">Incorrect Answers</string>
+    <string name="submissions">Submissions</string>
+    <string name="submitAQ">Submit a Question</string>
+    <string name="prevSubs">Previous Submissions</string>
+    <string name="submitBtn">Submit</string>
+    <string name="maintain_store">Maintain Store</string>
+    <string name="administrator">Administrator</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="store">Store</string>
+    <string name="upper">Upper</string>
+    <string name="lower">Lower</string>
+    <string name="accessories">Accessories</string>
+    <string name="logout">Log out</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+
+    <string-array name="categories">
+        <item>Movies and TV</item>
+        <item>Sports</item>
+        <item>History</item>
+        <item>Music</item>
+        <item>Geography</item>
+    </string-array>
 </resources>

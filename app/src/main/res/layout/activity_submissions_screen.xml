@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBackground"
+    tools:context=".Submissions_screen">
+
+    <ImageButton
+        android:id="@+id/btnSubInfo"
+        style="@style/back_button"
+        android:onClick="infoClick"
+        android:src="@drawable/info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/btnSubmitAQ"
+        style="@style/light_button"
+        android:layout_marginBottom="48dp"
+        android:onClick="submitClick"
+        android:text="@string/submitAQ"
+        app:layout_constraintBottom_toTopOf="@+id/btnPrevSubs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/lblSubmissions"
+        style="@style/heading"
+        android:layout_width="278dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/submissions"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitAQ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <Button
+        android:id="@+id/btnPrevSubs"
+        style="@style/light_button"
+        android:layout_marginBottom="116dp"
+        android:onClick="previousClick"
+        android:text="@string/prevSubs"
+        app:layout_constraintBottom_toTopOf="@+id/btnLeaveSubs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnLeaveSubs"
+        style="@style/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:onClick="leaveClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/back" />
+</androidx.constraintlayout.widget.ConstraintLayout>
