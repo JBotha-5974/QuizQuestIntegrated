@@ -51,7 +51,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         }
         public void setPlayer(Player player, int position){
             this.player = player;
-            recyclerSprite.setImageResource(R.drawable.coins);
+            recyclerSprite.setImageResource(R.drawable.spooderman);
             recyclerSprite.setBackgroundColor(Color.WHITE);
             userName.setText(player.getUserName());
             score.setText(String.valueOf(player.getPlayerScore()) + " points");

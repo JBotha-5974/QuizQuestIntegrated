@@ -1,6 +1,8 @@
 package wrrv.quizquest;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -28,7 +30,8 @@ public class GameScreen extends AppCompatActivity {
     private ImageView crossImg;
     private Button[] btns;
     private int curIndex = 0;
-
+    private int correct = 0;
+    private Player player;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,10 @@ public class GameScreen extends AppCompatActivity {
         txtTimer = findViewById(R.id.txtTimer);
         tickImg = findViewById(R.id.tickImg);
         crossImg = findViewById(R.id.crossImg);
+        Intent intent = getIntent();
+        if (intent != null){
+            player =  (Player) intent.getSerializableExtra("player");
+        }
         countdownTimer = new CountDownTimer(21000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -81,17 +88,26 @@ public class GameScreen extends AppCompatActivity {
         }
     }
     private void mapQuestions(){
-        resetBtns();
-        Question temp = questions.get(curIndex);
-        txtQuestion.setText(temp.getQuestionText());
-        List<String> options = Arrays.asList(temp.getCorrectAnswer(),temp.getIncorrectAnswer1(),temp.getIncorrectAnswer2(),temp.getIncorrectAnswer3());
-        Collections.shuffle(options);
-        for (int i = 0; i < btns.length;i++){
-            btns[i].setText(options.get(i));
+        if (curIndex < questions.size()){
+            resetBtns();
+            Question temp = questions.get(curIndex);
+            txtQuestion.setText(temp.getQuestionText());
+            List<String> options = Arrays.asList(temp.getCorrectAnswer(),temp.getIncorrectAnswer1(),temp.getIncorrectAnswer2(),temp.getIncorrectAnswer3());
+            Collections.shuffle(options);
+            for (int i = 0; i < btns.length;i++){
+                btns[i].setText(options.get(i));
+            }
+            curIndex++;
+            progress.setProgress(curIndex);
+            countdownTimer.start();
         }
-        curIndex++;
-        progress.setProgress(curIndex);
-        countdownTimer.start();
+        else{
+            Intent intent = new Intent(this,PlayerPerformance.class);
+            intent.putExtra("score",correct);
+            intent.putExtra("player",player);
+            startActivity(intent);
+            finish();
+        }
     }
     private void obtainQuestions() throws Exception {
         try {
@@ -111,6 +127,7 @@ public class GameScreen extends AppCompatActivity {
             tickImg.setX(coordinate[0] + cur.getWidth() + 20);
             tickImg.setY(coordinate[1] - cur.getHeight()/3);
             tickImg.setVisibility(View.VISIBLE);
+            correct++;
         }else{
             cur.setBackgroundResource(R.drawable.custom_incorrect_border);
             crossImg.setX(coordinate[0] + cur.getWidth() + 20);

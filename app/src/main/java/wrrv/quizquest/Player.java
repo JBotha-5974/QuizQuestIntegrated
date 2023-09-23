@@ -2,7 +2,9 @@ package wrrv.quizquest;
 
 import android.media.Image;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String userName;
     private String userPassword;
     private Image playerSprite;
@@ -11,8 +13,9 @@ public class Player {
     private int playerLevel;
     private int playerHints;
     private int leaderboardID;
+    private int gamesPlayed;
 
-    public Player(String userName, String userPassword, Image playerSprite, int playerScore, int playerCoins, int playerLevel, int playerHints, int leaderboardID) {
+    public Player(String userName, String userPassword, Image playerSprite, int playerScore, int playerCoins, int playerLevel, int playerHints, int leaderboardID, int gamesPlayed) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.playerSprite = playerSprite;
@@ -85,5 +88,9 @@ public class Player {
 
     public void setLeaderboardID(int leaderboardID) {
         this.leaderboardID = leaderboardID;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
     }
 }

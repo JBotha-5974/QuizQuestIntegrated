@@ -11,4 +11,11 @@
     <string name="help_msg">Every week, all players compete to get to the top of the leaderboard,
     since the 3 highest ranked players get the coolest inventory items for their sprites!\n\nThe leaderboard
         resets all scores to zero at the end of the week, so hurry up and do a quiz!</string>
+    <string name="congratulations_quiz_completed"><b>Congratulations!\nQuiz Completed</b></string>
+    <string name="performance"><u>Performance:</u></string>
+    <string name="questions_correct">Questions correct: %d</string>
+    <string name="continue_string">Continue</string>
+    <string name="points">Points: %d</string>
+    <string name="coins">Coins: %d</string>
+    <string name="games_msg">You\'ve already played 3 games today, come back tomorrow for more!</string>
 </resources>

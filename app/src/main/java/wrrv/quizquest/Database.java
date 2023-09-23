@@ -30,7 +30,8 @@ public class Database {
                 int playerLevel = resultSet.getInt(5);
                 int playerHints = resultSet.getInt(6);
                 int leaderboardID = resultSet.getInt(7);
-                players.add(new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID));
+                int gamesPlayed = resultSet.getInt(8);
+                players.add(new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed));
             }
             disconnect();
             return players;
@@ -65,6 +66,23 @@ public class Database {
             return questions;
         }
         return null;
+    }
+    public static void updateGamesPlayed(String userName) throws Exception {
+        /*
+        updates the games played per day
+         */
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET gamesPlayed = gamesPlayed + 1 WHERE userName = '" + userName + "'");
+        }
+    }
+    public static int getGamesPlayed(String userName) throws Exception {
+        if (establishConnection()){
+            resultSet = statement.executeQuery("SELECT gamesPlayed FROM player WHERE userName = '" + userName + "'");
+            if (resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        }
+        return 0;
     }
     private static boolean establishConnection() throws Exception{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
