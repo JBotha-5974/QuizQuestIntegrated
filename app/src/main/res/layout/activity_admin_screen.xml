@@ -10,6 +10,7 @@
     <Button
         android:id="@+id/btnMaintainStore"
         style="@style/light_button"
+        android:onClick="storeClick"
         android:text="@string/maintain_store"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +37,13 @@
         android:id="@+id/btnViewSubmissions"
         style="@style/light_button"
         android:layout_marginBottom="48dp"
+        android:onClick="submissionsClick"
         android:text="@string/submissions"
         app:layout_constraintBottom_toTopOf="@+id/btnMaintainStore"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imgLogo"

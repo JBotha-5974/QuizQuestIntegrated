@@ -80,12 +80,12 @@ public class Submission {
         boolean inserted = true;
 
         //try catch: if inserts- true else catches error false;
-        try{
-            inserted = true;
-
-        }catch(Error e){
-             inserted = false;
-        }
+//        try{
+//            inserted = true;
+//
+//        }catch(Error e){
+//             inserted = false;
+//        }
 
         return inserted;
     }
