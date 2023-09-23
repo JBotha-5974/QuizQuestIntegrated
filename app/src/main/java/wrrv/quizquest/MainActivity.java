@@ -24,9 +24,4 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra("player",new Player());
         startActivity(intent);
     }
-
-    public void showLeaderBoard(View view) {
-        Intent intent = new Intent(this,LeaderBoardActivity.class);
-        startActivity(intent);
-    }
 }

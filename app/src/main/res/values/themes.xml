@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.QuizQuest" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:fontFamily">@font/pressstart2play</item>
         <item name="colorPrimary">#FF5722</item>
         <item name="colorPrimaryVariant">@color/brown</item>
         <item name="colorOnPrimary">@color/white</item>
