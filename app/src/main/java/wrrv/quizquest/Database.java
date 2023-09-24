@@ -18,6 +18,7 @@ public class Database {
     private static Statement statement = null;
     private static ArrayList<Question> questions;
     private static ArrayList<Player> players;
+
     public static ArrayList<Player> getPlayers() throws Exception {
         if (establishConnection()){
             players = new ArrayList<>();
@@ -35,6 +36,28 @@ public class Database {
             }
             disconnect();
             return players;
+        }
+        return null;
+    }
+
+    public static Player getPlayer(String username) throws Exception {
+        if (establishConnection()){
+            Player player = null;
+            resultSet = statement.executeQuery("SELECT * FROM player WHERE userName = '" + username + "'");
+
+            while (resultSet.next()){
+                String userName = resultSet.getString(1);
+                String password = resultSet.getString(2);
+                int playerScore = resultSet.getInt(3);
+                int playerCoins = resultSet.getInt(4);
+                int playerLevel = resultSet.getInt(5);
+                int playerHints = resultSet.getInt(6);
+                int leaderboardID = resultSet.getInt(7);
+                int gamesPlayed = resultSet.getInt(8);
+                player = new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed);
+            }
+            disconnect();
+            return player;
         }
         return null;
     }
