@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -38,6 +39,9 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 PlayerAdapter.PlayerViewHolder viewHolder =
                         (PlayerAdapter.PlayerViewHolder) lstPlayers.findContainingViewHolder(view);
                 Player player = viewHolder.player;
+                Intent intent = new Intent(this,LeaderBoardProfile.class);
+                intent.putExtra("player",player);
+                startActivity(intent);
             });
         } catch (Exception e) {
             e.printStackTrace();

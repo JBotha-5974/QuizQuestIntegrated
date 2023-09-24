@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, GameScreen.class);
             intent.putExtra("player",player);
             startActivity(intent);
-            finish();
         }else{
             Toast.makeText(MainActivity.this, R.string.games_msg, Toast.LENGTH_LONG).show();
         }
