@@ -49,6 +49,7 @@
         android:layout_marginTop="80dp"
         android:fontFamily="@font/default_font"
         android:gravity="center"
+        android:lineSpacingExtra="10sp"
         android:text="@string/congratulations_quiz_completed"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,5 +90,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/performanceTxtView" />
+
+    <TextView
+        android:id="@+id/quizzesDoneTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/default_font"
+        android:text="@string/quiz_num_for_today"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizCompletedTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

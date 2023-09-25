@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class PlayerPerformance extends AppCompatActivity {
     private TextView questionsCorrectTxt;
+    private TextView quizzesDoneTxt;
     private TextView pointsTxt;
     private TextView coinsTxt;
     @Override
@@ -21,16 +22,19 @@ public class PlayerPerformance extends AppCompatActivity {
             Player player = (Player) intent.getSerializableExtra("player");
             try {
                 Database.updateGamesPlayed(player.getUserName());
+                int quizzes = Database.getGamesPlayed(player.getUserName());
+                int score = intent.getIntExtra("score",0);
+                questionsCorrectTxt = findViewById(R.id.questionsCorrectTxt);
+                quizzesDoneTxt = findViewById(R.id.quizzesDoneTxt);
+                pointsTxt = findViewById(R.id.pointsTxt);
+                coinsTxt = findViewById(R.id.coinsTxt);
+                questionsCorrectTxt.setText(getString(R.string.questions_correct,score));
+                quizzesDoneTxt.setText(getString(R.string.quiz_num_for_today,quizzes));
+                pointsTxt.setText(getString(R.string.points,score));
+                coinsTxt.setText(getString(R.string.coins,score*2));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            int score = intent.getIntExtra("score",0);
-            questionsCorrectTxt = findViewById(R.id.questionsCorrectTxt);
-            pointsTxt = findViewById(R.id.pointsTxt);
-            coinsTxt = findViewById(R.id.coinsTxt);
-            questionsCorrectTxt.setText(getString(R.string.questions_correct,score));
-            pointsTxt.setText(getString(R.string.points,score));
-            coinsTxt.setText(getString(R.string.coins,score*2));
         }
     }
 

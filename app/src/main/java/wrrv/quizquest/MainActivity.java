@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void startGame(View view) {
-        if (quizzesDone <= 3) {
+        if (quizzesDone < 3) {
             Intent intent = new Intent(this, GameScreen.class);
             intent.putExtra("player",player);
             startActivity(intent);
