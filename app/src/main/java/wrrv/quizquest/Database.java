@@ -103,6 +103,11 @@ public class Database {
         }
         return null;
     }
+    public static void updateScoreAndCoins(String userName, int score, int coins) throws Exception {
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET playerScore = playerScore + " + score + ", playerCoins = playerCoins + " + coins + " WHERE userName = '" + userName + "'");
+        }
+    }
     public static void updateGamesPlayed(String userName) throws Exception {
         /*
         updates the games played per day
