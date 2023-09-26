@@ -103,6 +103,25 @@ public class Database {
         }
         return null;
     }
+    public static void updateHints(String userName, int numHints) throws Exception {
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET playerHints = playerHints + " + numHints + " WHERE userName = '" + userName + "'");
+        }
+    }
+    public static int getHints(String userName) throws Exception{
+        if (establishConnection()){
+            resultSet = statement.executeQuery("SELECT playerhints FROM player WHERE userName = '" + userName + "'");
+            if (resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        }
+        return 0;
+    }
+    public static void updateScoreAndCoins(String userName, int score, int coins) throws Exception {
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET playerScore = playerScore + " + score + ", playerCoins = playerCoins + " + coins + " WHERE userName = '" + userName + "'");
+        }
+    }
     public static void updateGamesPlayed(String userName) throws Exception {
         /*
         updates the games played per day

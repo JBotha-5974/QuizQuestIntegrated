@@ -24,6 +24,7 @@ public class PlayerPerformance extends AppCompatActivity {
                 Database.updateGamesPlayed(player.getUserName());
                 int quizzes = Database.getGamesPlayed(player.getUserName());
                 int score = intent.getIntExtra("score",0);
+                Database.updateScoreAndCoins(player.getUserName(),score,score*2);
                 questionsCorrectTxt = findViewById(R.id.questionsCorrectTxt);
                 quizzesDoneTxt = findViewById(R.id.quizzesDoneTxt);
                 pointsTxt = findViewById(R.id.pointsTxt);

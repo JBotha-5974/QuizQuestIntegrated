@@ -61,33 +61,52 @@ public class GameScreen extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                mapQuestions();
+                try {
+                    mapQuestions();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
         skipArrow = findViewById(R.id.skipArrow);
-        skipArrow.setOnClickListener(view -> {mapQuestions();});
+        skipArrow.setOnClickListener(view -> {
+            try {
+                mapQuestions();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         try {
             obtainQuestions();
             mapQuestions();
+            if (Database.getHints(player.getUserName()) == 0){
+                btnHint.setVisibility(View.INVISIBLE);
+            }
             progress.setMax(questions.size()+1);
             btnHint.setOnClickListener(view -> {
-                //first check if player has hints
-                List<Button> shuffleButtons = Arrays.asList(answerBtn1,answerBtn2,answerBtn3,answerBtn4);
-                Collections.shuffle(shuffleButtons);
-                btnHint.setEnabled(false);
-                btnHint.setVisibility(View.INVISIBLE);
-                for (Button b:shuffleButtons){
-                    if (!(b.getText().equals(questions.get(curIndex-1).getCorrectAnswer()))){
-                        b.setVisibility(View.INVISIBLE);
-                        return;
+                try {
+                    if (Database.getHints(player.getUserName()) > 0) {
+                        Database.updateHints(player.getUserName(),-1);
+                        List<Button> shuffleButtons = Arrays.asList(answerBtn1, answerBtn2, answerBtn3, answerBtn4);
+                        Collections.shuffle(shuffleButtons);
+                        btnHint.setEnabled(false);
+                        btnHint.setVisibility(View.INVISIBLE);
+                        for (Button b : shuffleButtons) {
+                            if (!(b.getText().equals(questions.get(curIndex - 1).getCorrectAnswer()))) {
+                                b.setVisibility(View.INVISIBLE);
+                                return;
+                            }
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
-    private void mapQuestions(){
+    private void mapQuestions() throws Exception {
         if (curIndex < questions.size()){
             resetBtns();
             Question temp = questions.get(curIndex);
@@ -116,7 +135,7 @@ public class GameScreen extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    public void checkAnswer(View view){
+    public void checkAnswer(View view) throws Exception {
         skipArrow.setEnabled(false);
         countdownTimer.cancel();
         Button cur = (Button) view;
@@ -145,19 +164,30 @@ public class GameScreen extends AppCompatActivity {
                 }
             }
         }
-        new Handler().postDelayed(this::mapQuestions, 1500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mapQuestions();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1000);
     }
-    private void resetBtns(){
+    private void resetBtns() throws Exception {
         for (Button btn: btns){
             btn.setBackgroundResource(R.color.white);
             btn.setVisibility(View.VISIBLE);
             btn.setText("");
         }
         skipArrow.setEnabled(true);
-        btnHint.setEnabled(true);
+        if (Database.getHints(player.getUserName()) > 0){
+            btnHint.setEnabled(true);
+            btnHint.setVisibility(View.VISIBLE);
+        }
         crossImg.setVisibility(View.INVISIBLE);
         tickImg.setVisibility(View.INVISIBLE);
         skipArrow.setVisibility(View.VISIBLE);
-        btnHint.setVisibility(View.VISIBLE);
     }
 }
