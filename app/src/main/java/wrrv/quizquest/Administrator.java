@@ -1,6 +1,8 @@
 package wrrv.quizquest;
 
-public class Administrator {
+import java.io.Serializable;
+
+public class Administrator implements Serializable {
     private String userName;
     private String userPassword;
     public Administrator(String userName, String userPassword){

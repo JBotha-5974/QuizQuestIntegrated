@@ -11,12 +11,12 @@
         android:id="@+id/leaderboardTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/pressstart2play"
         android:text="Leaderboard"
         android:textColor="@color/black"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,23 +45,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/leaderBoardRecycler"
-        android:layout_width="425dp"
+        android:layout_width="match_parent"
         android:layout_height="645dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/timeLefttxt" />
 
     <ImageView
         android:id="@+id/questionBtn"
         android:layout_width="37dp"
         android:layout_height="36dp"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:onClick="displayHelp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/leaderboardTxt"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/help" />

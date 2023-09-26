@@ -6,28 +6,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class LogIn_screen extends AppCompatActivity {
-
-    Button admin;
-    Button player;
-
+    private EditText userName;
+    private EditText password;
+    private Button logIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_screen);
-
-        admin = findViewById(R.id.btnAdmin);
-        player = findViewById(R.id.btnPlayer);
+        userName = findViewById(R.id.editTextUserName);
+        password = findViewById(R.id.editTextPassword);
+        logIn = findViewById(R.id.logInBtn);
     }
 
-    public void adminClick(View view){
-        Intent intent = new Intent(this,Admin_screen.class);
-        startActivity(intent);
-    }
-
-    public void playerClick(View view){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+    public void logIn(View view) throws Exception {
+        Administrator admin = Database.getAdmin(userName.getText().toString(),password.getText().toString());
+        if (admin != null){
+            Intent intent = new Intent(this, Admin_screen.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Player player = Database.getPlayer(userName.getText().toString(),password.getText().toString());
+            if (player != null){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }else{
+                Toast.makeText(this,"ERROR",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

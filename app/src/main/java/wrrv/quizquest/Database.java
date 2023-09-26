@@ -39,12 +39,25 @@ public class Database {
         }
         return null;
     }
+    public static Administrator getAdmin(String username, String password) throws Exception{
+        if (establishConnection()) {
+            Administrator admin = null;
+            resultSet = statement.executeQuery("SELECT * FROM administrator WHERE userName = '" + username + "' AND userPassword = '" + password + "'");
+            while (resultSet.next()) {
+                String userName = resultSet.getString(1);
+                String passWord = resultSet.getString(2);
+                admin = new Administrator(userName, passWord);
+            }
+            disconnect();
+            return admin;
+        }
+        return null;
+    }
 
-    public static Player getPlayer(String username) throws Exception {
+    public static Player getPlayer(String username, String passWord) throws Exception {
         if (establishConnection()){
             Player player = null;
-            resultSet = statement.executeQuery("SELECT * FROM player WHERE userName = '" + username + "'");
-
+            resultSet = statement.executeQuery("SELECT * FROM player WHERE userName = '" + username + "' AND userPassword = '" + passWord + "'");
             while (resultSet.next()){
                 String userName = resultSet.getString(1);
                 String password = resultSet.getString(2);
