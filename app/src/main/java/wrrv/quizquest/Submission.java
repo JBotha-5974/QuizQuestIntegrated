@@ -11,13 +11,13 @@ public class Submission {
     private String incorrect3;
 
     private String userName;
-    private Date date;
+
     //user limited to 1 submission per day
 
     private String state;
     //state will be pending, accepted or rejected
 
-    public Submission(String question, String answer, String categoryID, String incorrect1, String incorrect2, String incorrect3, String userName) {
+    public Submission(String question, String answer, String categoryID, String incorrect1, String incorrect2, String incorrect3, String userName, String state) {
         this.question = question;
         this.answer = answer;
         this.categoryID = categoryID;
@@ -25,9 +25,7 @@ public class Submission {
         this.incorrect2 = incorrect2;
         this.incorrect3 = incorrect3;
         this.userName = userName;
-
-        //date = today's date
-        state ="pending";
+        this.state = state;
     }
 
     //region Getters & Setters
@@ -60,9 +58,6 @@ public class Submission {
         return userName;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
     public void setState(String state) {
 

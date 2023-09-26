@@ -53,7 +53,7 @@ public class Submit_screen extends AppCompatActivity {
     public void submitClick(View view){
         //Submission s = getSubmission();
 
-        Submission s = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha");
+        Submission s = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha","pending");
 
         if(s != null){
             boolean inserted = s.insertSubmission(s);
@@ -99,7 +99,7 @@ public class Submit_screen extends AppCompatActivity {
         String i1 = incorrect1.getText().toString().trim();
         String i2 = incorrect2.getText().toString().trim();
         String i3 = incorrect3.getText().toString().trim();
-        Submission s = new Submission(q,a,c,i1,i2,i3, username);
+        Submission s = new Submission(q,a,c,i1,i2,i3, username,"pending");
 
 //        String[] inputs = {q,a,c,i1,i2,i3};
 //        for(String input : inputs){

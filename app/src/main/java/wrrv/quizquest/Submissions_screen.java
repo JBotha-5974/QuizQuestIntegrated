@@ -51,7 +51,7 @@ public class Submissions_screen extends AppCompatActivity {
         //get submission for today
         Submission todaySub = null;
 
-        todaySub = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha");
+        todaySub = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha","pending");
 
         if(todaySub != null){
             Intent intent = new Intent(this,Submit_screen.class);
