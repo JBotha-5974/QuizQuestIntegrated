@@ -35,7 +35,7 @@ public class LogIn_screen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }else{
-                Toast.makeText(this,"ERROR",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"No user with these details found!",Toast.LENGTH_LONG).show();
             }
         }
     }
