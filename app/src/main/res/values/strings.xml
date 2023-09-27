@@ -42,6 +42,7 @@
     <string name="ldb_level">Level: %d</string>
     <string name="quiz_num_for_today">Quiz %d/3 for today</string>
 
+
     <string-array name="categories">
         <item>Movies and TV</item>
         <item>Sports</item>
