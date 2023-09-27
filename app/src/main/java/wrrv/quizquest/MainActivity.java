@@ -67,4 +67,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Profile_screen.class);
         startActivity(intent);
     }
+
+    public void openStore(View view){
+        Intent intent = new Intent(this,Store_screen.class);
+        startActivity(intent);
+    }
 }
