@@ -6,13 +6,17 @@ public class Item {
     private int itemID;
     private String itemName;
     private int itemPrice;
-    private Image itemImage;
 
-    public Item(int itemID, String itemName, int itemPrice, Image itemImage) {
+    //these are used to access the image in the Sprite Generator
+    private String type;
+    private int position;
+
+    public Item(int itemID, String itemName, int itemPrice, String type, int position) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.itemImage = itemImage;
+        this.type = type;
+        this.position = position;
     }
 
     public int getItemID() {
@@ -39,11 +43,11 @@ public class Item {
         this.itemPrice = itemPrice;
     }
 
-    public Image getItemImage() {
-        return itemImage;
-    }
-
-    public void setItemImage(Image itemImage) {
-        this.itemImage = itemImage;
-    }
+//    public Image getItemImage() {
+//        return itemImage;
+//    }
+//
+//    public void setItemImage(Image itemImage) {
+//        this.itemImage = itemImage;
+//    }
 }
