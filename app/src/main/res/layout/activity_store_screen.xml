@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Store_screen" >
+    tools:context=".Store_screen"
+    android:gravity="center_horizontal"
+    android:background="@color/lightBackground">
 
     <TextView
         android:id="@+id/lblStore"
-        android:layout_width="match_parent"
+        style="@style/heading"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
         android:text="@string/store"
-        style = "@style/heading"/>
+        />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -21,17 +26,20 @@
         style = "@style/RoundedTabLayoutStyle">
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+            android:id="@+id/TabUpper"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/upper" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+            android:id="@+id/TabLower"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lower" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+            android:id="@+id/TabAcc"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/accessories" />
     </com.google.android.material.tabs.TabLayout>
@@ -39,5 +47,20 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="449dp"
+        android:background="@color/white"
+        />
+
+    <ImageButton
+        android:id="@+id/btnLeaveStore"
+        style="@style/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="leaveClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/back" />
 </LinearLayout>
