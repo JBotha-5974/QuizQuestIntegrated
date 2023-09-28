@@ -30,6 +30,7 @@ public class RegisterUser extends AppCompatActivity {
             Intent intent = new Intent(this, RegisterSprite.class);
             intent.putExtra("player", newPlayer);
             startActivity(intent);
+            finish();
         }
         else
         {
