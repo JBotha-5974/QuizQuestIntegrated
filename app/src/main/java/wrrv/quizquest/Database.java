@@ -66,14 +66,15 @@ public class Database {
             while (resultSet.next()){
                 String userName = resultSet.getString(1);
                 String password = resultSet.getString(2);
-                int playerScore = resultSet.getInt(3);
-                int playerCoins = resultSet.getInt(4);
-                int playerLevel = resultSet.getInt(5);
-                int playerHints = resultSet.getInt(6);
-                int leaderboardID = resultSet.getInt(7);
-                int gamesPlayed = resultSet.getInt(8);
-                int submissions = resultSet.getInt(9);
-                player = new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions);
+                String playerSprite = resultSet.getString(3);
+                int playerScore = resultSet.getInt(4);
+                int playerCoins = resultSet.getInt(5);
+                int playerLevel = resultSet.getInt(6);
+                int playerHints = resultSet.getInt(7);
+                int leaderboardID = resultSet.getInt(8);
+                int gamesPlayed = resultSet.getInt(9);
+                int submissions = resultSet.getInt(10);
+                player = new Player(userName,password,playerSprite,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions);
             }
             disconnect();
             return player;
