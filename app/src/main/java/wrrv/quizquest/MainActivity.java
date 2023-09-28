@@ -1,7 +1,9 @@
 package wrrv.quizquest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +26,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        player = new Player("JoshP", "Josh123", null, 10, 100, 12, 5, 1, 0);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        try {
+            player = Database.getPlayer(savedUsername,savedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         startBtn = findViewById(R.id.btnPlay);
         txtCoinsNum = findViewById(R.id.txtCoinsNum);
         checkBox1 = findViewById(R.id.checkBox1);

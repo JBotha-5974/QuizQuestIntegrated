@@ -3,9 +3,11 @@ package wrrv.quizquest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,8 +52,13 @@ public class GameScreen extends AppCompatActivity {
         tickImg = findViewById(R.id.tickImg);
         crossImg = findViewById(R.id.crossImg);
         Intent intent = getIntent();
-        if (intent != null){
-            player =  (Player) intent.getSerializableExtra("player");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        try {
+            player = Database.getPlayer(savedUsername,savedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         countdownTimer = new CountDownTimer(21000, 1000) {
             @Override
