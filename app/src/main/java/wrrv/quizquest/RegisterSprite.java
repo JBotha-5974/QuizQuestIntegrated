@@ -40,11 +40,11 @@ public class RegisterSprite extends AppCompatActivity {
 
     public void rgbRegisterSpriteFemaleClick(View view) {
         imgHolder.setImageResource(R.drawable.base_female);
-        //player.setPlayerSprite(imgHolder.getDrawable());
+        player.setPlayerSprite("f,h0,s0,p0,f0");
     }
 
     public void rgbRegisterSpriteMaleClick(View view) {
         imgHolder.setImageResource(R.drawable.base_male);
-        //player.setPlayerSprite(imgHolder.getDrawable());
+        player.setPlayerSprite("m,h0,s0,p0,f0");
     }
 }

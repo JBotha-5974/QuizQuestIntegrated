@@ -153,6 +153,15 @@ public class Database {
             statement.execute("UPDATE player SET playerSprite = '"+ sCode+ "' WHERE userName = '" + userName + "'");
         }
     }
+    public static String getPlayerSprite(String userName) throws Exception {
+        if (establishConnection()){
+            resultSet = statement.executeQuery("SELECT playerSprite FROM player WHERE userName = '" + userName + "'");
+            if (resultSet.next()){
+                return resultSet.getString(1);
+            }
+        }
+        return "m,h0,s0,p0,f0";
+    }
     public static void CreateUser(Player player) throws Exception{
         String sName = player.getUserName();
         String sPassword = player.getUserPassword();

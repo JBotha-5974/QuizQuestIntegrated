@@ -110,6 +110,11 @@ public class GenerateSprite {
         else
             iPosF--;
     }
+    public String getCode()
+    {
+        String sLine = sGender+",h"+iPosH+",s"+iPosS+",p"+iPosP+",f"+iPosF;
+        return sLine;
+    }
     private void AddToArrays(Context context)
     {
         Gender = new ArrayList<>();
