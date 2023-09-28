@@ -20,13 +20,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="234dp"
+            android:layout_width="223dp"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imgStoreItem"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/txtItemDesc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +37,16 @@
 
             <TextView
                 android:id="@+id/txtItemDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/heading"
+                android:layout_width="214dp"
+                android:layout_height="55dp"
                 android:text="TextView"
+                android:textSize="14dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:maxLines="3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"

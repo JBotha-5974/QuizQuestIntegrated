@@ -48,7 +48,7 @@
         android:id="@+id/viewPager2Player"
         android:layout_width="match_parent"
         android:layout_height="449dp"
-        android:background="@color/white"
+        android:background="#99FFFFFF"
         />
 
     <ImageButton

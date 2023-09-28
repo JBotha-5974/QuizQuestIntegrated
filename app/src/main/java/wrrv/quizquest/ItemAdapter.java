@@ -50,8 +50,8 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
         public itemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            desc = itemView.findViewById(R.id.imgStoreItem);
-            image = itemView.findViewById(R.id.txtItemDesc);
+            desc = itemView.findViewById(R.id.txtItemDesc);
+            image = itemView.findViewById(R.id.imgStoreItem);
         }
 
         public itemViewHolder(@NonNull View itemView, Item item) {
