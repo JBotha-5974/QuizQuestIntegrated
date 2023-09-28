@@ -145,6 +145,14 @@ public class Database {
         }
         return 0;
     }
+    public static void updatePlayerSprite(String userName, String sCode) throws Exception {
+        /*
+        updates the player sprite String
+         */
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET playerSprite = '"+ sCode+ "' WHERE userName = '" + userName + "'");
+        }
+    }
     public static void CreateUser(Player player) throws Exception{
         String sName = player.getUserName();
         String sPassword = player.getUserPassword();

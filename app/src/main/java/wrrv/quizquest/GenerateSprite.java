@@ -56,21 +56,60 @@ public class GenerateSprite {
     }
     public void NextHair()
     {
-
+        if(iPosH == 23)
+            iPosH = 0;
+        else
+            iPosH++;
     }
     public void NextShirt()
     {
-
+        if(iPosS == 23)
+            iPosS = 0;
+        else
+            iPosS++;
     }
     public void NextPants()
     {
-
+        if(iPosP == 23)
+            iPosP = 0;
+        else
+            iPosP++;
     }
     public void NextFeet()
     {
-
+        if(iPosF == 23)
+            iPosF = 0;
+        else
+            iPosF++;
     }
-
+    public void PrevHair()
+    {
+        if(iPosH == 0)
+            iPosH = 23;
+        else
+            iPosH--;
+    }
+    public void PrevShirt()
+    {
+        if(iPosS == 0)
+            iPosS = 23;
+        else
+            iPosS--;
+    }
+    public void PrevPants()
+    {
+        if(iPosP == 0)
+            iPosP = 23;
+        else
+            iPosP--;
+    }
+    public void PrevFeet()
+    {
+        if(iPosF == 0)
+            iPosF = 23;
+        else
+            iPosF--;
+    }
 
 
 
