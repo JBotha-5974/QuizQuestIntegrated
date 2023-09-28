@@ -110,9 +110,6 @@ public class GenerateSprite {
         else
             iPosF--;
     }
-
-
-
     private void AddToArrays(Context context)
     {
         Gender = new ArrayList<>();
@@ -160,7 +157,8 @@ public class GenerateSprite {
         for (int k = 0; k < 52; k++) {
             String sTempHair = "h" + k;
             Integer resourceId = HairResourceMap.get(sTempHair);
-            Hair.add(AppCompatResources.getDrawable(context, resourceId));
+            //Hair.add(AppCompatResources.getDrawable(context, resourceId));
+            Hair.add(null);
         }
         ShirtResourceMap.put("s0",R.drawable.s0);
         ShirtResourceMap.put("s1",R.drawable.s1);

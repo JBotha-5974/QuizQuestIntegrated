@@ -24,7 +24,7 @@ public class RegisterSprite extends AppCompatActivity {
             player = (Player) extras.getSerializable("player");
         }
         imgHolder = findViewById(R.id.imgvSprite);
-        //player.setPlayerSprite(getDrawable(R.drawable.base_male));
+        player.setPlayerSprite("m,h0,s0,p0,f0");
     }
 
     public void btnRegisterSpriteContinueClick(View view) throws Exception {
