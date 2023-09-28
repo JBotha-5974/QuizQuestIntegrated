@@ -24,7 +24,6 @@ public class Player implements Serializable {
         this.playerLevel = playerLevel;
         this.playerHints = playerHints;
         this.leaderboardID = leaderboardID;
-        this.gamesPlayed = gamesPlayed;
     }
 
     public String getUserName() {
