@@ -253,40 +253,41 @@ public class Database {
         }
         return inserted;
     }
+    public static ArrayList<Submission> getSubmissionList(String userName) {
+        ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
 
-    public static ArrayList<Submission> getSubmissionList(String userName){
-        ArrayList<Submission> subs = null;
         try {
-            if(establishConnection())
-            {if (establishConnection()){
-                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Submission WHERE userName = '" + userName + "'");
-                resultSet.next();
+            if (establishConnection()) {
+                String query = "SELECT * FROM Submission WHERE userName = '" + userName + "'";
 
-                while (resultSet.next()){
-                    int id = resultSet.getInt(1);
-                    String username = resultSet.getString(2);
-                    String category = resultSet.getString(3);
-                    String questionText = resultSet.getString(4);
-                    String correctAnswer = resultSet.getString(5);
-                    String incorrectAnswer1 = resultSet.getString(6);
-                    String incorrectAnswer2 = resultSet.getString(7);
-                    String incorrectAnswer3 = resultSet.getString(8);
-                    String state = resultSet.getString(9);
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, userName);
 
-                    Submission s = new Submission(questionText,correctAnswer,category,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3,username,state);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String username = resultSet.getString("userName");
+                    String category = resultSet.getString("category");
+                    String questionText = resultSet.getString("questionText");
+                    String correctAnswer = resultSet.getString("correctAnswer");
+                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
+                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
+                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
+                    String state = resultSet.getString("state");
+
+                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
                     subs.add(s);
                 }
-            }
 
                 disconnect();
             }
-        }catch (Exception e){
-            Log.i("database",e.getMessage());
+        } catch (Exception e) {
+            Log.i("database", e.getMessage());
         }
 
         return subs;
     }
-
     private static boolean establishConnection() throws Exception{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
