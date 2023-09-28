@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         txtHintsNum = findViewById(R.id.txtHintsNum);
         txtHintsNum.setText("" + player.getPlayerHints());
         try {
-            quizzesDone = Database.getGamesPlayed("JoshP");
+            quizzesDone = Database.getGamesPlayed(player.getUserName());
             if (quizzesDone == 1) {
                 checkBox1.setChecked(true);
             } else if (quizzesDone == 2) {

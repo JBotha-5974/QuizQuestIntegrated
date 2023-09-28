@@ -31,7 +31,11 @@ public class submissionAdapter extends RecyclerView.Adapter <submissionAdapter.s
 
     @Override
     public int getItemCount() {
-        return submissions.size();
+
+        if(submissions != null){
+            submissions.size();
+        }
+        return 0;
     }
 
     public static class submissionViewHolder extends RecyclerView.ViewHolder{

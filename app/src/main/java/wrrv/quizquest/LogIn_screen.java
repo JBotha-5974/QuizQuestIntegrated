@@ -53,4 +53,10 @@ public class LogIn_screen extends AppCompatActivity {
             }
         }
     }
+
+    public void createAccount(View view) {
+        Intent intent = new Intent(this,RegisterUser.class);
+        startActivity(intent);
+        finish();
+    }
 }

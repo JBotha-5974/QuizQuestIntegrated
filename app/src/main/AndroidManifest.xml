@@ -15,6 +15,13 @@
         android:theme="@style/Theme.QuizQuest"
         tools:targetApi="31">
         <activity
+            android:name=".CustomizeSprite"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LeaderBoardProfile"
             android:exported="false">
             <meta-data
@@ -24,7 +31,6 @@
         <activity
             android:name=".Store_screen"
             android:exported="true">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -52,8 +58,8 @@
         </activity>
         <activity
             android:name=".LeaderBoardActivity"
-            android:launchMode="singleTask"
-            android:exported="false">
+            android:exported="false"
+            android:launchMode="singleTask">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -66,6 +72,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -135,6 +142,20 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RegisterSprite"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RegisterUser"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

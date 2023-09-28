@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabLayout;
 
 public class Store_screen extends AppCompatActivity {
+
+    Player player;
 
     TabLayout tabLayout;
     ViewPager2 viewpager2;
@@ -22,6 +26,15 @@ public class Store_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_screen);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        try {
+            player = Database.getPlayer(savedUsername,savedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         leave =findViewById(R.id.btnLeaveStorePlayer);
 

@@ -2,6 +2,7 @@ package wrrv.quizquest;
 
 import android.media.Image;
 import android.os.StrictMode;
+import android.util.Log;
 
 import java.sql.Blob;
 import java.sql.Connection;
@@ -35,7 +36,8 @@ public class Database {
                 int playerHints = resultSet.getInt(6);
                 int leaderboardID = resultSet.getInt(7);
                 int gamesPlayed = resultSet.getInt(8);
-                players.add(new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed));
+                int submissions = resultSet.getInt(9);
+                players.add(new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions));
             }
             disconnect();
             return players;
@@ -70,7 +72,8 @@ public class Database {
                 int playerHints = resultSet.getInt(6);
                 int leaderboardID = resultSet.getInt(7);
                 int gamesPlayed = resultSet.getInt(8);
-                player = new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed);
+                int submissions = resultSet.getInt(9);
+                player = new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions);
             }
             disconnect();
             return player;
@@ -113,7 +116,7 @@ public class Database {
     }
     public static int getHints(String userName) throws Exception{
         if (establishConnection()){
-            resultSet = statement.executeQuery("SELECT playerhints FROM player WHERE userName = '" + userName + "'");
+            resultSet = statement.executeQuery("SELECT playerHints FROM player WHERE userName = '" + userName + "'");
             if (resultSet.next()){
                 return resultSet.getInt(1);
             }
@@ -142,12 +145,155 @@ public class Database {
         }
         return 0;
     }
+    public static void updatePlayerSprite(String userName, String sCode) throws Exception {
+        /*
+        updates the player sprite String
+         */
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET playerSprite = '"+ sCode+ "' WHERE userName = '" + userName + "'");
+        }
+    }
+    public static String getPlayerSprite(String userName) throws Exception {
+        if (establishConnection()){
+            resultSet = statement.executeQuery("SELECT playerSprite FROM player WHERE userName = '" + userName + "'");
+            if (resultSet.next()){
+                return resultSet.getString(1);
+            }
+        }
+        return "m,h0,s0,p0,f0";
+    }
+    public static void CreateUser(Player player) throws Exception{
+        String sName = player.getUserName();
+        String sPassword = player.getUserPassword();
+        String sSprite = player.getPlayerSprite();
+        int iScore = player.getPlayerScore();
+        int iCoins = player.getPlayerCoins();
+        int iLevel = player.getPlayerLevel();
+        int iHints = player.getPlayerHints();
+        int iLeaderboard = player.getLeaderboardID();
+        int iGamesPlayed = player.getGamesPlayed();
+        int iQuestionsSubmitted = player.getSubmissions();
+        try {
+            if(establishConnection())
+            {
+                String sqlString = "INSERT INTO Player (userName, userPassword , playerSprite, playerScore, playerCoins, playerLevel, playerHints, leaderboardID, gamesPlayed, submissions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+                preparedStatement.setString(1, sName);
+                preparedStatement.setString(2,sPassword);
+                preparedStatement.setString(3,sSprite);
+                preparedStatement.setInt(4, iScore);
+                preparedStatement.setInt(5, iCoins);
+                preparedStatement.setInt(6, iLevel);
+                preparedStatement.setInt(7, iHints);
+                preparedStatement.setInt(8, iLeaderboard);
+                preparedStatement.setInt(9, iGamesPlayed);
+                preparedStatement.setInt(10, iQuestionsSubmitted);
+                preparedStatement.execute();
+            }
+        }catch (Exception e){
+            Log.i("database",e.getMessage());
+        }
+
+        disconnect();
+    }
+
+    public static boolean setState(String state, int submissionID){
+
+        try {
+            if(establishConnection())
+            {
+                String updateQuery = "UPDATE Submission SET state = ? WHERE submissionID = ?";
+
+                PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+
+                preparedStatement.setString(1, state);
+                preparedStatement.setInt(2, submissionID);
+
+                int rowsUpdated = preparedStatement.executeUpdate();
+
+                disconnect();
+
+                if (rowsUpdated > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        }catch (Exception e){
+            Log.i("database",e.getMessage());
+        }
+
+        return false;
+    }
+
+    public static boolean insertSubmission(Submission s){
+        boolean inserted = true;
+
+        try {
+            if(establishConnection())
+            {
+                String sqlString = "INSERT INTO Submission (question, answer , categoryID, incorrect1, incorrect2, incorrect3, userName, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+                preparedStatement.setString(1, s.getQuestion());
+                preparedStatement.setString(2,s.getAnswer());
+                preparedStatement.setString(3, s.getCategory());
+                preparedStatement.setString(4, s.getIncorrect1());
+                preparedStatement.setString(5, s.getIncorrect2());
+                preparedStatement.setString(6, s.getIncorrect3());
+                preparedStatement.setString(7, s.getUserName());
+                preparedStatement.setString(8, s.getState());
+
+                preparedStatement.execute();
+                disconnect();
+            }
+        }catch (Exception e){
+            inserted = false;
+            Log.i("database",e.getMessage());
+        }
+        return inserted;
+    }
+    public static ArrayList<Submission> getSubmissionList(String userName) {
+        ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
+
+        try {
+            if (establishConnection()) {
+                String query = "SELECT * FROM Submission WHERE userName = '" + userName + "'";
+
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, userName);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String username = resultSet.getString("userName");
+                    String category = resultSet.getString("category");
+                    String questionText = resultSet.getString("questionText");
+                    String correctAnswer = resultSet.getString("correctAnswer");
+                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
+                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
+                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
+                    String state = resultSet.getString("state");
+
+                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
+                    subs.add(s);
+                }
+
+                disconnect();
+            }
+        } catch (Exception e) {
+            Log.i("database", e.getMessage());
+        }
+
+        return subs;
+    }
     private static boolean establishConnection() throws Exception{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.106:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.104:3306/quizquest", "josh", "josh");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
