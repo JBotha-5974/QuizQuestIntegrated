@@ -60,9 +60,14 @@ public class Submission {
 
 
     public void setState(String state) {
-
-        // will have to change in db
         this.state = state;
+
+        try {
+            Database.setState(state, submissionID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getState() {
@@ -71,19 +76,7 @@ public class Submission {
 
     //endregion
 
-    public boolean insertSubmission(Submission s){
-        boolean inserted = true;
 
-        //try catch: if inserts- true else catches error false;
-//        try{
-//            inserted = true;
-//
-//        }catch(Error e){
-//             inserted = false;
-//        }
-
-        return inserted;
-    }
 
     public boolean moveToQuestions(Submission s){
         // Submission remains in submission list, so can be retrieved for previous submissions.
