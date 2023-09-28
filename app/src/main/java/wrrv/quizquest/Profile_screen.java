@@ -35,4 +35,9 @@ public class Profile_screen extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
+    public void btnCusomizeSpriteClick(View view) {
+        Intent intent = new Intent(this,CustomizeSprite.class);
+        startActivity(intent);
+    }
 }
