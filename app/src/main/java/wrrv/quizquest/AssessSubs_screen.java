@@ -51,10 +51,7 @@ public class AssessSubs_screen extends AppCompatActivity {
         incorrect2 = findViewById(R.id.txtI2View);
         incorrect3 = findViewById(R.id.txtI3View);
 
-        subs = getSubmissionList();
-
-        updateIndex();
-        displaySub(subs.get(cur));
+        updateList();
 
     }
 
@@ -65,8 +62,7 @@ public class AssessSubs_screen extends AppCompatActivity {
         else{
             cur--;
         }
-        updateIndex();
-        displaySub(subs.get(cur));
+        updateDisplay();
     }
 
     public void nextClick(View view){
@@ -76,25 +72,20 @@ public class AssessSubs_screen extends AppCompatActivity {
         else{
             cur++;
         }
-        updateIndex();
-        displaySub(subs.get(cur));
+        updateDisplay();
     }
 
     public void acceptClick(View view){
         Submission s = subs.get(cur);
         s.setState("accept");
         s.moveToQuestions(s);
-        getSubmissionList();
-        updateIndex();
-        displaySub(subs.get(cur));
+        updateList();
     }
 
     public void rejectClick(View view){
         Submission s = subs.get(cur);
         s.setState("reject");
-        getSubmissionList();
-        updateIndex();
-        displaySub(subs.get(cur));
+        updateList();
     }
 
     public void backClick(View view){
@@ -111,38 +102,30 @@ public class AssessSubs_screen extends AppCompatActivity {
         incorrect3.setText(s.getIncorrect3());
     }
 
-    public void updateIndex(){
+    public void updateList(){
+
+        subs = Database.getPending();
 
         int total = subs.size();
         int temp = cur + 1;
         String text = temp + " of " + total;
 
         index.setText(text);
+
+        displaySub(subs.get(cur));
+
     }
 
-    public List<Submission> getSubmissionList(){
+    public void updateDisplay(){
 
-        //connect to db and retrieve submissions
-        //filter by if state = pending
-        Submission sub1 = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha","pending");
-        Submission sub2 = new Submission("What character have both Robert Downey Jr. and Benedict Cumberbatch played?","Sherlock","Entertainment","Dr Strange","IronMan","Willy Wonka","josh","pending");
-        Submission sub3 = new Submission("What Renaissance artist is buried in Rome's Pantheon?","Raphael","Art","Donatello","MichealAngelo","Leonardo","joshua","pending");
-        Submission sub4 = new Submission("What is the largest animal?","Blue Whale","Animal","Elephant","Hippo","Giraffe","robin","pending");
-        Submission sub5 = new Submission("How many valves does a heart have?","4","Biology","2","6","3","Steve","pending");
-        Submission sub6 = new Submission("What is the largest country?", "Russia","Geography","USA","Greenland","South Africa","Bob","pending");
-        Submission sub7 = new Submission("Whats the fastest car?","Porche","General","kjfhka","kjhsfdj","kjshfdk","Amy","pending");
-        Submission sub8 = new Submission("What is the capital of Brazil", "Brasilia", "Geography","sjhfskdn","skjfdhkjsd","jkfdhkjsf","Dave","pending");
+        int total = subs.size();
+        int temp = cur + 1;
+        String text = temp + " of " + total;
 
-        List<Submission> subs = new ArrayList<Submission>();
+        index.setText(text);
 
-        subs.add(sub1);
-        subs.add(sub2);
-        subs.add(sub3);
-        subs.add(sub4);
-        subs.add(sub5);
-        subs.add(sub6);
-        subs.add(sub7);
-        subs.add(sub8);
-        return subs;
+        displaySub(subs.get(cur));
+
     }
+
 }
