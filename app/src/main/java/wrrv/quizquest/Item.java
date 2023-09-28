@@ -8,14 +8,14 @@ public class Item {
     private int itemPrice;
 
     //these are used to access the image in the Sprite Generator
-    private String type;
+    private String array;
     private int position;
 
-    public Item(int itemID, String itemName, int itemPrice, String type, int position) {
+    public Item(int itemID, String itemName, int itemPrice, String array, int position) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.type = type;
+        this.array = array;
         this.position = position;
     }
 
@@ -43,11 +43,10 @@ public class Item {
         this.itemPrice = itemPrice;
     }
 
-//    public Image getItemImage() {
-//        return itemImage;
-//    }
-//
-//    public void setItemImage(Image itemImage) {
-//        this.itemImage = itemImage;
-//    }
+    public int getItemImage() {
+        SpriteGenerator generator = new SpriteGenerator();
+
+        return generator.getImage(array, position);
+
+    }
 }

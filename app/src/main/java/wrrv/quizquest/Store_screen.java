@@ -23,10 +23,10 @@ public class Store_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_screen);
 
-        leave =findViewById(R.id.btnLeaveStore);
+        leave =findViewById(R.id.btnLeaveStorePlayer);
 
-        tabLayout = findViewById(R.id.tabLayout);
-        viewpager2 = findViewById(R.id.viewPager2);
+        tabLayout = findViewById(R.id.tabLayoutPlayer);
+        viewpager2 = findViewById(R.id.viewPager2Player);
 
         adapter = new StoreAdapter(this);
         viewpager2.setAdapter(adapter);

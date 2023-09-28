@@ -32,6 +32,17 @@ public class SpriteGenerator {
             R.drawable.f23
     };
 
+    public int getImage(String array, int position){
+        switch(array){
+            case "shoes":
+                return shoes[position];
+            default:
+                return shoes[position];
+
+
+        }
+    }
+
 
 
 }

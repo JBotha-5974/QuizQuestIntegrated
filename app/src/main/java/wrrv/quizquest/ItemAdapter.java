@@ -9,14 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class adminStoreAdapter extends RecyclerView.Adapter <adminStoreAdapter.itemViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolder> {
+
+    private ArrayList<Item> items;
+
+    public ItemAdapter(ArrayList<Item> items) {
+        this.items = items;
+    }
 
     @NonNull
     @Override
     public itemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_store_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_item_view, parent, false);
 
         itemViewHolder ivh = new itemViewHolder(view);
         return ivh;
@@ -57,15 +64,9 @@ public class adminStoreAdapter extends RecyclerView.Adapter <adminStoreAdapter.i
 
             desc.setText(i.getItemName());
 
-//            image.setImageResource(i.getItemImage());
+            image.setImageResource(i.getItemImage());
 
         }
-    }
-
-    private final List<Item> items;
-
-    public adminStoreAdapter(List<Item> items) {
-        this.items = items;
     }
 
     public Item get(int position) {
