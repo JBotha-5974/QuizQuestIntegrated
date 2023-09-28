@@ -4,7 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,7 +16,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Submit_screen extends AppCompatActivity {
-    String username;
+
+    Player player;
 
     EditText question;
     EditText answer;
@@ -32,6 +35,15 @@ public class Submit_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_screen);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        try {
+            player = Database.getPlayer(savedUsername,savedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         spinnerCategories =findViewById(R.id.spnCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -46,17 +58,13 @@ public class Submit_screen extends AppCompatActivity {
         submit = findViewById(R.id.btnSubmit);
         exit = findViewById(R.id.btnLeaveSubmit);
 
-        //player = sql statement
-        username="marisha";
     }
 
     public void submitClick(View view){
-        //Submission s = getSubmission();
-
-        Submission s = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha","pending");
+        Submission s = getSubmission();
 
         if(s != null){
-            boolean inserted = s.insertSubmission(s);
+            boolean inserted = Database.insertSubmission(s);
 
             if(inserted){
                 Toast.makeText(getApplicationContext(),"Your question has been submitted!",Toast.LENGTH_SHORT).show();
@@ -74,7 +82,6 @@ public class Submit_screen extends AppCompatActivity {
             }
 
             Intent intent = new Intent(this,Submissions_screen.class);
-            intent.putExtra("userName",username);
             startActivity(intent);
         }
         else{
@@ -91,7 +98,6 @@ public class Submit_screen extends AppCompatActivity {
     }
 
     private Submission getSubmission() {
-        boolean valid = true;
 
         String q = question.getText().toString().trim();
         String a = answer.getText().toString().trim();
@@ -99,16 +105,8 @@ public class Submit_screen extends AppCompatActivity {
         String i1 = incorrect1.getText().toString().trim();
         String i2 = incorrect2.getText().toString().trim();
         String i3 = incorrect3.getText().toString().trim();
-        Submission s = new Submission(q,a,c,i1,i2,i3, username,"pending");
+        Submission s = new Submission(q,a,c,i1,i2,i3, player.getUserName(),"pending");
 
-//        String[] inputs = {q,a,c,i1,i2,i3};
-//        for(String input : inputs){
-//            if(input.isEmpty()){
-//                valid = false;
-//            }
-//        }
-
-        //if(valid){
         if(!q.isEmpty() && !a.isEmpty() && !c.isEmpty() && !i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()){
             return s;
         }
@@ -118,7 +116,6 @@ public class Submit_screen extends AppCompatActivity {
 
     public void exitClick(View view){
         Intent intent = new Intent(this,Submissions_screen.class);
-        intent.putExtra("userName",username);
         startActivity(intent);
     }
 }

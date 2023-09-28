@@ -38,6 +38,8 @@ public class Player implements Serializable {
         this.playerHints = playerHints;
         this.leaderboardID = leaderboardID;
         this.gamesPlayed = gamesPlayed;
+
+        //submission for today 0 if not submitted yet
         this.submissions = submissions;
     }
 

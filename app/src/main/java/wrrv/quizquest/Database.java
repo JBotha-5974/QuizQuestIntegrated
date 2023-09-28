@@ -178,6 +178,66 @@ public class Database {
 
         disconnect();
     }
+
+    public static boolean setState(String state, int submissionID){
+
+        try {
+            if(establishConnection())
+            {
+                String updateQuery = "UPDATE Submission SET state = ? WHERE submissionID = ?";
+
+                PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+
+                preparedStatement.setString(1, state);
+                preparedStatement.setInt(2, submissionID);
+
+                int rowsUpdated = preparedStatement.executeUpdate();
+
+                disconnect();
+
+                if (rowsUpdated > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        }catch (Exception e){
+            Log.i("database",e.getMessage());
+        }
+
+        return false;
+    }
+
+    public static boolean insertSubmission(Submission s){
+        boolean inserted = true;
+
+        try {
+            if(establishConnection())
+            {
+                String sqlString = "INSERT INTO Submission (question, answer , categoryID, incorrect1, incorrect2, incorrect3, userName, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+                preparedStatement.setString(1, s.getQuestion());
+                preparedStatement.setString(2,s.getAnswer());
+                preparedStatement.setString(3, s.getCategory());
+                preparedStatement.setString(4, s.getIncorrect1());
+                preparedStatement.setString(5, s.getIncorrect2());
+                preparedStatement.setString(6, s.getIncorrect3());
+                preparedStatement.setString(7, s.getUserName());
+                preparedStatement.setString(8, s.getState());
+
+                preparedStatement.execute();
+                disconnect();
+            }
+        }catch (Exception e){
+            inserted = false;
+            Log.i("database",e.getMessage());
+        }
+        return inserted;
+    }
+
+
+
     private static boolean establishConnection() throws Exception{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
