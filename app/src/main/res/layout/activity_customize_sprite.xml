@@ -8,34 +8,106 @@
     tools:context=".CustomizeSprite">
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pants"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="461dp" />
-
-    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/default_font"
         android:text="Hairstyle"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="374dp" />
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="353dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/back"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="498dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/back"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="345dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/default_font"
         android:text="Shirt"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="419dp" />
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="403dp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/default_font"
         android:text="Shoes"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="523dp" />
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="508dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
+        app:srcCompat="@drawable/back"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="396dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/back"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/default_font"
+        android:text="Pants"
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="455dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:rotation="180"
+        app:srcCompat="@drawable/back"
+        tools:layout_editor_absoluteX="277dp"
+        tools:layout_editor_absoluteY="345dp" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/light_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="562dp" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/light_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        tools:layout_editor_absoluteX="234dp"
+        tools:layout_editor_absoluteY="563dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
