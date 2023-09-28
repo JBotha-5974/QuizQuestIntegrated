@@ -33,8 +33,46 @@ public class GenerateSprite {
         sShirt = strings[2];
         sPants = strings[3];
         sFeet = strings[4];
+        if (sGender.equals("f"))
+            iPosG = 0;
+        else
+            iPosG = 1;
+        iPosF = Integer.parseInt(sFeet.substring(1));
+        iPosH = Integer.parseInt(sHair.substring(1));
+        iPosP = Integer.parseInt(sPants.substring(1));
+        iPosS = Integer.parseInt(sShirt.substring(1));
         AddToArrays(context);
     }
+    public LayerDrawable getImage()
+    {
+        Drawable layer1 = Gender.get(iPosG);
+        Drawable layer2 = Pants.get(iPosP);
+        Drawable layer3 = Shirts.get(iPosS);
+        Drawable layer4 = Feet.get(iPosF);
+        Drawable layer5 = Hair.get(iPosH);
+        Drawable[] layers = {layer1, layer2, layer3, layer4, layer5};
+        imgToPush = new LayerDrawable(layers);
+        return imgToPush;
+    }
+    public void NextHair()
+    {
+
+    }
+    public void NextShirt()
+    {
+
+    }
+    public void NextPants()
+    {
+
+    }
+    public void NextFeet()
+    {
+
+    }
+
+
+
 
     private void AddToArrays(Context context)
     {
