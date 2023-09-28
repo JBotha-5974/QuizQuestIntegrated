@@ -105,9 +105,9 @@ public class Submit_screen extends AppCompatActivity {
         String i1 = incorrect1.getText().toString().trim();
         String i2 = incorrect2.getText().toString().trim();
         String i3 = incorrect3.getText().toString().trim();
-        Submission s = new Submission(q,a,c,i1,i2,i3, player.getUserName(),"pending");
 
         if(!q.isEmpty() && !a.isEmpty() && !c.isEmpty() && !i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()){
+            Submission s = new Submission(q,a,c,i1,i2,i3, player.getUserName(),"pending");
             return s;
         }
         else return null;
