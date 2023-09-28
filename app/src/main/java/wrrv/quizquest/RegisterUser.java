@@ -41,4 +41,9 @@ public class RegisterUser extends AppCompatActivity {
             toast.show();
         }
     }
+
+    public void btnLoginFromRegisterClick(View view) {
+        Intent intent = new Intent(this, LogIn_screen.class);
+        startActivity(intent);
+    }
 }
