@@ -75,11 +75,13 @@ public class Submissions_screen extends AppCompatActivity {
         Intent intent = new Intent(this,PrevSubs_screen.class);
         intent.putExtra("userName",username);
         startActivity(intent);
+        finish();
     }
 
     public void leaveClick(View view){
         Intent intent = new Intent(this,Profile_screen.class);
         intent.putExtra("userName",username);
         startActivity(intent);
+        finish();
     }
 }

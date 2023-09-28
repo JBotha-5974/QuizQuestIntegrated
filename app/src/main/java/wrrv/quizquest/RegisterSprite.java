@@ -3,6 +3,7 @@ package wrrv.quizquest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +11,7 @@ import android.widget.ImageView;
 public class RegisterSprite extends AppCompatActivity {
     private ImageView imgHolder;
     private Player player;
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +27,13 @@ public class RegisterSprite extends AppCompatActivity {
 
     public void btnRegisterSpriteContinueClick(View view) throws Exception {
         Database.CreateUser(player);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", player.getUserName());
+        editor.putString("password", player.getUserPassword());
+        editor.apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void rgbRegisterSpriteFemaleClick(View view) {
