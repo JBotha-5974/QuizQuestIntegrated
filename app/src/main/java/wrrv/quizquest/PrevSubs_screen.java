@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class PrevSubs_screen extends AppCompatActivity {
 
-    String username;
+    Player player;
 
     private List<Submission> submissions;
     private submissionAdapter adapter;
@@ -27,7 +29,16 @@ public class PrevSubs_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prev_subs_screen);
 
-        submissions = getSubmissionList(username);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        try {
+            player = Database.getPlayer(savedUsername,savedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        submissions = Database.getSubmissionList(player.getUserName());
         adapter = new submissionAdapter(submissions);
 
         RecyclerView listSubmissions = findViewById(R.id.RVlistSubmissions);
@@ -42,7 +53,6 @@ public class PrevSubs_screen extends AppCompatActivity {
 
     public void backClick(View view){
         Intent intent = new Intent(this,Submissions_screen.class);
-        intent.putExtra("userName",username);
         startActivity(intent);
     }
 
@@ -58,36 +68,5 @@ public class PrevSubs_screen extends AppCompatActivity {
         });
 
         ad.show();
-    }
-
-    public List<Submission> getSubmissionList(String userName){
-
-        //connect to db and retrieve submissions
-        //have parameter for username to filter by
-        Submission sub1 = new Submission("Which planet has the most moons?","Saturn","Space","Jupiter","Neptune","Mars","marisha","pending");
-        Submission sub2 = new Submission("What character have both Robert Downey Jr. and Benedict Cumberbatch played?","Sherlock","Entertainment","Dr Strange","IronMan","Willy Wonka","josh","pending");
-        Submission sub3 = new Submission("What Renaissance artist is buried in Rome's Pantheon?","Raphael","Art","Donatello","MichealAngelo","Leonardo","joshua","pending");
-        Submission sub4 = new Submission("What is the largest animal?","Blue Whale","Animal","Elephant","Hippo","Giraffe","robin","pending");
-        Submission sub5 = new Submission("How many valves does a heart have?","4","Biology","2","6","3","Steve","pending");
-        Submission sub6 = new Submission("What is the largest country?", "Russia","Geography","USA","Greenland","South Africa","Bob","pending");
-        Submission sub7 = new Submission("Whats the fastest car?","Porche","General","kjfhka","kjhsfdj","kjshfdk","Amy","pending");
-        Submission sub8 = new Submission("What is the capital of Brazil", "Brasilia", "Geography","sjhfskdn","skjfdhkjsd","jkfdhkjsf","Dave","pending");
-        sub1.setState("accepted");
-        sub2.setState("rejected");
-        sub5.setState("accepted");
-        sub7.setState("rejected");
-        List<Submission> subs = new ArrayList<Submission>();
-
-        subs.add(sub1);
-        subs.add(sub2);
-        subs.add(sub3);
-        subs.add(sub4);
-        subs.add(sub5);
-        subs.add(sub6);
-        subs.add(sub7);
-        subs.add(sub8);
-
-
-        return subs;
     }
 }

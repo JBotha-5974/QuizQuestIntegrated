@@ -254,7 +254,38 @@ public class Database {
         return inserted;
     }
 
+    public static ArrayList<Submission> getSubmissionList(String userName){
+        ArrayList<Submission> subs = null;
+        try {
+            if(establishConnection())
+            {if (establishConnection()){
+                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Submission WHERE userName = '" + userName + "'");
+                resultSet.next();
 
+                while (resultSet.next()){
+                    int id = resultSet.getInt(1);
+                    String username = resultSet.getString(2);
+                    String category = resultSet.getString(3);
+                    String questionText = resultSet.getString(4);
+                    String correctAnswer = resultSet.getString(5);
+                    String incorrectAnswer1 = resultSet.getString(6);
+                    String incorrectAnswer2 = resultSet.getString(7);
+                    String incorrectAnswer3 = resultSet.getString(8);
+                    String state = resultSet.getString(9);
+
+                    Submission s = new Submission(questionText,correctAnswer,category,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3,username,state);
+                    subs.add(s);
+                }
+            }
+
+                disconnect();
+            }
+        }catch (Exception e){
+            Log.i("database",e.getMessage());
+        }
+
+        return subs;
+    }
 
     private static boolean establishConnection() throws Exception{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
