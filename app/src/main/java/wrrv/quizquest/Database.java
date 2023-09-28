@@ -66,14 +66,15 @@ public class Database {
             while (resultSet.next()){
                 String userName = resultSet.getString(1);
                 String password = resultSet.getString(2);
-                int playerScore = resultSet.getInt(3);
-                int playerCoins = resultSet.getInt(4);
-                int playerLevel = resultSet.getInt(5);
-                int playerHints = resultSet.getInt(6);
-                int leaderboardID = resultSet.getInt(7);
-                int gamesPlayed = resultSet.getInt(8);
-                int submissions = resultSet.getInt(9);
-                player = new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions);
+                String playerSprite = resultSet.getString(3);
+                int playerScore = resultSet.getInt(4);
+                int playerCoins = resultSet.getInt(5);
+                int playerLevel = resultSet.getInt(6);
+                int playerHints = resultSet.getInt(7);
+                int leaderboardID = resultSet.getInt(8);
+                int gamesPlayed = resultSet.getInt(9);
+                int submissions = resultSet.getInt(10);
+                player = new Player(userName,password,playerSprite,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions);
             }
             disconnect();
             return player;
@@ -311,32 +312,6 @@ public class Database {
             resultSet = null;
         }catch (Exception e){
             e.printStackTrace();
-        }
-    }
-    public static void CreateUser(Player player) throws Exception{
-        String sName = player.getUserName();
-        String sPassword = player.getUserPassword();
-        Image imgSprite = player.getPlayerSprite();
-        int iScore = player.getPlayerScore();
-        int iCoins = player.getPlayerCoins();
-        int iLevel = player.getPlayerLevel();
-        int iHints = player.getPlayerHints();
-        int iLeaderboard = player.getLeaderboardID();
-        int iGamesPlayed = player.getGamesPlayed();
-        if(establishConnection())
-        {
-            String sqlString = "INSERT INTO Player (userName, userPassword , playerSprite, playerScore, playerCoins, playerLevel, playerHints, leaderboardID, gamesPlayed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
-            preparedStatement.setString(1, sName);
-            preparedStatement.setString(2,sPassword);
-            preparedStatement.setBlob(3, (Blob) imgSprite);
-            preparedStatement.setInt(4, iScore);
-            preparedStatement.setInt(5, iCoins);
-            preparedStatement.setInt(6, iLevel);
-            preparedStatement.setInt(7, iHints);
-            preparedStatement.setInt(8, iLeaderboard);
-            preparedStatement.setInt(9,iGamesPlayed);
-            preparedStatement.executeUpdate();
         }
     }
 }
