@@ -2,15 +2,29 @@ package wrrv.quizquest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.ImageView;
 
 public class CustomizeSprite extends AppCompatActivity {
+    private ImageView imgHolder;
+    private GenerateSprite custom;
+    private SharedPreferences sharedPreferences;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize_sprite);
+        sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(this);
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null)
+        {
+            player = (Player) extras.getSerializable("player");
+        }
+        imgHolder = findViewById(R.id.imgSpriteHolder);
     }
 
     public void btnFeetBackClick(View view) {

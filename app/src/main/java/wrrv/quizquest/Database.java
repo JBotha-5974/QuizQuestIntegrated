@@ -145,10 +145,18 @@ public class Database {
         }
         return 0;
     }
+    public static void updatePlayerSprite(String userName, String sCode) throws Exception {
+        /*
+        updates the player sprite String
+         */
+        if (establishConnection()) {
+            statement.execute("UPDATE player SET playerSprite = '"+ sCode+ "' WHERE userName = '" + userName + "'");
+        }
+    }
     public static void CreateUser(Player player) throws Exception{
         String sName = player.getUserName();
         String sPassword = player.getUserPassword();
-        Image imgSprite = player.getPlayerSprite();
+        String sSprite = player.getPlayerSprite();
         int iScore = player.getPlayerScore();
         int iCoins = player.getPlayerCoins();
         int iLevel = player.getPlayerLevel();
@@ -159,17 +167,18 @@ public class Database {
         try {
             if(establishConnection())
             {
-                String sqlString = "INSERT INTO Player (userName, userPassword , playerScore, playerCoins, playerLevel, playerHints, leaderboardID, gamesPlayed, submissions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sqlString = "INSERT INTO Player (userName, userPassword , playerSprite, playerScore, playerCoins, playerLevel, playerHints, leaderboardID, gamesPlayed, submissions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
                 preparedStatement.setString(1, sName);
                 preparedStatement.setString(2,sPassword);
-                preparedStatement.setInt(3, iScore);
-                preparedStatement.setInt(4, iCoins);
-                preparedStatement.setInt(5, iLevel);
-                preparedStatement.setInt(6, iHints);
-                preparedStatement.setInt(7, iLeaderboard);
-                preparedStatement.setInt(8, iGamesPlayed);
-                preparedStatement.setInt(9, iQuestionsSubmitted);
+                preparedStatement.setString(3,sSprite);
+                preparedStatement.setInt(4, iScore);
+                preparedStatement.setInt(5, iCoins);
+                preparedStatement.setInt(6, iLevel);
+                preparedStatement.setInt(7, iHints);
+                preparedStatement.setInt(8, iLeaderboard);
+                preparedStatement.setInt(9, iGamesPlayed);
+                preparedStatement.setInt(10, iQuestionsSubmitted);
                 preparedStatement.execute();
             }
         }catch (Exception e){

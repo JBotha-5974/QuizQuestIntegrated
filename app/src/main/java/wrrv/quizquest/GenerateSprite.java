@@ -56,24 +56,60 @@ public class GenerateSprite {
     }
     public void NextHair()
     {
-
+        if(iPosH == 23)
+            iPosH = 0;
+        else
+            iPosH++;
     }
     public void NextShirt()
     {
-
+        if(iPosS == 23)
+            iPosS = 0;
+        else
+            iPosS++;
     }
     public void NextPants()
     {
-
+        if(iPosP == 23)
+            iPosP = 0;
+        else
+            iPosP++;
     }
     public void NextFeet()
     {
-
+        if(iPosF == 23)
+            iPosF = 0;
+        else
+            iPosF++;
     }
-
-
-
-
+    public void PrevHair()
+    {
+        if(iPosH == 0)
+            iPosH = 23;
+        else
+            iPosH--;
+    }
+    public void PrevShirt()
+    {
+        if(iPosS == 0)
+            iPosS = 23;
+        else
+            iPosS--;
+    }
+    public void PrevPants()
+    {
+        if(iPosP == 0)
+            iPosP = 23;
+        else
+            iPosP--;
+    }
+    public void PrevFeet()
+    {
+        if(iPosF == 0)
+            iPosF = 23;
+        else
+            iPosF--;
+    }
     private void AddToArrays(Context context)
     {
         Gender = new ArrayList<>();
@@ -121,7 +157,8 @@ public class GenerateSprite {
         for (int k = 0; k < 52; k++) {
             String sTempHair = "h" + k;
             Integer resourceId = HairResourceMap.get(sTempHair);
-            Hair.add(AppCompatResources.getDrawable(context, resourceId));
+            //Hair.add(AppCompatResources.getDrawable(context, resourceId));
+            Hair.add(null);
         }
         ShirtResourceMap.put("s0",R.drawable.s0);
         ShirtResourceMap.put("s1",R.drawable.s1);

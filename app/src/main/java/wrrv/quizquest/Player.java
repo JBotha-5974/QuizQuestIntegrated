@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Player implements Serializable {
     private String userName;
     private String userPassword;
-    private Image playerSprite;
+    private String playerSprite;
     private int playerScore;
     private int playerCoins;
     private int playerLevel;
@@ -28,7 +28,7 @@ public class Player implements Serializable {
         this.submissions = submissions;
     }
 
-    public Player(String userName, String userPassword, Image playerSprite, int playerScore, int playerCoins, int playerLevel, int playerHints, int leaderboardID, int gamesPlayed, int submissions) {
+    public Player(String userName, String userPassword, String playerSprite, int playerScore, int playerCoins, int playerLevel, int playerHints, int leaderboardID, int gamesPlayed, int submissions) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.playerSprite = playerSprite;
@@ -59,11 +59,11 @@ public class Player implements Serializable {
         this.userPassword = userPassword;
     }
 
-    public Image getPlayerSprite() {
+    public String getPlayerSprite() {
         return playerSprite;
     }
 
-    public void setPlayerSprite(Image playerSprite) {
+    public void setPlayerSprite(String playerSprite) {
         this.playerSprite = playerSprite;
     }
 
