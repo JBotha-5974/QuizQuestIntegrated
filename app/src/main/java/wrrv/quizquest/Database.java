@@ -257,31 +257,48 @@ public class Database {
     public static ArrayList<Submission> getSubmissionList(String userName) {
         ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
 
-        try {
-            if (establishConnection()) {
-                String query = "SELECT * FROM Submission WHERE userName = '" + userName + "'";
-                statement = connection.createStatement();
+//        try {
+//            if (establishConnection()) {
+//                String query = "SELECT * FROM Submission WHERE userName = '" + userName + "'";
+//                statement = connection.createStatement();
+//
+//                ResultSet resultSet = statement.executeQuery(query);
+//
+//
+//                while (resultSet.next()) {
+//                    int id = resultSet.getInt("id");
+//                    String username = resultSet.getString("userName");
+//                    String category = resultSet.getString("category");
+//                    String questionText = resultSet.getString("questionText");
+//                    String correctAnswer = resultSet.getString("correctAnswer");
+//                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
+//                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
+//                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
+//                    String state = resultSet.getString("state");
+//
+//                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
+//                    subs.add(s);
+//
+//                }
+//
+//                disconnect();
+//            }
+//        } catch (Exception e) {
+//            Log.i("database", e.getMessage());
+//        }
 
-                ResultSet resultSet = statement.executeQuery(query);
+        String query = "SELECT * FROM Submission WHERE userName = ?";
 
+        if (userName != null && !userName.isEmpty()) {
 
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String username = resultSet.getString("userName");
-                    String category = resultSet.getString("category");
-                    String questionText = resultSet.getString("questionText");
-                    String correctAnswer = resultSet.getString("correctAnswer");
-                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
-                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
-                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
-                    String state = resultSet.getString("state");
+        } else {
+            return null;
+        }
 
-                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
-                    subs.add(s);
-
-                }
-
-                disconnect();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, userName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                // process the result set
             }
         } catch (Exception e) {
             Log.i("database", e.getMessage());
@@ -332,7 +349,7 @@ public class Database {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //connection = DriverManager.getConnection("jdbc:mysql://10.0.0.104:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.14:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
