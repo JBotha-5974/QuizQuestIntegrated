@@ -1,4 +1,6 @@
 package wrrv.quizquest;
+import android.provider.ContactsContract;
+
 import java.sql.Date;
 
 public class Submission {
@@ -82,20 +84,10 @@ public class Submission {
         // Submission remains in submission list, so can be retrieved for previous submissions.
         // Gets copied into questions list
 
-        //how is questionID determined?
+        boolean moved = Database.moveSubmission(s);
 
-        //convert submission into question
-        Question q = new Question(24,s.categoryID, s.question,s.answer,s.incorrect1,s.incorrect2,s.incorrect3);
 
-        boolean copied = true;
-//        //try catch: if inserts- true else catches error false;
-//        try{
-//
-//        }catch(Error e){
-//            copied = false;
-//        }
-
-        return copied;
+        return moved;
     }
 
 }

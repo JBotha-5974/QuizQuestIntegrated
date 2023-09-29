@@ -287,38 +287,17 @@ public class Database {
 //            Log.i("database", e.getMessage());
 //        }
 
-        String query = "SELECT * FROM Submission WHERE userName = ?";
-
         if (userName != null && !userName.isEmpty()) {
 
         } else {
             return null;
         }
 
+        String query = "SELECT * FROM Submission WHERE userName = ?";
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, userName);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                // process the result set
-            }
-        } catch (Exception e) {
-            Log.i("database", e.getMessage());
-        }
-
-        return subs;
-    }
-
-    public static ArrayList<Submission> getPending() {
-        ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
-
-        try {
-            if (establishConnection()) {
-                String query = "SELECT * FROM Submission WHERE state = 'pending'";
-
-                statement = connection.createStatement();
-
-                ResultSet resultSet = statement.executeQuery(query);
-
-
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
                     String username = resultSet.getString("userName");
@@ -335,7 +314,6 @@ public class Database {
 
                 }
 
-                disconnect();
             }
         } catch (Exception e) {
             Log.i("database", e.getMessage());
@@ -343,13 +321,102 @@ public class Database {
 
         return subs;
     }
+
+    public static ArrayList<Submission> getPending() {
+        ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
+
+//        try {
+//            if (establishConnection()) {
+//                String query = "SELECT * FROM Submission WHERE state = 'pending'";
+//
+//                statement = connection.createStatement();
+//
+//                ResultSet resultSet = statement.executeQuery(query);
+//
+//
+//                while (resultSet.next()) {
+//                    int id = resultSet.getInt("id");
+//                    String username = resultSet.getString("userName");
+//                    String category = resultSet.getString("category");
+//                    String questionText = resultSet.getString("questionText");
+//                    String correctAnswer = resultSet.getString("correctAnswer");
+//                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
+//                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
+//                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
+//                    String state = resultSet.getString("state");
+//
+//                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
+//                    subs.add(s);
+//
+//                }
+//
+//                disconnect();
+//            }
+//        } catch (Exception e) {
+//            Log.i("database", e.getMessage());
+//        }
+
+        String query = "SELECT * FROM Submission WHERE state = 'pending'";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String username = resultSet.getString("userName");
+                    String category = resultSet.getString("category");
+                    String questionText = resultSet.getString("questionText");
+                    String correctAnswer = resultSet.getString("correctAnswer");
+                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
+                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
+                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
+                    String state = resultSet.getString("state");
+
+                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
+                    subs.add(s);
+
+                }
+
+            }
+        } catch (Exception e) {
+            Log.i("database", e.getMessage());
+        }
+
+        return subs;
+    }
+
+    public static boolean moveSubmission(Submission s){
+        boolean moved = true;
+
+        try {
+            if(establishConnection())
+            {
+                String sqlString = "INSERT INTO Question (categoryID, question, answer , incorrect1, incorrect2, incorrect3) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+                preparedStatement.setString(1, s.getCategory());
+                preparedStatement.setString(2, s.getQuestion());
+                preparedStatement.setString(3,s.getAnswer());
+                preparedStatement.setString(4, s.getIncorrect1());
+                preparedStatement.setString(5, s.getIncorrect2());
+                preparedStatement.setString(6, s.getIncorrect3());
+
+                preparedStatement.execute();
+                disconnect();
+            }
+        }catch (Exception e){
+            moved = false;
+            Log.i("database",e.getMessage());
+        }
+
+        return moved;
+    }
     private static boolean establishConnection() throws Exception{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //connection = DriverManager.getConnection("jdbc:mysql://10.0.0.104:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.14:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
