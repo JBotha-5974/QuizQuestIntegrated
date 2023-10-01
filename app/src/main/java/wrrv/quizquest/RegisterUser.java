@@ -27,7 +27,7 @@ public class RegisterUser extends AppCompatActivity {
         String sPasswordConfirm = tbxConfirmPassword.getText().toString();
         if(sPassword.equals(sPasswordConfirm) && !sPassword.isEmpty() && !sName.isEmpty())
         {
-            Player newPlayer = new Player(sName, sPassword, null, 0, 0, 0, 0, 0, 0);
+            Player newPlayer = new Player(sName, sPassword, null, 0, 20, 1, 5, 1, 0,0);
             Intent intent = new Intent(this, RegisterSprite.class);
             intent.putExtra("player", newPlayer);
             startActivity(intent);

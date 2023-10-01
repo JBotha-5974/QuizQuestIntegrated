@@ -21,6 +21,7 @@ public class RegisterSprite extends AppCompatActivity {
             player = (Player) extras.getSerializable("player");
         }
         imgHolder = findViewById(R.id.imgvSprite);
+        player.setPlayerSprite("m,h0,s0,p0,f0");
         //player.setPlayerSprite(getDrawable(R.drawable.base_male));
     }
 
@@ -32,6 +33,7 @@ public class RegisterSprite extends AppCompatActivity {
 
     public void rgbRegisterSpriteFemaleClick(View view) {
         imgHolder.setImageResource(R.drawable.base_female);
+        player.setPlayerSprite("f,h0,s0,p0,f0");
         //player.setPlayerSprite(imgHolder.getDrawable());
     }
 

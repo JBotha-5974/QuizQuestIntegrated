@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PlayerPerformance extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class PlayerPerformance extends AppCompatActivity {
     private TextView quizzesDoneTxt;
     private TextView pointsTxt;
     private TextView coinsTxt;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,9 @@ public class PlayerPerformance extends AppCompatActivity {
                 int quizzes = Database.getGamesPlayed(player.getUserName());
                 int score = intent.getIntExtra("score",0);
                 Database.updateScoreAndCoins(player.getUserName(),score,score*2);
+                imageView = findViewById(R.id.imageView);
+                GenerateSprite generateSprite = new GenerateSprite(this,player.getPlayerSprite());
+                imageView.setBackground(generateSprite.getImage());
                 questionsCorrectTxt = findViewById(R.id.questionsCorrectTxt);
                 quizzesDoneTxt = findViewById(R.id.quizzesDoneTxt);
                 pointsTxt = findViewById(R.id.pointsTxt);

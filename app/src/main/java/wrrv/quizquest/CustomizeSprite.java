@@ -20,17 +20,14 @@ public class CustomizeSprite extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize_sprite);
-        sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(this);
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null)
-        {
-            player = (Player) extras.getSerializable("player");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        try {
+            player = Database.getPlayer(savedUsername,savedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", player.getUserName());
-        editor.putString("password", player.getUserPassword());
-        editor.putString("code", player.getPlayerSprite());
-        editor.apply();
         sCode = player.getPlayerSprite();
         custom = new GenerateSprite(this, sCode);
         imgHolder = findViewById(R.id.imgSpriteHolder);

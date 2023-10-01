@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ldbProfileTxtName"
-        app:srcCompat="@drawable/spooderman" />
+        app:srcCompat="@drawable/base_male" />
 
     <ImageButton
         android:id="@+id/imageButton"

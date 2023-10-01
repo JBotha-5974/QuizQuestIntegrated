@@ -1,5 +1,6 @@
 package wrrv.quizquest;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>{
     private View.OnClickListener onClickListener;
@@ -21,7 +23,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.recyclerview_player,parent,false);
-        return new PlayerViewHolder(view);
+        return new PlayerViewHolder(view, parent.getContext());
     }
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
@@ -37,13 +39,15 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         return players.size();
     }
     public static class PlayerViewHolder extends RecyclerView.ViewHolder{
+        public Context context;
         public Player player;
         public ImageView recyclerSprite;
         public TextView userName;
         public TextView score;
         public TextView pos;
-        public PlayerViewHolder(@NonNull View itemView) {
+        public PlayerViewHolder(@NonNull View itemView, Context context) {
             super(itemView);
+            this.context = context;
             recyclerSprite = itemView.findViewById(R.id.recycleSprite);
             userName = itemView.findViewById(R.id.recycleUserName);
             score = itemView.findViewById(R.id.recycleScore);
@@ -51,8 +55,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         }
         public void setPlayer(Player player, int position){
             this.player = player;
-            recyclerSprite.setImageResource(R.drawable.spooderman);
-            recyclerSprite.setBackgroundColor(Color.WHITE);
+            GenerateSprite generateSprite = new GenerateSprite(context,player.getPlayerSprite());
+            recyclerSprite.setBackground(generateSprite.getImage());
             userName.setText(player.getUserName());
             score.setText(String.valueOf(player.getPlayerScore()) + " points");
             pos.setText(String.valueOf(position+1));
