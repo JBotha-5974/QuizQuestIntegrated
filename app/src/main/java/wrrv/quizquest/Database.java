@@ -30,14 +30,15 @@ public class Database {
             while (resultSet.next()){
                 String userName = resultSet.getString(1);
                 String password = resultSet.getString(2);
-                int playerScore = resultSet.getInt(3);
-                int playerCoins = resultSet.getInt(4);
-                int playerLevel = resultSet.getInt(5);
-                int playerHints = resultSet.getInt(6);
-                int leaderboardID = resultSet.getInt(7);
-                int gamesPlayed = resultSet.getInt(8);
-                int submissions = resultSet.getInt(9);
-                players.add(new Player(userName,password,null,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions));
+                String playerSprite = resultSet.getString(3);
+                int playerScore = resultSet.getInt(4);
+                int playerCoins = resultSet.getInt(5);
+                int playerLevel = resultSet.getInt(6);
+                int playerHints = resultSet.getInt(7);
+                int leaderboardID = resultSet.getInt(8);
+                int gamesPlayed = resultSet.getInt(9);
+                int submissions = resultSet.getInt(10);
+                players.add(new Player(userName,password,playerSprite,playerScore,playerCoins,playerLevel,playerHints,leaderboardID,gamesPlayed,submissions));
             }
             disconnect();
             return players;
@@ -415,8 +416,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //connection = DriverManager.getConnection("jdbc:mysql://10.0.0.104:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.106:3306/quizquest", "josh", "josh");
+//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
