@@ -351,32 +351,35 @@ public class Database {
             return null;
         }
 
-        String query = "SELECT * FROM Submission WHERE userName = ?";
+        if (establishConnection()) {
+            String query = "SELECT * FROM Submission WHERE userName = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, userName);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String username = resultSet.getString("userName");
-                    String category = resultSet.getString("category");
-                    String questionText = resultSet.getString("questionText");
-                    String correctAnswer = resultSet.getString("correctAnswer");
-                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
-                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
-                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
-                    String state = resultSet.getString("state");
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, userName);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String username = resultSet.getString("userName");
+                        String category = resultSet.getString("category");
+                        String questionText = resultSet.getString("questionText");
+                        String correctAnswer = resultSet.getString("correctAnswer");
+                        String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
+                        String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
+                        String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
+                        String state = resultSet.getString("state");
 
-                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
-                    subs.add(s);
+                        Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
+                        subs.add(s);
+
+                    }
 
                 }
-
+            } catch (Exception e) {
+                Log.e("DATABASE",e.getMessage());
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            Log.e("DATABASE",e.getMessage());
-            e.printStackTrace();
         }
+
 
         return subs;
     }
@@ -477,8 +480,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
-//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+            //connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
