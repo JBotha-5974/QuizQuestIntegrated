@@ -50,4 +50,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblUsername"
+        style="@style/heading"
+        android:layout_width="289dp"
+        android:layout_height="66dp"
+        android:text="TextView"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCustomizeSprite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232" />
 </androidx.constraintlayout.widget.ConstraintLayout>
