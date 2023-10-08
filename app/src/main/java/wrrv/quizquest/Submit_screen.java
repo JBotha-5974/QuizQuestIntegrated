@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Submit_screen extends AppCompatActivity {
 
@@ -127,4 +128,9 @@ public class Submit_screen extends AppCompatActivity {
         Intent intent = new Intent(this,Submissions_screen.class);
         startActivity(intent);
     }
+
+    public void test(){
+
+    }
+
 }

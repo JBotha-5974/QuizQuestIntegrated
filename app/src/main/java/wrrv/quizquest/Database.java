@@ -7,9 +7,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -312,122 +314,20 @@ public class Database {
         }
         return inserted;
     }
-    public static ArrayList<Submission> getSubmissionList(String userName) {
-        ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
-
-//        try {
-//            if (establishConnection()) {
-//                String query = "SELECT * FROM Submission WHERE userName = '" + userName + "'";
-//                statement = connection.createStatement();
-//
-//                ResultSet resultSet = statement.executeQuery(query);
-//
-//
-//                while (resultSet.next()) {
-//                    int id = resultSet.getInt("id");
-//                    String username = resultSet.getString("userName");
-//                    String category = resultSet.getString("category");
-//                    String questionText = resultSet.getString("questionText");
-//                    String correctAnswer = resultSet.getString("correctAnswer");
-//                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
-//                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
-//                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
-//                    String state = resultSet.getString("state");
-//
-//                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
-//                    subs.add(s);
-//
-//                }
-//
-//                disconnect();
-//            }
-//        } catch (Exception e) {
-//            Log.i("database", e.getMessage());
-//        }
-
-        if (userName != null && !userName.isEmpty()) {
-
-        } else {
-            return null;
-        }
+    public static List<Submission> getSubmissionList(String username) {
+        List<Submission> submissions = new ArrayList<>();
 
         if (establishConnection()) {
-            String query = "SELECT * FROM Submission WHERE userName = ?";
+            try {
+                String query = "SELECT * FROM Submission WHERE userName = ?";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, userName);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        int id = resultSet.getInt("id");
-                        String username = resultSet.getString("userName");
-                        String category = resultSet.getString("category");
-                        String questionText = resultSet.getString("questionText");
-                        String correctAnswer = resultSet.getString("correctAnswer");
-                        String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
-                        String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
-                        String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
-                        String state = resultSet.getString("state");
-
-                        Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
-                        subs.add(s);
-
-                    }
-
-                }
-            } catch (Exception e) {
-                Log.e("DATABASE",e.getMessage());
-                e.printStackTrace();
-            }
-        }
-
-
-        return subs;
-    }
-
-    public static ArrayList<Submission> getPending() {
-        ArrayList<Submission> subs = new ArrayList<>(); // Initialize the ArrayList
-
-//        try {
-//            if (establishConnection()) {
-//                String query = "SELECT * FROM Submission WHERE state = 'pending'";
-//
-//                statement = connection.createStatement();
-//
-//                ResultSet resultSet = statement.executeQuery(query);
-//
-//
-//                while (resultSet.next()) {
-//                    int id = resultSet.getInt("id");
-//                    String username = resultSet.getString("userName");
-//                    String category = resultSet.getString("category");
-//                    String questionText = resultSet.getString("questionText");
-//                    String correctAnswer = resultSet.getString("correctAnswer");
-//                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
-//                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
-//                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
-//                    String state = resultSet.getString("state");
-//
-//                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
-//                    subs.add(s);
-//
-//                }
-//
-//                disconnect();
-//            }
-//        } catch (Exception e) {
-//        Log.e("DATABASE",e.getMessage());
-//        e.printStackTrace();
-//        }
-
-        String query = "SELECT * FROM Submission WHERE state = 'pending'";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String username = resultSet.getString("userName");
-                    String category = resultSet.getString("category");
+                    // Retrieve submission data from the result set
+                    int submissionID = resultSet.getInt("submissionID");
+                    String categoryID = resultSet.getString("categoryID");
                     String questionText = resultSet.getString("questionText");
                     String correctAnswer = resultSet.getString("correctAnswer");
                     String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
@@ -435,18 +335,26 @@ public class Database {
                     String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
                     String state = resultSet.getString("state");
 
-                    Submission s = new Submission(questionText, correctAnswer, category, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
-                    subs.add(s);
-
+                    // Create Submission objects and add them to the list
+                    Submission submission = new Submission(questionText,correctAnswer,categoryID, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
+                    submissions.add(submission);
                 }
-
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception properly
+            } finally {
+                disconnect(); // Ensure proper disconnection after usage
             }
-        } catch (Exception e) {
-            Log.e("DATABASE",e.getMessage());
-            e.printStackTrace();
+        } else {
+            // Handle connection failure if needed
         }
 
-        return subs;
+        return submissions;
+    }
+
+    public static ArrayList<Submission> getPending() {
+        ArrayList<Submission> submissions = new ArrayList<>(); // Initialize the ArrayList
+
+        return submissions;
     }
 
     public static boolean moveSubmission(Submission s){
