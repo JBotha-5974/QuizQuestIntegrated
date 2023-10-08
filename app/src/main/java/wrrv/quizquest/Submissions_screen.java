@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Submissions_screen extends AppCompatActivity {
 
     Player player;
@@ -60,7 +63,11 @@ public class Submissions_screen extends AppCompatActivity {
     public void submitClick(View view){
         int check = player.getSubmissions();
 
-        if(check == 0){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        int date = Integer.parseInt(currentDate.format(formatter));
+
+        if(check != date){
             Intent intent = new Intent(this,Submit_screen.class);
             startActivity(intent);
         }

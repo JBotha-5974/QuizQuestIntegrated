@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Submit_screen extends AppCompatActivity {
 
@@ -67,6 +69,13 @@ public class Submit_screen extends AppCompatActivity {
             boolean inserted = Database.insertSubmission(s);
 
             if(inserted){
+
+                LocalDate currentDate = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+                int date = Integer.parseInt(currentDate.format(formatter));
+
+                player.setSubmissions(date);
+
                 Toast.makeText(getApplicationContext(),"Your question has been submitted!",Toast.LENGTH_SHORT).show();
 
             }

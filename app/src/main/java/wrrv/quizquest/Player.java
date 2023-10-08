@@ -14,6 +14,7 @@ public class Player implements Serializable {
     private int playerHints;
     private int leaderboardID;
     private int gamesPlayed;
+    private int submissions;
 
     public Player(String userName, String userPassword, String playerSprite, int playerScore, int playerCoins, int playerLevel, int playerHints, int leaderboardID, int gamesPlayed, int submissions) {
         this.userName = userName;
@@ -96,6 +97,10 @@ public class Player implements Serializable {
     }
 
     public int getSubmissions() {
-        return 0;
+        return submissions;
+    }
+
+    public void setSubmissions(int submissions){
+        this.submissions = submissions;
     }
 }
