@@ -1,5 +1,6 @@
 package wrrv.quizquest;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 
-public class AccessoriesFragment extends Fragment {
+public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemClickListener{
 
     ArrayList<Item> items;
     RecyclerView rvAccessories;
@@ -28,7 +29,18 @@ public class AccessoriesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_accessories, container, false);
+        View view = inflater.inflate(R.layout.fragment_accessories, container, false);
+
+        rvAccessories = view.findViewById(R.id.rvAccessories);
+        rvAccessories.setLayoutManager(
+                new GridLayoutManager(getContext(),2));
+
+        getItems();
+
+        adapter = new ItemAdapter(items, this);
+        rvAccessories.setAdapter(adapter);
+
+        return view;
     }
 
     @Override
@@ -37,15 +49,14 @@ public class AccessoriesFragment extends Fragment {
     {
         super.onViewCreated(view, savedInstanceState);
 
-        getItems();
+    }
 
-        adapter = new ItemAdapter(items);
-
-        rvAccessories = getView().findViewById(R.id.rvAccessories);
-        rvAccessories.setLayoutManager(
-                new GridLayoutManager(getContext(),2));
-
-        rvAccessories.setAdapter(adapter);
+    @Override
+    public void onItemClick(Item item) {
+        // Handle item click here
+        // Start the SecondActivity when an item is clicked
+        Intent intent = new Intent(getContext(),View_Item.class);
+        startActivity(intent);
     }
 
     public void getItems(){

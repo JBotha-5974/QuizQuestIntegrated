@@ -47,9 +47,8 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2Player"
         android:layout_width="match_parent"
-        android:layout_height="449dp"
-        android:background="#99FFFFFF"
-        />
+        android:layout_height="608dp"
+        android:background="#99FFFFFF" />
 
     <ImageButton
         android:id="@+id/btnLeaveStorePlayer"

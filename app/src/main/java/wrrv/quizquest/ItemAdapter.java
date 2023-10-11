@@ -1,5 +1,6 @@
 package wrrv.quizquest;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolder> {
 
     private ArrayList<Item> items;
+    private OnItemClickListener clickListener;
 
-    public ItemAdapter(ArrayList<Item> items) {
+    public ItemAdapter(ArrayList<Item> items, OnItemClickListener clickListener) {
         this.items = items;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -33,7 +36,7 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
     public void onBindViewHolder(@NonNull itemViewHolder holder, int position) {
         Item i = items.get(position);
         holder.setItem(i);
-
+        holder.itemView.setOnClickListener(view -> clickListener.onItemClick(i));
     }
 
     @Override
@@ -71,5 +74,9 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
 
     public Item get(int position) {
         return items.get(position);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Item item);
     }
 }
