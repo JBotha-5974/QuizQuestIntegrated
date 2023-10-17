@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,15 +56,28 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         // Handle item click here
         // Start the SecondActivity when an item is clicked
 
-        //if player -
-        Intent intent = new Intent(getContext(),View_Item.class);
-        intent.putExtra("Item", item);
-        startActivity(intent);
+        String activityName = getActivity().getClass().getSimpleName();
 
-        //if admin
-//        Intent intent = new Intent(getContext(),View_Item.class);
-//        intent.putExtra("Item", item);
-//        startActivity(intent);
+        if(activityName.equals("Store_screen")){
+            //if player
+
+            Intent intent = new Intent(getContext(),View_Item.class);
+            intent.putExtra("Item", item);
+            startActivity(intent);
+        }
+        else if(activityName.equals("Admin_Store")){
+            //if admin
+            Intent intent = new Intent(getContext(),Update_Item.class);
+            intent.putExtra("Item", item);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(getContext(), "Invalid activity: " + activityName, Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
 
     }
 

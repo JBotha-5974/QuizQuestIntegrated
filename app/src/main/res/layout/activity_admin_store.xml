@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBackground"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".Admin_Store">
+
+    <TextView
+        android:id="@+id/lblStoreAdmin"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:text="Update Store" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style = "@style/RoundedTabLayoutStyle">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/TabUpper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/upper" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/TabLower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lower" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/TabAcc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accessories" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2Admin"
+        android:layout_width="match_parent"
+        android:layout_height="608dp"
+        android:background="#99FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/btnLeaveStoreAdmin"
+        style="@style/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="leaveClick" />
+
+</LinearLayout>

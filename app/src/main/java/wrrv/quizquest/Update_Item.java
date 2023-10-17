@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Update_Item extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class Update_Item extends AppCompatActivity {
     Item item;
 
     EditText description;
+    ImageView image;
     EditText price;
 
     ImageButton leave;
@@ -26,7 +28,8 @@ public class Update_Item extends AppCompatActivity {
         setContentView(R.layout.activity_update_item);
 
         description = findViewById(R.id.txtUpdateDesc);
-        price = findViewById(R.id.txtUpdateDesc);
+        image = findViewById(R.id.imgUpdateItem);
+        price = findViewById(R.id.txtUpdatePrice);
 
         update = findViewById(R.id.btnUpdate);
         leave = findViewById(R.id.btnLeaveUpdate);
@@ -35,6 +38,7 @@ public class Update_Item extends AppCompatActivity {
         item = (Item) intent.getSerializableExtra("Item");
 
         description.setText(item.getItemName());
+        image.setImageResource(item.getItemImage());
         price.setText(String.valueOf(item.getItemPrice()));
     }
 
@@ -61,7 +65,7 @@ public class Update_Item extends AppCompatActivity {
     }
 
     public void leaveClick(View view){
-        Intent intent = new Intent(this,Store_screen.class);
+        Intent intent = new Intent(this,Admin_Store.class);
         startActivity(intent);
     }
 }

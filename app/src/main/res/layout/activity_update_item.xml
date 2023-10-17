@@ -8,7 +8,7 @@
     tools:context=".Update_Item">
 
     <ImageView
-        android:id="@+id/imgBuyItem"
+        android:id="@+id/imgUpdateItem"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:background="@color/white"
