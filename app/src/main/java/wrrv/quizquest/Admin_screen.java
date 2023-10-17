@@ -30,7 +30,6 @@ public class Admin_screen extends AppCompatActivity {
     }
 
     public void storeClick(View view){
-        //Intent intent = new Intent(this,MaintainStore_screen.class);
         Intent intent = new Intent(this,Store_screen.class);
         startActivity(intent);
     }

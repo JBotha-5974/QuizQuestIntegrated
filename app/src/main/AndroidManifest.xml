@@ -15,6 +15,13 @@
         android:theme="@style/Theme.QuizQuest"
         tools:targetApi="31">
         <activity
+            android:name=".Update_Item"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".View_Item"
             android:exported="false">
             <meta-data
@@ -85,13 +92,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AdminStore_screen"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".MaintainStore_screen"
             android:exported="false">
             <meta-data
@@ -154,7 +154,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
 </manifest>

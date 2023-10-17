@@ -279,6 +279,17 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public static void updateItem(int itemID, String desc, int price) {
+        try {
+            if (establishConnection()) {
+                statement.execute("UPDATE item SET itemName = " + desc + ", itemPrice = " + price + " WHERE itemID = '" + itemID + "'");
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static boolean setState(String state, int submissionID){
 
         try {

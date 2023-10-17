@@ -51,4 +51,13 @@ public class Item implements Serializable {
         return generator.getImage(array, position);
 
     }
+
+    public void setUpdate(int id, String desc, int price){
+        setItemName(desc);
+        setItemPrice(price);
+
+        // update in db
+        Database.updateItem(id,desc,price);
+
+    }
 }

@@ -54,9 +54,17 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     public void onItemClick(Item item) {
         // Handle item click here
         // Start the SecondActivity when an item is clicked
+
+        //if player -
         Intent intent = new Intent(getContext(),View_Item.class);
         intent.putExtra("Item", item);
         startActivity(intent);
+
+        //if admin
+//        Intent intent = new Intent(getContext(),View_Item.class);
+//        intent.putExtra("Item", item);
+//        startActivity(intent);
+
     }
 
     public void getItems(){
