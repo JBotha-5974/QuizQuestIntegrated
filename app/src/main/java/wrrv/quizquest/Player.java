@@ -64,8 +64,15 @@ public class Player implements Serializable {
         return playerCoins;
     }
 
-    public void setPlayerCoins(int playerCoins) {
+    public void setPlayerCoins(String username,int playerCoins) {
         this.playerCoins = playerCoins;
+
+        //update in db
+        try {
+            Database.updateCoins(username, playerCoins);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public int getPlayerLevel() {
@@ -100,7 +107,14 @@ public class Player implements Serializable {
         return submissions;
     }
 
-    public void setSubmissions(int submissions){
-        this.submissions = submissions;
+    public void setSubmissions(String username, int subDate){
+        this.submissions = subDate;
+
+        //update in db
+        try {
+            Database.updateSubmission(username, subDate);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

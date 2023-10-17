@@ -75,7 +75,7 @@ public class Submit_screen extends AppCompatActivity {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
                 int date = Integer.parseInt(currentDate.format(formatter));
 
-                player.setSubmissions(date);
+                player.setSubmissions(player.getUserName(), date);
 
                 Toast.makeText(getApplicationContext(),"Your question has been submitted!",Toast.LENGTH_SHORT).show();
 

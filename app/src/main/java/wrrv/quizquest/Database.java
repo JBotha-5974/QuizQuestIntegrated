@@ -256,6 +256,29 @@ public class Database {
         disconnect();
     }
 
+    //region Marisha
+
+    public static void updateCoins(String userName, int coins) {
+        try {
+            if (establishConnection()) {
+                statement.execute("UPDATE player SET  playerCoins = " + coins + " WHERE userName = '" + userName + "'");
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateSubmission(String userName, int submission) {
+        try {
+            if (establishConnection()) {
+                statement.execute("UPDATE player SET  submissions = " + submission + " WHERE userName = '" + userName + "'");
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static boolean setState(String state, int submissionID){
 
         try {
@@ -383,6 +406,9 @@ public class Database {
 
         return moved;
     }
+    //endregion
+
+    //region Connection
     private static boolean establishConnection() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -411,4 +437,6 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    //endregion
 }

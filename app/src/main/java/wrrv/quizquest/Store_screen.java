@@ -36,7 +36,7 @@ public class Store_screen extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        leave =findViewById(R.id.btnLeaveStorePlayer);
+        leave = findViewById(R.id.btnLeaveStorePlayer);
 
         tabLayout = findViewById(R.id.tabLayoutPlayer);
         viewpager2 = findViewById(R.id.viewPager2Player);

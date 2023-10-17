@@ -44,8 +44,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     }
 
     @Override
-    public void onViewCreated(View view,
-                              Bundle savedInstanceState)
+    public void onViewCreated(View view, Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
 
@@ -56,6 +55,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         // Handle item click here
         // Start the SecondActivity when an item is clicked
         Intent intent = new Intent(getContext(),View_Item.class);
+        intent.putExtra("Item", item);
         startActivity(intent);
     }
 
