@@ -50,6 +50,7 @@ public class Database {
         }
         return null;
     }
+
     public static Administrator getAdmin(String username, String password) {
         try {
             if (establishConnection()) {
@@ -99,6 +100,7 @@ public class Database {
         }
         return null;
     }
+
     public static ArrayList<Question> LoadQuestions() {
         try {
 
@@ -136,6 +138,7 @@ public class Database {
         }
         return null;
     }
+
     public static void updateHints(String userName, int numHints) {
         try {
             if (establishConnection()) {
@@ -147,6 +150,7 @@ public class Database {
         }
 
     }
+
     public static int getHints(String userName) {
         try {
             if (establishConnection()) {
@@ -161,6 +165,7 @@ public class Database {
         }
         return 0;
     }
+
     public static void updateScoreAndCoins(String userName, int score, int coins) {
         try {
             if (establishConnection()) {
@@ -171,6 +176,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public static void updateGamesPlayed(String userName) {
         //updates the games played per day
         try {
@@ -182,6 +188,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public static int getGamesPlayed(String userName) {
         try {
             if (establishConnection()){
@@ -196,6 +203,7 @@ public class Database {
         }
         return 0;
     }
+
     public static void updatePlayerSprite(String userName, String sCode) {
         //updates the player sprite String
         try {
@@ -207,6 +215,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public static String getPlayerSprite(String userName) {
         try {
             if (establishConnection()){
@@ -221,6 +230,7 @@ public class Database {
         }
         return "m,h0,s0,p0,f0";
     }
+
     public static void CreateUser(Player player) {
         String sName = player.getUserName();
         String sPassword = player.getUserPassword();
@@ -290,28 +300,44 @@ public class Database {
             e.printStackTrace();
         }
     }
-    public static boolean setState(String state, int submissionID){
+
+    public static ArrayList<Item> getItems(String array) {
+        ArrayList<Item> items;
+        try {
+            if (establishConnection()) {
+                items = new ArrayList<>();
+                resultSet = statement.executeQuery("SELECT itemID,itemName,itemPrice,itemArray,itemPos FROM item WHERE array = '" + array + "'");
+                while (resultSet.next()) {
+                    int itemID = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    int price = resultSet.getInt(3);
+                    String itemArray = resultSet.getString(4);
+                    int pos = resultSet.getInt(5);
+
+                    Item temp = new Item(itemID, name, price,itemArray,pos);
+                    items.add(temp);
+                }
+                disconnect();
+                return items;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean setState(String state, int submissionID) {
 
         try {
-            if(establishConnection())
-            {
-                String updateQuery = "UPDATE Submission SET state = ? WHERE submissionID = ?";
-
-                PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
-
-                preparedStatement.setString(1, state);
-                preparedStatement.setInt(2, submissionID);
-
-                int rowsUpdated = preparedStatement.executeUpdate();
-
-                disconnect();
-
-                if (rowsUpdated > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-
+            if (establishConnection()) {
+                statement.execute("UPDATE Submission SET itemName = " + state + ", WHERE submissionID = '" + submissionID + "'");
+                return true;
             }
         }catch (Exception e){
             Log.e("DATABASE",e.getMessage());
@@ -348,6 +374,7 @@ public class Database {
         }
         return inserted;
     }
+
     public static List<Submission> getSubmissionList(String username) {
         List<Submission> submissions = new ArrayList<>();
 
@@ -426,7 +453,7 @@ public class Database {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://10.202.89.248:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {

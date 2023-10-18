@@ -84,21 +84,11 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     public void getItems(){
         items = new ArrayList<>();
 
-        Item i1 = new Item(1,"Blue Shoe", 10, "shoes", 0);
-        Item i2 = new Item(2,"Black Shoe", 10, "shoes", 1);
-        Item i3 = new Item(3,"Green Shoe", 10, "shoes", 2);
-        Item i4 = new Item(3,"Gray Shoe", 10, "shoes", 3);
-        Item i5 = new Item(3,"Brown Shoe", 10, "shoes", 4);
-        Item i6 = new Item(3,"Dark Gray Shoe", 10, "shoes", 5);
-        Item i7 = new Item(3,"Dark Green Shoe", 10, "shoes", 6);
+        try{
+            items = Database.getItems("shoes");
 
-        items.add(i1);
-        items.add(i2);
-        items.add(i3);
-        items.add(i4);
-        items.add(i5);
-        items.add(i6);
-        items.add(i7);
-
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
