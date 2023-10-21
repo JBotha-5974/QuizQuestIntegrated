@@ -54,6 +54,7 @@ public class View_Item extends AppCompatActivity {
         item = (Item) intent.getSerializableExtra("Item");
 
         // check if player already bought this item
+        // ie in inventory
         // if they did - replace price with "already bought" or maybe just gray out buy button
         // another option is to set visibility
 

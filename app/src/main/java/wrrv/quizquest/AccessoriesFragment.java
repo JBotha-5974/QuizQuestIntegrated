@@ -74,11 +74,6 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         else{
             Toast.makeText(getContext(), "Invalid activity: " + activityName, Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
     }
 
     public void getItems(){
