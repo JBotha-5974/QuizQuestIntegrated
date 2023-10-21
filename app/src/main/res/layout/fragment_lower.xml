@@ -5,11 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".LowerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLower"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Lower"
-        android:textSize="16dp" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>
