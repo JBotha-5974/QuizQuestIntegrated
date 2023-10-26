@@ -38,7 +38,7 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
 
         getItems();
 
-        adapter = new ItemAdapter(items, this);
+        adapter = new ItemAdapter(items, this, getContext());
         rvUpper.setAdapter(adapter);
 
         return view;

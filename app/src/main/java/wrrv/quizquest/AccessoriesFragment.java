@@ -38,7 +38,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
 
         getItems();
 
-        adapter = new ItemAdapter(items, this);
+        adapter = new ItemAdapter(items, this, getContext());
         rvAccessories.setAdapter(adapter);
 
         return view;
@@ -67,6 +67,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         }
         else if(activityName.equals("Admin_Store")){
             //if admin
+
             Intent intent = new Intent(getContext(),Update_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);

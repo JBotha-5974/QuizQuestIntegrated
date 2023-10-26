@@ -37,7 +37,7 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
 
         getItems();
 
-        adapter = new ItemAdapter(items, this);
+        adapter = new ItemAdapter(items, this, getContext());
         rvLower.setAdapter(adapter);
 
         return view;

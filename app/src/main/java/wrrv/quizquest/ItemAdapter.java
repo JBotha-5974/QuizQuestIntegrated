@@ -1,5 +1,6 @@
 package wrrv.quizquest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,12 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
     private ArrayList<Item> items;
     private OnItemClickListener clickListener;
 
-    public ItemAdapter(ArrayList<Item> items, OnItemClickListener clickListener) {
+    Context context;
+
+    public ItemAdapter(ArrayList<Item> items, OnItemClickListener clickListener, Context context) {
         this.items = items;
         this.clickListener = clickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -35,7 +39,7 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
     @Override
     public void onBindViewHolder(@NonNull itemViewHolder holder, int position) {
         Item i = items.get(position);
-        holder.setItem(i);
+        holder.setItem(i, context);
         holder.itemView.setOnClickListener(view -> clickListener.onItemClick(i));
     }
 
@@ -64,12 +68,12 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
             this.item = item;
         }
 
-        public void setItem(Item i) {
+        public void setItem(Item i, Context context) {
             this.item = i;
 
             desc.setText(i.getItemName());
 
-            image.setImageResource(i.getItemImage());
+            image.setImageBitmap(i.getItemImage(context));
 
         }
     }

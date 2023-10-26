@@ -3,46 +3,110 @@ package wrrv.quizquest;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.media.Image;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
 public class SpriteGenerator {
 
-    //private Map<String, Set<String>> item;
+   ArrayList<Item> itemsInUse;
 
-    public int getImage(String array, int position){
-//        switch(array){
-//            case "shoes":
-//                return shoes[position];
-//            default:
-//                return shoes[position];
-//
-//
-//        }
-        return 1;
-    }
+   Context context;
 
-    public SpriteGenerator(){
+   //Player player;
+   String userName;
 
-    }
+    ArrayList<Bitmap> tiles;
 
+   public SpriteGenerator(Context context, String userName){
+       this.context = context;
+       this.userName = userName;
 
-    public static Bitmap getItemBitmap(Context context, int resourceId) {
-        try {
-            // Open an input stream to the asset
-            InputStream inputStream = getAssets().open("image.jpg");
+       getItems();
+       sortItems();
+       ArrayList<Bitmap> images = getImages();
+       Bitmap image = createLayered(images);
+       tiles = splitImage(image);
+   }
 
-            // Decode the InputStream into a Bitmap
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+   private ArrayList<Bitmap> splitImage(Bitmap image){
 
-            // Now 'bitmap' contains the loaded image
-        } catch (IOException e) {
+       int columns = 13;
+       int rows = 21;
+
+       ArrayList<Bitmap> subImages = new ArrayList<>();
+       int subImageWidth = image.getWidth() / columns;
+       int subImageHeight = image.getHeight() / rows;
+
+       for (int i = 0; i < rows; i++) {
+           for (int j = 0; j < columns; j++) {
+               int x = j * subImageWidth;
+               int y = i * subImageHeight;
+               subImages.add(Bitmap.createBitmap(image, x, y, subImageWidth, subImageHeight));
+           }
+       }
+
+       return subImages;
+   }
+
+   private Bitmap createLayered(ArrayList<Bitmap> images){
+       int width = images.get(0).getWidth();
+       int height = images.get(0).getHeight();
+
+       // Create a new bitmap with the calculated width and height
+       Bitmap resultBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+       Canvas canvas = new Canvas(resultBitmap);
+
+       // Draw individual bitmaps onto the resultBitmap
+       int currentHeight = 0;
+       for (Bitmap bitmap : images) {
+           canvas.drawBitmap(bitmap, 0, currentHeight, null);
+           currentHeight += bitmap.getHeight();
+       }
+
+       return resultBitmap;
+
+   }
+
+   private ArrayList<Bitmap> getImages(){
+
+       ArrayList<Bitmap> images = new ArrayList<>();
+
+       for(Item i :itemsInUse){
+           images.add(i.getItemImage(context));
+       }
+       return images;
+   }
+
+   private void sortItems(){
+       //This is used to sort the arraylist in the order they will be layered
+       Collections.sort(itemsInUse, new ItemLayerComparator());
+
+       //0 body
+       //1 eyes
+       //2 hair
+       //3 shoes
+       //4 lower
+       //5 torso
+       //6 jacket
+       //7 accessories
+   }
+
+   private void getItems(){
+        itemsInUse = new ArrayList<>();
+
+        try{
+            itemsInUse = Database.getItemsInUse(userName);
+
+        }catch (Exception e) {
             e.printStackTrace();
         }
-    }
+   }
 
 }
