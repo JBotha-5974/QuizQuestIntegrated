@@ -38,7 +38,7 @@ public class Update_Item extends AppCompatActivity {
         item = (Item) intent.getSerializableExtra("Item");
 
         description.setText(item.getItemName());
-        image.setImageResource(item.getItemImage());
+        image.setImageBitmap(item.getItemImage(this));
         price.setText(String.valueOf(item.getItemPrice()));
     }
 

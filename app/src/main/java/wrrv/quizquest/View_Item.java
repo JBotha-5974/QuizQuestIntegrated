@@ -59,7 +59,7 @@ public class View_Item extends AppCompatActivity {
         // another option is to set visibility
 
         description.setText(item.getItemName());
-        image.setImageResource(item.getItemImage());
+        image.setImageBitmap(item.getItemImage(this));
         price.setText(String.valueOf(item.getItemPrice()));
         coins.setText(String.valueOf(player.getPlayerCoins()));
 

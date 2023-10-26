@@ -348,10 +348,12 @@ public class Database {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
                     int price = resultSet.getInt(3);
-                    String itemArray = resultSet.getString(4);
-                    int pos = resultSet.getInt(5);
+                    String gender = resultSet.getString(4);
+                    int layer = resultSet.getInt(5);
+                    String colors = resultSet.getString(6);
+                    String curColor = resultSet.getString(7);
 
-                    Item temp = new Item(itemID, name, price,itemArray,pos);
+                    Item temp = new Item(itemID, name, price, gender, layer, colors, curColor);
                     items.add(temp);
                 }
                 disconnect();
