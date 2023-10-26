@@ -268,6 +268,43 @@ public class Database {
 
     //region Marisha
 
+    public static ArrayList<Item> getItemsInUse(String userName) {
+        ArrayList<Item> items;
+        try {
+            if (establishConnection()) {
+                items = new ArrayList<>();
+                resultSet = statement.executeQuery("SELECT Item.itemID, Item.itemName, Item.itemPrice, Item.itemGender, Item.itemLayer, Item.itemColors, Item.itemCurColor " +
+                        "FROM Item " +
+                        "JOIN Inventory ON Item.itemID = Inventory.itemID " +
+                        "WHERE Inventory.userName = '" + userName +
+                        "' AND Inventory.itemInUse = '1';");
+                while (resultSet.next()) {
+                    int itemID = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    int price = resultSet.getInt(3);
+                    String gender = resultSet.getString(4);
+                    int layer = resultSet.getInt(5);
+                    String colors = resultSet.getString(6);
+                    String curColor = resultSet.getString(7);
+
+                    Item temp = new Item(itemID, name, price, gender, layer, colors, curColor);
+                    items.add(temp);
+                }
+                disconnect();
+                return items;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void updateCoins(String userName, int coins) {
         try {
             if (establishConnection()) {
