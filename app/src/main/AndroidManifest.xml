@@ -15,6 +15,13 @@
         android:theme="@style/Theme.QuizQuest"
         tools:targetApi="31">
         <activity
+            android:name=".tester"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Admin_Store"
             android:exported="false">
             <meta-data
