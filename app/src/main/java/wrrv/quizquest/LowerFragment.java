@@ -60,7 +60,7 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
         if(activityName.equals("Store_screen")){
             //if player
 
-            Intent intent = new Intent(getContext(),View_Item.class);
+            Intent intent = new Intent(getContext(), Buy_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);
         }
@@ -79,7 +79,7 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
         items = new ArrayList<>();
 
         try{
-            items = Database.getItems("shoes");
+            items = Database.getItems(4);
 
         }catch (Exception e) {
             e.printStackTrace();

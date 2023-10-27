@@ -285,9 +285,43 @@ public class Database {
                     String gender = resultSet.getString(4);
                     int layer = resultSet.getInt(5);
                     String colors = resultSet.getString(6);
-                    String curColor = resultSet.getString(7);
 
-                    Item temp = new Item(itemID, name, price, gender, layer, colors, curColor);
+                    Item temp = new Item(itemID, name, price, gender, layer, colors);
+                    items.add(temp);
+                }
+                disconnect();
+                return items;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<Item> getInventoryItems(String userName) {
+        ArrayList<Item> items;
+        try {
+            if (establishConnection()) {
+                items = new ArrayList<>();
+                resultSet = statement.executeQuery("SELECT Item.itemID, Item.itemName, Item.itemPrice, Item.itemGender, Item.itemLayer, Item.itemColors, Item.itemCurColor " +
+                        "FROM Inventory" +
+                        "JOIN Item ON Inventory.itemID = Item.itemID" +
+                        "WHERE Inventory.userName = '" + userName + "';");
+                while (resultSet.next()) {
+                    int itemID = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    int price = resultSet.getInt(3);
+                    String gender = resultSet.getString(4);
+                    int layer = resultSet.getInt(5);
+                    String colors = resultSet.getString(6);
+
+                    Item temp = new Item(itemID, name, price, gender, layer, colors);
                     items.add(temp);
                 }
                 disconnect();
@@ -338,12 +372,20 @@ public class Database {
         }
     }
 
-    public static ArrayList<Item> getItems(String array) {
+    public static ArrayList<Item> getItems(int layerWanted) {
+        //0 body
+        //1 eyes
+        //2 hair
+        //3 shoes
+        //4 lower
+        //5 torso
+        //6 jacket
+        //7 accessories
         ArrayList<Item> items;
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT itemID,itemName,itemPrice,itemArray,itemPos FROM item WHERE array = '" + array + "'");
+                resultSet = statement.executeQuery("SELECT * FROM item WHERE layer = " + layerWanted);
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
@@ -351,9 +393,8 @@ public class Database {
                     String gender = resultSet.getString(4);
                     int layer = resultSet.getInt(5);
                     String colors = resultSet.getString(6);
-                    String curColor = resultSet.getString(7);
 
-                    Item temp = new Item(itemID, name, price, gender, layer, colors, curColor);
+                    Item temp = new Item(itemID, name, price, gender, layer, colors);
                     items.add(temp);
                 }
                 disconnect();
@@ -492,7 +533,7 @@ public class Database {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //connection = DriverManager.getConnection("jdbc:mysql://10.0.0.103:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://10.202.89.248:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {

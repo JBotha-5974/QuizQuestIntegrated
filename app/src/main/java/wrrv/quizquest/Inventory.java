@@ -3,13 +3,13 @@ package wrrv.quizquest;
 public class Inventory {
     private String userName;
     private int itemID;
-    private String purchaseDate; //this data type could change, currently thinking the string could be 20230811, etc.
+    private String color; //this data type could change, currently thinking the string could be 20230811, etc.
     private boolean itemInUse;
 
-    public Inventory(String userName, int itemID, String purchaseDate, boolean itemInUse) {
+    public Inventory(String userName, int itemID, String color, boolean itemInUse) {
         this.userName = userName;
         this.itemID = itemID;
-        this.purchaseDate = purchaseDate;
+        this.color = color;
         this.itemInUse = itemInUse;
     }
 
@@ -30,11 +30,11 @@ public class Inventory {
     }
 
     public String getPurchaseDate() {
-        return purchaseDate;
+        return color;
     }
 
     public void setPurchaseDate(String purchaseDate) {
-        this.purchaseDate = purchaseDate;
+        this.color = purchaseDate;
     }
 
     public boolean isItemInUse() {

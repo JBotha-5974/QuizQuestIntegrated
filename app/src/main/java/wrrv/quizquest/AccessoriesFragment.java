@@ -61,7 +61,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         if(activityName.equals("Store_screen")){
             //if player
 
-            Intent intent = new Intent(getContext(),View_Item.class);
+            Intent intent = new Intent(getContext(), Buy_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);
         }
@@ -81,8 +81,11 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         items = new ArrayList<>();
 
         try{
-            items = Database.getItems("shoes");
+            ArrayList<Item> acc = Database.getItems(7);
+            ArrayList<Item> shoes = Database.getItems(3);
 
+            items.addAll(acc);
+            items.addAll(shoes);
         }catch (Exception e) {
             e.printStackTrace();
         }

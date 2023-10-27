@@ -24,7 +24,6 @@ public class Submit_screen extends AppCompatActivity {
 
     EditText question;
     EditText answer;
-    Spinner category;
     EditText incorrect1;
     EditText incorrect2;
     EditText incorrect3;
@@ -111,7 +110,7 @@ public class Submit_screen extends AppCompatActivity {
 
         String q = question.getText().toString().trim();
         String a = answer.getText().toString().trim();
-        String c = (String) category.getSelectedItem();
+        String c = (String) spinnerCategories.getSelectedItem();
         String i1 = incorrect1.getText().toString().trim();
         String i2 = incorrect2.getText().toString().trim();
         String i3 = incorrect3.getText().toString().trim();
