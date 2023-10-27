@@ -1,19 +1,18 @@
 package wrrv.quizquest;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.media.Image;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
 
 public class SpriteGenerator {
+    // Marisha's version
 
    ArrayList<Item> itemsInUse;
 
@@ -33,6 +32,53 @@ public class SpriteGenerator {
        ArrayList<Bitmap> images = getImages();
        Bitmap image = createLayered(images);
        tiles = splitImage(image);
+   }
+
+   public Bitmap stand(){
+       return tiles.get(26);
+   }
+
+   public AnimationDrawable handUp(Context context){
+
+       Bitmap[] images = new Bitmap[6];
+       int pos = 0;
+
+       for(int i = 26; i < 32; i++){
+
+           images[pos] = tiles.get(i);
+           pos++;
+       }
+
+       return getAnimation(images, context, 40);
+   }
+
+    public AnimationDrawable allRound(Context context){
+
+        Bitmap[] images = new Bitmap[4];
+
+        images[0] = tiles.get(0);
+        images[1] = tiles.get(13);
+        images[2] = tiles.get(26);
+        images[3] = tiles.get(39);
+
+        return getAnimation(images, context,60);
+    }
+
+   private AnimationDrawable getAnimation(Bitmap[] images, Context context, int duration){
+
+       AnimationDrawable animationDrawable = new AnimationDrawable();
+
+       Resources resources = context.getResources();
+
+       for(Bitmap bitmap: images){
+           Drawable drawable = new BitmapDrawable(resources, bitmap);
+           animationDrawable.addFrame(drawable, duration);
+       }
+
+       return animationDrawable;
+
+       // start and stop animation
+       // animationDrawable.start();
    }
 
    private ArrayList<Bitmap> splitImage(Bitmap image){
@@ -64,10 +110,16 @@ public class SpriteGenerator {
        Canvas canvas = new Canvas(resultBitmap);
 
        // Draw individual bitmaps onto the resultBitmap
+       try{
+
        int currentHeight = 0;
        for (Bitmap bitmap : images) {
            canvas.drawBitmap(bitmap, 0, currentHeight, null);
            currentHeight += bitmap.getHeight();
+       }
+       }catch(Exception e){
+           System.out.println("Error layering: " + e.getMessage());
+           e.printStackTrace();
        }
 
        return resultBitmap;
@@ -78,8 +130,15 @@ public class SpriteGenerator {
 
        ArrayList<Bitmap> images = new ArrayList<>();
 
+       try{
+
        for(Item i :itemsInUse){
-           images.add(i.getItemImage(context));
+           images.add(i.getItemImage(context,"blue"));
+       }
+
+       }catch(Exception e){
+           System.out.println("Error getting item images: " + e.getMessage());
+           e.printStackTrace();
        }
        return images;
    }
@@ -104,7 +163,8 @@ public class SpriteGenerator {
         try{
             itemsInUse = Database.getItemsInUse(userName);
 
-        }catch (Exception e) {
+        }catch(Exception e){
+            System.out.println("Database error (getting items in use): " + e.getMessage());
             e.printStackTrace();
         }
    }
