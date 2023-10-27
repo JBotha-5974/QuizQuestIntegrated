@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +39,7 @@ public class SpriteGenerator {
        return tiles.get(26);
    }
 
-   public AnimationDrawable handUp(Context context){
+   public AnimationDrawable handUp(){
 
        Bitmap[] images = new Bitmap[6];
        int pos = 0;
@@ -102,28 +103,30 @@ public class SpriteGenerator {
    }
 
    private Bitmap createLayered(ArrayList<Bitmap> images){
-       int width = images.get(0).getWidth();
-       int height = images.get(0).getHeight();
 
-       // Create a new bitmap with the calculated width and height
-       Bitmap resultBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-       Canvas canvas = new Canvas(resultBitmap);
-
-       // Draw individual bitmaps onto the resultBitmap
-       try{
-
-       int currentHeight = 0;
-       for (Bitmap bitmap : images) {
-           canvas.drawBitmap(bitmap, 0, currentHeight, null);
-           currentHeight += bitmap.getHeight();
-       }
-       }catch(Exception e){
-           System.out.println("Error layering: " + e.getMessage());
-           e.printStackTrace();
+       ArrayList<Drawable> drawables = new ArrayList<>();
+       for(Bitmap bitmap : images){
+           Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
+           drawables.add(drawable);
        }
 
-       return resultBitmap;
+       Drawable[] layers = new Drawable[drawables.size()];
+       layers = drawables.toArray(layers);
 
+       LayerDrawable layered =  new LayerDrawable(layers);
+
+       int width = layered.getIntrinsicWidth();
+       int height = layered.getIntrinsicHeight();
+
+
+       Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+
+       Canvas canvas = new Canvas(bitmap);
+
+       layered.setBounds(0, 0, width, height);
+       layered.draw(canvas);
+
+       return bitmap;
    }
 
    private ArrayList<Bitmap> getImages(){
