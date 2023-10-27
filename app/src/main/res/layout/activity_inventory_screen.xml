@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lightBackground"
+    android:gravity="center_horizontal"
+    tools:context=".Inventory_Screen">
+
+    <TextView
+        android:id="@+id/lblInventory"
+        style="@style/heading"
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:text="Inventory" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2Inventory"
+        android:layout_width="match_parent"
+        android:layout_height="608dp"
+        android:background="#99FFFFFF">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <ImageButton
+        android:id="@+id/leaveInventory"
+        style="@style/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="leaveClick"
+        app:srcCompat="@drawable/back" />
+</LinearLayout>

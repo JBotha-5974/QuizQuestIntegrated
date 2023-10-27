@@ -7,6 +7,24 @@
     android:background="@color/lightBackground"
     tools:context=".Profile_screen">
 
+    <Button
+        android:id="@+id/btnInventory"
+        style="@style/light_button"
+        android:layout_width="196dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="208dp"
+        android:onClick="btnInventoryClick"
+        android:text="Inventory"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmissions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.936" />
+
     <ImageButton
         android:id="@+id/btnLeaveProfile"
         android:layout_width="wrap_content"
@@ -56,6 +74,7 @@
         style="@style/heading"
         android:layout_width="289dp"
         android:layout_height="66dp"
+        android:gravity="center"
         android:text="TextView"
         android:textSize="14dp"
         app:layout_constraintBottom_toTopOf="@+id/btnCustomizeSprite"

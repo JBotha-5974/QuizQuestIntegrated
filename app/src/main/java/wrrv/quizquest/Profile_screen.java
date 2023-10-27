@@ -24,7 +24,6 @@ public class Profile_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        //temporary just to get to submissions
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
@@ -61,6 +60,11 @@ public class Profile_screen extends AppCompatActivity {
 
     public void btnCustomizeSpriteClick(View view) {
         Intent intent = new Intent(this,CustomizeSprite.class);
+        startActivity(intent);
+    }
+
+    public void btnInventoryClick(View view) {
+        Intent intent = new Intent(this,Inventory_Screen.class);
         startActivity(intent);
     }
 }
