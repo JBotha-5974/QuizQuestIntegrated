@@ -79,7 +79,7 @@ public class SpriteGenerator {
        return animationDrawable;
 
        // start and stop animation
-       // animationDrawable.start();
+       // eg. animationDrawable.start();
    }
 
    private ArrayList<Bitmap> splitImage(Bitmap image){
@@ -151,13 +151,14 @@ public class SpriteGenerator {
        Collections.sort(itemsInUse, new ItemLayerComparator());
 
        //0 body
-       //1 eyes
-       //2 hair
-       //3 shoes
-       //4 lower
-       //5 torso
-       //6 jacket
-       //7 accessories
+       //1 head
+       //2 eyes
+       //3 hair
+       //4 shoes
+       //5 lower
+       //6 torso
+       //7 jacket
+       //8 accessories
    }
 
    private void getItems(){

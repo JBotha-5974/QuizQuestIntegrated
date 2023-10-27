@@ -2,6 +2,7 @@ package wrrv.quizquest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,12 +69,12 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
             this.item = item;
         }
 
-        public void setItem(Item i, Context context) {
+        public void setItem(Item i,Context context) {
             this.item = i;
 
             desc.setText(i.getItemName());
 
-            image.setImageBitmap(i.getItemImage(context));
+            image.setImageBitmap(i.getItemImage(context,"black"));
 
         }
     }

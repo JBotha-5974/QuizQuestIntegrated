@@ -268,6 +268,63 @@ public class Database {
 
     //region Marisha
 
+    public static boolean inInventory(String userName, int itemID){
+        try {
+            if (establishConnection()) {
+                resultSet = statement.executeQuery("SELECT * " +
+                        "FROM Inventory " +
+                        "WHERE userName = '" + userName + "' " +
+                        "AND itemID = " + itemID + ";");
+
+                }
+                disconnect();
+            if (!resultSet.next()) {
+                // No rows were returned, the item is not in the inventory
+                return true;
+            } else {
+                // Rows were returned, the item is in the inventory
+                return false;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public static void addToInventory(String userName, int itemID, String color, boolean inUse){
+
+        String inUseString = "";
+        if(inUse){
+            inUseString = "true";
+        }
+        else{
+            inUseString = "false";
+        }
+        try{
+            String sqlString = "INSERT INTO Inventory (userName, itemID , color, itemInUse) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+            preparedStatement.setString(1, userName);
+            preparedStatement.setInt(2,itemID);
+            preparedStatement.setString(3,color);
+            preparedStatement.setString(4, inUseString);
+
+            preparedStatement.execute();
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Item> getItemsInUse(String userName) {
         ArrayList<Item> items;
         try {
@@ -304,39 +361,17 @@ public class Database {
         return null;
     }
 
-    public static ArrayList<Item> getInventoryItems(String userName) {
-        ArrayList<Item> items;
+    public static void updateItemInventory(String userName, int itemID) {
         try {
             if (establishConnection()) {
-                items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT Item.itemID, Item.itemName, Item.itemPrice, Item.itemGender, Item.itemLayer, Item.itemColors, Item.itemCurColor " +
-                        "FROM Inventory" +
-                        "JOIN Item ON Inventory.itemID = Item.itemID" +
-                        "WHERE Inventory.userName = '" + userName + "';");
-                while (resultSet.next()) {
-                    int itemID = resultSet.getInt(1);
-                    String name = resultSet.getString(2);
-                    int price = resultSet.getInt(3);
-                    String gender = resultSet.getString(4);
-                    int layer = resultSet.getInt(5);
-                    String colors = resultSet.getString(6);
-
-                    Item temp = new Item(itemID, name, price, gender, layer, colors);
-                    items.add(temp);
-                }
-                disconnect();
-                return items;
+                statement.execute("UPDATE Inventory " +
+                        "SET itemInUse = 'false'" +
+                        "WHERE itemID = " + itemID + " AND userName = '" + userName + "';");
             }
-
-        }
-        catch(SQLException ex) {
-            ex.printStackTrace();
-        }
-        catch (Exception e){
+        }catch (Exception e){
             Log.e("DATABASE",e.getMessage());
             e.printStackTrace();
         }
-        return null;
     }
 
     public static void updateCoins(String userName, int coins) {
@@ -373,19 +408,12 @@ public class Database {
     }
 
     public static ArrayList<Item> getItems(int layerWanted) {
-        //0 body
-        //1 eyes
-        //2 hair
-        //3 shoes
-        //4 lower
-        //5 torso
-        //6 jacket
-        //7 accessories
+
         ArrayList<Item> items;
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT * FROM item WHERE layer = " + layerWanted);
+                resultSet = statement.executeQuery("SELECT * FROM item WHERE itemLayer = " + layerWanted);
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
@@ -410,6 +438,11 @@ public class Database {
             e.printStackTrace();
         }
         return null;
+
+        //for reference
+        //0 body, 1 head, 2 eyes, 3 hair, 4 shoes
+        //5 lower, 6 torso, 7 jacket, 8 accessories
+
     }
 
     public static boolean setState(String state, int submissionID) {

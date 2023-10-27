@@ -16,12 +16,15 @@ public class StoreAdapter extends FragmentStateAdapter {
         switch(position){
             case 0:
                 return new UpperFragment();
+
             case 1:
                 return new LowerFragment();
+
             case 2:
                 return new AccessoriesFragment();
-            default:
-                return new UpperFragment();
+
+            default: return new UpperFragment();
+
         }
     }
 

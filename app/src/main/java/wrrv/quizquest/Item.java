@@ -153,12 +153,6 @@ public class Item implements Serializable {
             fileName = "Unisex/";
 
             switch(itemName){
-                case "glasses":
-                    fileName = fileName + "accessories/glasses.png";
-                    break;
-                case "sunglasses":
-                    fileName = fileName + "accessories/sunglasses.png";
-                    break;
                 case "collared jacket":
                     fileName = fileName + "jackets/collared/" + curColor + ".png";
                     break;
@@ -174,7 +168,32 @@ public class Item implements Serializable {
                 case "shoes":
                     fileName = fileName + "shoes/shoes/" + curColor + ".png";
                     break;
+                case "crown":
+                    fileName = fileName + "accessories/crown.png";
+                    break;
+                case "formal hat":
+                    fileName = fileName + "accessories/formal_hat.png";
+                    break;
+                case "glasses":
+                    fileName = fileName + "accessories/glasses.png";
+                    break;
+                case "pirate hat":
+                    fileName = fileName + "accessories/pirate_hat.png";
+                    break;
+                case "round hat":
+                    fileName = fileName + "accessories/round_hat.png";
+                    break;
+                case "sunglasses":
+                    fileName = fileName + "accessories/sunglasses.png";
+                    break;
+                case "tiara":
+                    fileName = fileName + "accessories/tiara.png";
+                    break;
+                case "tricorne":
+                    fileName = fileName + "accessories/tricorne.png";
+                    break;
             }
+
         }
 
 
@@ -350,9 +369,15 @@ public class Item implements Serializable {
 
     }
 
+    public Set<String> getColors(){
+        return options;
+    }
+
     public int getItemID() {
         return itemID;
     }
+
+    public String getGender(){return gender;}
 
     public String getItemName() {
         return itemName;

@@ -81,11 +81,12 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         items = new ArrayList<>();
 
         try{
-            ArrayList<Item> acc = Database.getItems(7);
-            ArrayList<Item> shoes = Database.getItems(3);
+            items = Database.getItems(8);
+            System.out.println("This is accessories");
+            for(Item i: items){
+                System.out.println(i);
+            }
 
-            items.addAll(acc);
-            items.addAll(shoes);
         }catch (Exception e) {
             e.printStackTrace();
         }

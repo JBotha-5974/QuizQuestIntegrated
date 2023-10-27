@@ -7,38 +7,18 @@
     android:background="@color/lightBackground"
     tools:context=".Buy_Item">
 
-    <ImageView
-        android:id="@+id/imgBuyItem"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/f0" />
-
-    <TextView
-        android:id="@+id/lblBuyDesc"
-        style="@style/heading"
-        android:layout_width="333dp"
-        android:layout_height="97dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imgBuyItem"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="286dp"
         android:layout_height="87dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/btnBuy"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBuyItem">
+        app:layout_constraintTop_toBottomOf="@+id/imgBuyItem"
+        app:layout_constraintVertical_bias="0.324">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -55,18 +35,58 @@
             android:text="0" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/lblBuyDesc"
+        style="@style/heading"
+        android:layout_width="333dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/imgBuyItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgBuyItem"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.363"
+        app:srcCompat="@drawable/f0" />
+
+    <TextView
+        android:id="@+id/lblInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The item is in your inventory"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuy"
+        app:layout_constraintVertical_bias="0.222" />
+
     <Button
         android:id="@+id/btnBuy"
         style="@style/light_button"
         android:layout_width="91dp"
         android:layout_height="53dp"
+        android:gravity="center"
         android:onClick="buyItem"
         android:text="Buy"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBuyItem" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBuyItem"
+        app:layout_constraintVertical_bias="0.682" />
 
     <ImageButton
         android:id="@+id/btnLeaveBuy"
@@ -74,9 +94,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="526dp"
         android:onClick="leaveClick"
-        app:layout_constraintBottom_toTopOf="@+id/lblBuyDesc"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +106,7 @@
         app:srcCompat="@drawable/back" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -112,4 +134,17 @@
             android:gravity="center"
             android:text="@string/zeroScore" />
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="166dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLeaveBuy" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
