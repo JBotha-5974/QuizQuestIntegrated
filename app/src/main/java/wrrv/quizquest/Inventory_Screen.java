@@ -1,6 +1,8 @@
 package wrrv.quizquest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
@@ -16,8 +18,7 @@ public class Inventory_Screen extends AppCompatActivity {
 
     Player player;
 
-    TabLayout tabLayout;
-    ViewPager2 viewpager2;
+    RecyclerView rvInventory;
     StoreAdapter adapter;
 
     ImageButton leave;
@@ -36,8 +37,12 @@ public class Inventory_Screen extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        viewpager2 = findViewById(R.id.viewPager2Inventory);
+        rvInventory = findViewById(R.id.rvInventoryScreen);
         leave = findViewById(R.id.leaveInventory);
+
+        rvInventory.setLayoutManager(
+                new GridLayoutManager(this,2));
+
 
     }
 
