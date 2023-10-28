@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class LogIn_screen extends AppCompatActivity {
     private EditText userName;
     private EditText password;
     private Button logIn;
+    private ImageView togglePassword;
     private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class LogIn_screen extends AppCompatActivity {
         userName = findViewById(R.id.editTextUserName);
         password = findViewById(R.id.editTextPassword);
         logIn = findViewById(R.id.logInBtn);
+        togglePassword = findViewById(R.id.togglePassword);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -58,5 +63,16 @@ public class LogIn_screen extends AppCompatActivity {
         Intent intent = new Intent(this,RegisterUser.class);
         startActivity(intent);
         finish();
+    }
+
+    public void togglePassword(View view) {
+        TransformationMethod method = password.getTransformationMethod();
+        if (method == null){
+            password.setTransformationMethod(new PasswordTransformationMethod());
+            togglePassword.setImageResource(R.drawable.hide_password);
+        }else{
+            password.setTransformationMethod(null);
+            togglePassword.setImageResource(R.drawable.show_password);
+        }
     }
 }

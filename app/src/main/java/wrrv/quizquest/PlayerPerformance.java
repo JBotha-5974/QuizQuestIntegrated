@@ -11,9 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
-;
 import nl.dionsegijn.konfetti.core.PartyFactory;
 import nl.dionsegijn.konfetti.core.emitter.Emitter;
 import nl.dionsegijn.konfetti.core.emitter.EmitterConfig;
@@ -55,6 +53,7 @@ public class PlayerPerformance extends AppCompatActivity {
             try{
                 imageView = findViewById(R.id.imageView);
                 GenerateSprite generateSprite = new GenerateSprite(this,player.getPlayerSprite());
+                imageView.setImageDrawable(null);
                 imageView.setBackground(generateSprite.getImage());
 
                 quizzesDoneTxt = findViewById(R.id.quizzesDoneTxt);
@@ -90,7 +89,7 @@ public class PlayerPerformance extends AppCompatActivity {
                 );
 
                 Handler handler = new Handler();
-                int delayMillis = 2500;
+                int delayMillis = 2500;//I thing we should change this to one second
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -106,13 +105,14 @@ public class PlayerPerformance extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
     public void returnMainMenu(View view) {
         Intent intent = new Intent(this,MainActivity.class);
+        /*
+        Need to check for player levelling up, from JoshB's use cases
+         */
         startActivity(intent);
         finish();
     }

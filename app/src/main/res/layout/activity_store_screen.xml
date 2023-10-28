@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".Store_screen"
     android:gravity="center_horizontal"
-    android:background="@color/lightBackground">
+    android:background="?attr/background">
 
     <TextView
         android:id="@+id/lblStorePlayer"
