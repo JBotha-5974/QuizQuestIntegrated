@@ -12,18 +12,20 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
 
 public class SpriteGenerator {
     // Marisha's version
 
-   ArrayList<Item> itemsInUse;
+    ArrayList<Map<Item,String>> itemsInUse;
 
    Context context;
 
    //Player player;
    String userName;
 
-    ArrayList<Bitmap> tiles;
+   ArrayList<Bitmap> tiles;
 
    public SpriteGenerator(Context context, String userName){
        this.context = context;
@@ -136,9 +138,14 @@ public class SpriteGenerator {
 
        try{
 
-       for(Item i :itemsInUse){
-           images.add(i.getItemImage(context,"blue"));
-       }
+           for (Map<Item, String> map : itemsInUse) {
+               for (Map.Entry<Item, String> entry : map.entrySet()) {
+                   Item item = entry.getKey();
+                   String value = entry.getValue();
+
+                   images.add(item.getItemImage(context, value));
+               }
+           }
 
        }catch(Exception e){
            System.out.println("Error getting item images: " + e.getMessage());
@@ -149,7 +156,8 @@ public class SpriteGenerator {
 
    private void sortItems(){
        //This is used to sort the arraylist in the order they will be layered
-       Collections.sort(itemsInUse, new ItemLayerComparator());
+
+       itemsInUse.sort(Comparator.comparingInt(map -> map.keySet().iterator().next().getLayer()));
 
        //0 body
        //1 head
@@ -167,14 +175,12 @@ public class SpriteGenerator {
 
         try{
             itemsInUse = Database.getItemsInUse(userName);
-            for(Item i :itemsInUse) {
-                Log.d("SpriteGenerator Testing", "The item name is: " + i.getItemName());
-            }
 
         }catch(Exception e){
             System.out.println("Database error (getting items in use): " + e.getMessage());
             e.printStackTrace();
         }
+
    }
 
 }

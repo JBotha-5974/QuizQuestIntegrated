@@ -139,7 +139,7 @@ public class Buy_Item extends AppCompatActivity {
             player.setPlayerCoins(player.getUserName(),player.getPlayerCoins() - item.getItemPrice());
 
             //check if there is already an item in that layer
-            checkItemLayer();
+            //checkItemLayer();
 
             //add to player inventory
             try{
@@ -217,38 +217,38 @@ public class Buy_Item extends AppCompatActivity {
         return alertDialogBuilder.create();
     }
 
-    public void checkItemLayer(){
-        ArrayList<Item> inUse = new ArrayList<>();
-        try{
-            inUse = Database.getItemsInUse(player.getUserName());
-
-        }catch(Exception e){
-            System.out.println("Error checking inventory: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        int layer = item.getLayer();
-        Item current = null;
-
-        for(Item i: inUse){
-            if(i.getLayer() == layer){
-
-                current = i;
-                break;
-            }
-        }
-
-        if(current != null){
-            //change current to not be in use
-            try{
-                Database.updateItemInventory(player.getUserName(),item.getItemID());
-
-            }catch(Exception e){
-                System.out.println("Error adding to inventory: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    }
+//    public void checkItemLayer(){
+//        ArrayList<Item> inUse = new ArrayList<>();
+//        try{
+//            inUse = Database.getItemsInUse(player.getUserName());
+//
+//        }catch(Exception e){
+//            System.out.println("Error checking inventory: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//
+//        int layer = item.getLayer();
+//        Item current = null;
+//
+//        for(Item i: inUse){
+//            if(i.getLayer() == layer){
+//
+//                current = i;
+//                break;
+//            }
+//        }
+//
+//        if(current != null){
+//            //change current to not be in use
+//            try{
+//                Database.updateItemInventory(player.getUserName(),item.getItemID());
+//
+//            }catch(Exception e){
+//                System.out.println("Error adding to inventory: " + e.getMessage());
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public void leaveClick(View view){
         Intent intent = new Intent(this,Store_screen.class);
