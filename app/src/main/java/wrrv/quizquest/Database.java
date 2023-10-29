@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -355,17 +357,15 @@ public class Database {
         return null;
     }
 
-    public static ArrayList<Item> getItemsInUse(String userName) {
-        ArrayList<Item> items;
+    public static ArrayList<Map<Item,String>> getItemsInUse(String userName) {
+        ArrayList<Map<Item,String>> items;
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT Item.itemID, Item.itemName, Item.itemPrice, Item.itemGender, Item.itemLayer, Item.itemColors " +
-                        "FROM Item " +
-                        "JOIN Inventory ON Item.itemID = Inventory.itemID " +
-                        "WHERE Inventory.userName = '" + userName +
-                        "' AND Inventory.itemInUse = 'true';");
-                Log.i("info",resultSet.getFetchSize()+"");
+                resultSet = statement.executeQuery("SELECT Item.*, Inventory.color" +
+                        "FROM Item" +
+                        "JOIN Inventory ON Item.itemID = Inventory.itemID" +
+                        "WHERE Inventory.userName = '" + userName + "' AND Inventory.itemInUse = 'true';");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
@@ -373,9 +373,14 @@ public class Database {
                     String gender = resultSet.getString(4);
                     int layer = resultSet.getInt(5);
                     String colors = resultSet.getString(6);
+                    String curColor = resultSet.getString(7);
 
                     Item temp = new Item(itemID, name, price, gender, layer, colors);
-                    items.add(temp);
+
+                    Map<Item, String> map = new HashMap<>();
+                    map.put(temp, curColor);
+
+                    items.add(map);
                 }
                 disconnect();
                 return items;
@@ -600,8 +605,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
-//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+//            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {
