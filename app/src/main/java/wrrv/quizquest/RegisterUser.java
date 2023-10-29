@@ -45,5 +45,6 @@ public class RegisterUser extends AppCompatActivity {
     public void btnLoginClick(View view) {
         Intent intent = new Intent(this, LogIn_screen.class);
         startActivity(intent);
+        finish();
     }
 }

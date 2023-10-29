@@ -37,6 +37,6 @@ public class Admin_screen extends AppCompatActivity {
     public void logOutClick(View view){
         Intent intent = new Intent(this,LogIn_screen.class);
         startActivity(intent);
+        finish();
     }
-
 }

@@ -63,11 +63,11 @@
         android:fontFamily="@font/default_font"
         android:gravity="center"
         android:text="@string/default_time"
-        android:textColor="@color/brown"
+        style="@style/heading"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -83,19 +83,20 @@
 
     <Button
         android:id="@+id/btnHint"
-        android:layout_width="96dp"
-        android:layout_height="41dp"
+        style="@style/light_button"
+        android:layout_width="88dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
-        android:background="@color/yellow"
+        android:layout_marginEnd="2dp"
         android:fontFamily="@font/default_font"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/use_hint"
-        android:textColor="@color/brown"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:layout_wrapBehaviorInParent="vertical_only" />
+        app:layout_wrapBehaviorInParent="horizontal_only" />
 
     <TextView
         android:id="@+id/txtQuestion"

@@ -422,6 +422,16 @@ public class Database {
         }
         return null;
     }
+    public static void updatePlayerLevel(String userName, int iLevel) {
+        try {
+            if (establishConnection()) {
+                statement.execute("UPDATE Player SET  playerLevel = " + iLevel + " WHERE userName = '" + userName + "'");
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<Map<Item,String>> getItemsInUse(String userName) {
         ArrayList<Map<Item,String>> items;

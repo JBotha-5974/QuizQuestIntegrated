@@ -73,5 +73,6 @@ public class Store_screen extends AppCompatActivity {
     public void leaveClick(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }
