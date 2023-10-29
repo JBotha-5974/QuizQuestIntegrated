@@ -199,7 +199,7 @@ public class Buy_Item extends AppCompatActivity {
 
         ImageView imageView = customView.findViewById(R.id.alertImageView);
         SpriteGenerator sg = new SpriteGenerator(this, player.getUserName());
-        imageView.setImageBitmap(sg.stand());
+        imageView.setImageBitmap(sg.generate());
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Sprite updated!");

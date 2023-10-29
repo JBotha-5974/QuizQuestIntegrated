@@ -91,6 +91,7 @@ public class AssessSubs_screen extends AppCompatActivity {
     public void backClick(View view){
         Intent intent = new Intent(this,Admin_screen.class);
         startActivity(intent);
+        finish();
     }
 
     public void displaySub(Submission s){

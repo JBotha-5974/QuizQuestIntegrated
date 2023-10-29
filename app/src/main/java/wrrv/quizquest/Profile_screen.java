@@ -67,6 +67,7 @@ public class Profile_screen extends AppCompatActivity {
     public void leaveClick(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void btnCustomizeSpriteClick(View view) {
