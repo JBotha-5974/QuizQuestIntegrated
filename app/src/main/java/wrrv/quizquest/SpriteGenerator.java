@@ -143,6 +143,7 @@ public class SpriteGenerator {
                    Item item = entry.getKey();
                    String value = entry.getValue();
 
+                   Log.d("Inv Items in use: ", "item -> " + item.getItemName());
                    images.add(item.getItemImage(context, value));
                }
            }
@@ -178,6 +179,7 @@ public class SpriteGenerator {
 
         }catch(Exception e){
             System.out.println("Database error (getting items in use): " + e.getMessage());
+
             e.printStackTrace();
         }
 

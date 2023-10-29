@@ -207,91 +207,91 @@ public class Item implements Serializable {
                     fileName = "Unisex/hair/bob/" + curColor;
                     break;
                 case "bob sidepart":
-                    fileName = "Unisex/hair/bob_sidepart" + curColor;
+                    fileName = "Unisex/hair/bob_sidepart/" + curColor;
                     break;
                 case "braid":
-                    fileName = "Unisex/hair/braid" + curColor;
+                    fileName = "Unisex/hair/braid/" + curColor;
                     break;
                 case "bunches":
-                    fileName = "Unisex/hair/bunches" + curColor;
+                    fileName = "Unisex/hair/bunches/" + curColor;
                     break;
                 case "cornrows":
-                    fileName = "Unisex/hair/cornrows" + curColor;
+                    fileName = "Unisex/hair/cornrows/" + curColor;
                     break;
                 case "curly long":
-                    fileName = "Unisex/hair/curly_long" + curColor;
+                    fileName = "Unisex/hair/curly_long/" + curColor;
                     break;
                 case "curly short":
-                    fileName = "Unisex/hair/curly_short" + curColor;
+                    fileName = "Unisex/hair/curly_short/" + curColor;
                     break;
                 case "curtains":
-                    fileName = "Unisex/hair/curtains" + curColor;
+                    fileName = "Unisex/hair/curtains/" + curColor;
                     break;
                 case "dreadlocks long":
-                    fileName = "Unisex/hair/dreadlocks long" + curColor;
+                    fileName = "Unisex/hair/dreadlocks long/" + curColor;
                     break;
                 case "dreadlocks short":
-                    fileName = "Unisex/hair/dreadlocks_short" + curColor;
+                    fileName = "Unisex/hair/dreadlocks_short/" + curColor;
                     break;
                 case "halfmessy":
-                    fileName = "Unisex/hair/halfmessy" + curColor;
+                    fileName = "Unisex/hair/halfmessy/" + curColor;
                     break;
                 case "idol":
-                    fileName = "Unisex/hair/idol" + curColor;
+                    fileName = "Unisex/hair/idol/" + curColor;
                     break;
                 case "lob":
-                    fileName = "Unisex/hair/lob" + curColor;
+                    fileName = "Unisex/hair/lob/" + curColor;
                     break;
                 case "longknot":
-                    fileName = "Unisex/hair/longknot" + curColor;
+                    fileName = "Unisex/hair/longknot/" + curColor;
                     break;
                 case "longtied":
-                    fileName = "Unisex/hair/longtied" + curColor;
+                    fileName = "Unisex/hair/longtied/" + curColor;
                     break;
                 case "loose":
-                    fileName = "Unisex/hair/loose" + curColor;
+                    fileName = "Unisex/hair/loose/" + curColor;
                     break;
                 case "messy":
-                    fileName = "Unisex/hair/messy" + curColor;
+                    fileName = "Unisex/hair/messy/" + curColor;
                     break;
                 case "mop":
-                    fileName = "Unisex/hair/mop" + curColor;
+                    fileName = "Unisex/hair/mop/" + curColor;
                     break;
                 case "natural":
-                    fileName = "Unisex/hair/natural" + curColor;
+                    fileName = "Unisex/hair/natural/" + curColor;
                     break;
                 case "page":
-                    fileName = "Unisex/hair/page" + curColor;
+                    fileName = "Unisex/hair/page/" + curColor;
                     break;
                 case "parted":
-                    fileName = "Unisex/hair/parted" + curColor;
+                    fileName = "Unisex/hair/parted/" + curColor;
                     break;
                 case "pigtails":
-                    fileName = "Unisex/hair/pigtails" + curColor;
+                    fileName = "Unisex/hair/pigtails/" + curColor;
                     break;
                 case "pigtails bangs":
-                    fileName = "Unisex/hair/pigtails_bangs" + curColor;
+                    fileName = "Unisex/hair/pigtails_bangs/" + curColor;
                     break;
                 case "pixie":
-                    fileName = "Unisex/hair/pixie" + curColor;
+                    fileName = "Unisex/hair/pixie/" + curColor;
                     break;
                 case "ponytail":
-                    fileName = "Unisex/hair/ponytail" + curColor;
+                    fileName = "Unisex/hair/ponytail/" + curColor;
                     break;
                 case "shoulder":
-                    fileName = "Unisex/hair/shoulder" + curColor;
+                    fileName = "Unisex/hair/shoulder/" + curColor;
                     break;
                 case "spiked":
-                    fileName = "Unisex/hair/spiked" + curColor;
+                    fileName = "Unisex/hair/spiked/" + curColor;
                     break;
                 case "swoop":
-                    fileName = "Unisex/hair/swoop" + curColor;
+                    fileName = "Unisex/hair/swoop/" + curColor;
                     break;
                 case "twists fade":
-                    fileName = "Unisex/hair/twists_fade" + curColor;
+                    fileName = "Unisex/hair/twists_fade/" + curColor;
                     break;
                 case "wavy":
-                    fileName = "Unisex/hair/wavy" + curColor;
+                    fileName = "Unisex/hair/wavy/" + curColor;
                     break;
             }
         }else if(layer == 4){
@@ -360,7 +360,7 @@ public class Item implements Serializable {
 
         } catch (IOException e) {
             System.out.println("Error getting item image: "  + e.getMessage());
-            Log.d("Item image error for unisex: ", "Filepath: " + fileName + ", Item name: " + itemName);
+            Log.d("image error unisex: ", "Filepath: " + fileName + ", Item : " + curColor + " " + itemName);
             e.printStackTrace();
         }
 
