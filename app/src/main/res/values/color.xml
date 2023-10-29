@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="textColor">@color/white</color>
     <color name="orange">#F19737</color>
     <color name="yellow">#FFC107</color>
     <color name="brown">#341D0A</color>
-    <color name="green">#2AF762</color>
+    <color name="green">#672AF762</color>
     <color name="red">#E61610</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
 
-    <color name="grayed">#737373</color>
+    <color name="grayed">#86737373</color>
 
     <color name="lightBtnBg">#F19737</color>
     <color name="lightBtnFont">#FFFFFFFF</color>

@@ -81,7 +81,7 @@
         android:layout_marginTop="573dp"
         android:layout_marginEnd="141dp"
         android:layout_marginBottom="28dp"
-        android:background="@color/orange"
+        android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="btnRegisterSpriteContinueClick"
         android:text="Continue"

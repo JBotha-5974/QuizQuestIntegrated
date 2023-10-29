@@ -8,6 +8,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -148,7 +149,7 @@ public class SpriteGenerator {
 
    private void sortItems(){
        //This is used to sort the arraylist in the order they will be layered
-       Collections.sort(itemsInUse, new ItemLayerComparator());
+       itemsInUse.sort(new ItemLayerComparator());
 
        //0 body
        //1 head
