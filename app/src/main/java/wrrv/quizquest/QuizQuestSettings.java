@@ -54,5 +54,6 @@ public class QuizQuestSettings extends AppCompatActivity {
     public void btnSettingsBackClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

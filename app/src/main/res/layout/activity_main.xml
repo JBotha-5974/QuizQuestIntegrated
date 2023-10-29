@@ -14,6 +14,7 @@
         android:fontFamily="@font/default_font"
         android:onClick="startGame"
         android:text="@string/start"
+        style="@style/light_button"
         android:background="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

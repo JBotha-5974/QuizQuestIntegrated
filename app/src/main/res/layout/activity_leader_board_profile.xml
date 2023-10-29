@@ -63,6 +63,30 @@
         app:layout_constraintTop_toBottomOf="@+id/ldbSprite">
 
         <TextView
+            android:id="@+id/ldbGamesPlayedTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:fontFamily="@font/default_font"
+            android:text="@string/games_played"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ldbPointsTxt" />
+
+        <TextView
+            android:id="@+id/ldbCoinsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/default_font"
+            android:text="@string/coins"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ldbPointsTxt" />
+
+        <TextView
             android:id="@+id/ldbPointsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,6 +111,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ldbPointsTxt" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

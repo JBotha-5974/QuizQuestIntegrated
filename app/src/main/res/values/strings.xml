@@ -17,7 +17,7 @@
     <string name="continue_string">Continue</string>
     <string name="points">Points: %d</string>
     <string name="coins">Coins: %d</string>
-    <string name="games_msg">You\'ve completed your 3 quizzes for today. Don\'t worry, you will be able to play tomorrow!</string>
+    <string name="games_msg">You\'ve completed your 3 quizzes for today!</string>
     <string name="questionLabel">Question</string>
     <string name="answerLabel">Answer</string>
     <string name="categoryLabel">Category</string>
@@ -41,7 +41,8 @@
     <string name="ldb_points">%d points</string>
     <string name="ldb_level">Level: %d</string>
     <string name="quiz_num_for_today">Quiz %d/3 for today</string>
-
+    <string name="total_coins">Coins: %d></string>
+    <string name="games_played">Games played: %d</string>
 
     <string-array name="categories">
         <item>Entertainment</item>

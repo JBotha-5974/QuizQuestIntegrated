@@ -47,7 +47,7 @@ public class Submit_screen extends AppCompatActivity {
         }
 
         spinnerCategories =findViewById(R.id.spnCategory);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerCategories.setAdapter(adapter);
 
@@ -61,7 +61,6 @@ public class Submit_screen extends AppCompatActivity {
         exit = findViewById(R.id.btnLeaveSubmit);
 
     }
-
     public void submitClick(View view){
         Submission s = getSubmission();
 
@@ -126,6 +125,7 @@ public class Submit_screen extends AppCompatActivity {
     public void exitClick(View view){
         Intent intent = new Intent(this,Submissions_screen.class);
         startActivity(intent);
+        finish();
     }
 
     public void test(){

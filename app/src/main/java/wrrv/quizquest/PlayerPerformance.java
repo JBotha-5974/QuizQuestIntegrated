@@ -33,14 +33,14 @@ public class PlayerPerformance extends AppCompatActivity {
     private int score;
 
     private Button btnContinue;
-
+    private Boolean confettiPosted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_performance);
-
+        Log.d("PlayerPerformance", "onCreate called"); // Add this line
+        confettiPosted = false;
         Intent intent = getIntent();
-
         if (intent != null){
             player = (Player) intent.getSerializableExtra("player");
             try {
@@ -55,9 +55,8 @@ public class PlayerPerformance extends AppCompatActivity {
 
             try{
                 imageView = findViewById(R.id.imageView);
-                GenerateSprite generateSprite = new GenerateSprite(this,player.getPlayerSprite());
-                imageView.setImageDrawable(null);
-                imageView.setBackground(generateSprite.getImage());
+                SpriteGenerator spriteGenerator = new SpriteGenerator(this, player.getUserName());
+                imageView.setImageBitmap(spriteGenerator.generate());
 
                 quizzesDoneTxt = findViewById(R.id.quizzesDoneTxt);
                 quizzesDoneTxt.setText(getString(R.string.quiz_num_for_today,quizzes));
@@ -78,41 +77,37 @@ public class PlayerPerformance extends AppCompatActivity {
 
                 btnContinue = findViewById(R.id.performanceBtn);
                 btnContinue.setEnabled(false);
-
+                btnContinue.setVisibility(View.INVISIBLE);
                 confetti = findViewById(R.id.confettiView);
 
-                EmitterConfig ec = new Emitter(300, TimeUnit.MILLISECONDS).max(300);
 
-
-                confetti.start(
-                        new PartyFactory(ec)
-                                .shapes(Shape.Circle.INSTANCE, Shape.Square.INSTANCE)
-                                .spread(360)
-                                .position(0.5,0.25,1,1)
-                                .sizes(new Size(8,50,10))
-                                .timeToLive(3000)
-                                .fadeOutEnabled(true)
-                                .build()
-                );
-
-                Handler handler = new Handler();
-                int delayMillis = 1500;
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        performance.setVisibility(View.VISIBLE);
-                        questionsCorrectTxt.setVisibility(View.VISIBLE);
-                        pointsTxt.setVisibility(View.VISIBLE);
-                        coinsTxt.setVisibility(View.VISIBLE);
-
-                        btnContinue.setEnabled(true);
-                    }
-                }, delayMillis);
-
-                btnContinue.setEnabled(true);
-
-
+                if (!confettiPosted) {
+                    EmitterConfig ec = new Emitter(300, TimeUnit.MILLISECONDS).max(300);
+                    confetti.start(
+                            new PartyFactory(ec)
+                                    .shapes(Shape.Circle.INSTANCE, Shape.Square.INSTANCE)
+                                    .spread(360)
+                                    .position(0.5, 0.25, 1, 1)
+                                    .sizes(new Size(8, 50, 10))
+                                    .timeToLive(1500)
+                                    .fadeOutEnabled(true)
+                                    .build()
+                    );
+                    Handler handler = new Handler();
+                    int delayMillis = 1500;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            performance.setVisibility(View.VISIBLE);
+                            questionsCorrectTxt.setVisibility(View.VISIBLE);
+                            pointsTxt.setVisibility(View.VISIBLE);
+                            coinsTxt.setVisibility(View.VISIBLE);
+                            btnContinue.setEnabled(true);
+                            btnContinue.setVisibility(View.VISIBLE);
+                        }
+                    }, delayMillis);
+                    confettiPosted = true;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -125,9 +120,11 @@ public class PlayerPerformance extends AppCompatActivity {
             Intent goLevelUp = new Intent(this, LevelUp.class);
             goLevelUp.putExtra("player",player);
             startActivity(goLevelUp);
+            finish();
         }
-        else
-        startActivity(intent);
-        finish();
+        else{
+            startActivity(intent);
+            finish();
+        }
     }
 }

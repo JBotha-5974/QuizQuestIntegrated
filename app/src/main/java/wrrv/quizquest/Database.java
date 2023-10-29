@@ -583,24 +583,38 @@ public class Database {
 
         return false;
     }
-
+    private static int getSubmissionID(){
+        int ID = 0;
+        try {
+            if (establishConnection()){
+                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Submission");
+                resultSet.next();
+                ID = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return ID;
+    }
     public static boolean insertSubmission(Submission s){
         boolean inserted = true;
-
         try {
             if(establishConnection())
             {
-                String sqlString = "INSERT INTO Submission (question, answer , categoryID, incorrect1, incorrect2, incorrect3, userName, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                int id = getSubmissionID();
+                id++;
+                String sqlString = "INSERT INTO Submission (submissionID, userName, categoryID, questionText, correctAnswer,incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
-                preparedStatement.setString(1, s.getQuestion());
-                preparedStatement.setString(2,s.getAnswer());
-                preparedStatement.setString(3, s.getCategory());
-                preparedStatement.setString(4, s.getIncorrect1());
-                preparedStatement.setString(5, s.getIncorrect2());
-                preparedStatement.setString(6, s.getIncorrect3());
-                preparedStatement.setString(7, s.getUserName());
-                preparedStatement.setString(8, s.getState());
-
+                preparedStatement.setInt(1,id);
+                preparedStatement.setString(2, s.getUserName());
+                preparedStatement.setString(3,s.getCategory());
+                preparedStatement.setString(4, s.getQuestion());
+                preparedStatement.setString(5, s.getAnswer());
+                preparedStatement.setString(6, s.getIncorrect1());
+                preparedStatement.setString(7, s.getIncorrect2());
+                preparedStatement.setString(8, s.getIncorrect3());
+                preparedStatement.setString(9, s.getState());
                 preparedStatement.execute();
                 disconnect();
             }
@@ -614,24 +628,21 @@ public class Database {
 
     public static List<Submission> getSubmissionList(String username) {
         List<Submission> submissions = new ArrayList<>();
-
         if (establishConnection()) {
             try {
-                String query = "SELECT * FROM Submission WHERE userName = ?";
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, username);
-                resultSet = preparedStatement.executeQuery();
-
+                String query = "SELECT * FROM Submission WHERE userName = '" + username +"'";
+                resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
                     // Retrieve submission data from the result set
-                    int submissionID = resultSet.getInt("submissionID");
-                    String categoryID = resultSet.getString("categoryID");
-                    String questionText = resultSet.getString("questionText");
-                    String correctAnswer = resultSet.getString("correctAnswer");
-                    String incorrectAnswer1 = resultSet.getString("incorrectAnswer1");
-                    String incorrectAnswer2 = resultSet.getString("incorrectAnswer2");
-                    String incorrectAnswer3 = resultSet.getString("incorrectAnswer3");
-                    String state = resultSet.getString("state");
+                    int submissionID = resultSet.getInt(1);
+                    String resultUserName = resultSet.getString(2);
+                    String categoryID = resultSet.getString(3);
+                    String questionText = resultSet.getString(4);
+                    String correctAnswer = resultSet.getString(5);
+                    String incorrectAnswer1 = resultSet.getString(6);
+                    String incorrectAnswer2 = resultSet.getString(7);
+                    String incorrectAnswer3 = resultSet.getString(8);
+                    String state = resultSet.getString(9);
 
                     // Create Submission objects and add them to the list
                     Submission submission = new Submission(questionText,correctAnswer,categoryID, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, username, state);
@@ -689,8 +700,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-//            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
+//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {

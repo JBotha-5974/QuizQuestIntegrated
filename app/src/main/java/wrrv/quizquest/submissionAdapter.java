@@ -1,5 +1,6 @@
 package wrrv.quizquest;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +59,7 @@ public class submissionAdapter extends RecyclerView.Adapter <submissionAdapter.s
 
         public void setSubmission(Submission s){
             this.submission = s;
-
             question.setText(s.getQuestion());
-
             if(state != null) {
                 // Set image.
                 switch (s.getState()) {
@@ -70,7 +69,6 @@ public class submissionAdapter extends RecyclerView.Adapter <submissionAdapter.s
                     case "rejected":
                         state.setImageResource(R.drawable.cross);
                         break;
-
                     default:
                         state.setImageResource(R.drawable.pending);
                 }

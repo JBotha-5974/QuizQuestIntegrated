@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -40,14 +41,12 @@ public class PrevSubs_screen extends AppCompatActivity {
 
         submissions = Database.getSubmissionList(player.getUserName());
         adapter = new submissionAdapter(submissions);
-
         RecyclerView listSubmissions = findViewById(R.id.RVlistSubmissions);
         RecyclerView.LayoutManager layoutManager;
         layoutManager = new LinearLayoutManager(getApplicationContext());
 
         listSubmissions.setLayoutManager(layoutManager);
         listSubmissions.setAdapter(adapter);
-
         btnBack = findViewById(R.id.btnBackSubmissions);
     }
 

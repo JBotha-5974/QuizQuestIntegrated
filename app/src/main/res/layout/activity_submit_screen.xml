@@ -91,7 +91,7 @@
                 android:layout_height="41dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/white" />
+                android:background="?attr/colorOnPrimary"/>
 
             <TextView
                 android:id="@+id/lblIncorrect"
