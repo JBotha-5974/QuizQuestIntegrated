@@ -27,7 +27,7 @@ public class PlayerPerformance extends AppCompatActivity {
     private TextView performance;
     private ImageView imageView;
     private KonfettiView confetti;
-
+    private Player player;
     private int quizzes;
     private int score;
 
@@ -39,7 +39,7 @@ public class PlayerPerformance extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent != null){
-            Player player = (Player) intent.getSerializableExtra("player");
+            player = (Player) intent.getSerializableExtra("player");
             try {
                 Database.updateGamesPlayed(player.getUserName());
                 quizzes = Database.getGamesPlayed(player.getUserName());
@@ -110,9 +110,12 @@ public class PlayerPerformance extends AppCompatActivity {
 
     public void returnMainMenu(View view) {
         Intent intent = new Intent(this,MainActivity.class);
-        /*
-        Need to check for player levelling up, from JoshB's use cases
+
+        if (player.getPlayerScore() % 20 > player.getPlayerLevel()){
+            /*
+            Need to check for player levelling up, from JoshB's use cases
          */
+        }
         startActivity(intent);
         finish();
     }

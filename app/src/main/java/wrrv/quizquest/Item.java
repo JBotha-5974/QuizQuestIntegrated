@@ -6,12 +6,14 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Item implements Serializable {
@@ -67,10 +69,10 @@ public class Item implements Serializable {
         AssetManager assetManager = context.getAssets();
 
         String fileName = "";
-        if(gender == "m"){
+        if(Objects.equals(gender, "m")){
             fileName = "Male/";
 
-            if(layer == 4){
+            if(layer == 5){
                 //if lower item (pants/skirt)
 
                 switch(itemName){
@@ -102,10 +104,9 @@ public class Item implements Serializable {
                 }
             }
 
-        }else if(gender == "f"){
+        }else if(Objects.equals(gender, "f")){
             fileName = "Female/";
-
-            if(layer == 4){
+            if(layer == 5){
                 //if lower item (pants/skirt)
 
                 switch(itemName){
@@ -193,10 +194,7 @@ public class Item implements Serializable {
                     fileName = fileName + "accessories/tricorne.png";
                     break;
             }
-
         }
-
-
         try {
             InputStream inputStream = assetManager.open(fileName);
             Bitmap temp =  BitmapFactory.decodeStream(inputStream);

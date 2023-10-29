@@ -230,7 +230,6 @@ public class Database {
         }
         return "m,h0,s0,p0,f0";
     }
-
     public static void CreateUser(Player player) {
         String sName = player.getUserName();
         String sPassword = player.getUserPassword();
