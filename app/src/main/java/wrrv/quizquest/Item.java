@@ -39,7 +39,8 @@ public class Item implements Serializable {
     String colors;
     Set<String> options;
 
-    public Item(int itemID, String itemName, int itemPrice, String gender, int layer, String colors) {
+    public Item(int itemID, String itemName, int itemPrice, String gender, int layer, String colors)
+    {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemPrice = itemPrice;

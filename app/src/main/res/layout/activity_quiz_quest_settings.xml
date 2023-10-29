@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background"
+    tools:context=".QuizQuestSettings">
+
+    <ImageView
+        android:id="@+id/btnSettingsBack"
+        android:layout_width="76dp"
+        android:layout_height="89dp"
+        android:onClick="btnSettingsBackClick"
+        android:src="@drawable/back"
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="523dp" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="138dp"
+        android:layout_height="62dp"
+        android:background="@color/orange"
+        android:fontFamily="@font/default_font"
+        android:onClick="btnLogOutClick"
+        android:text="Log Out"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="435dp" />
+
+    <ImageView
+        android:id="@+id/imgSettingsScreenLogo"
+        android:layout_width="47dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="173dp"
+        android:layout_marginBottom="575dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/txtVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginBottom="525dp"
+        android:fontFamily="@font/default_font"
+        android:text="Volume:"
+        android:textColor="#341D0A"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/cntrlSoundBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="214dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="481dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="596dp"
+        android:fontFamily="@font/default_font"
+        android:text="Settings"
+        android:textColor="#341D0A"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

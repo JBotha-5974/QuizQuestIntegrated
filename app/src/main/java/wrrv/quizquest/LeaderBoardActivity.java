@@ -20,12 +20,12 @@ import java.util.Locale;
 public class LeaderBoardActivity extends AppCompatActivity {
     private ArrayList<Player> playerList;
     private PlayerAdapter adapter;
-    private TextView timeLefttxt;
+    private TextView timeLeftTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
-        timeLefttxt = findViewById(R.id.timeLefttxt);
+        timeLeftTxt = findViewById(R.id.timeLefttxt);
         calculateAndDisplayTimeDifference();
         try {
             playerList = Database.getPlayers();
@@ -67,7 +67,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         long days = timeDifferenceMillis / (1000 * 60 * 60 * 24);
         long hours = (timeDifferenceMillis % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
         String timeLeft = String.format(Locale.getDefault(), "%d days %d hours left", days, hours);
-        timeLefttxt.setText(timeLeft);
+        timeLeftTxt.setText(timeLeft);
     }
 
     public void returnBtn(View view) {

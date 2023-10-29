@@ -2,7 +2,8 @@ package wrrv.quizquest;
 
 import java.util.Comparator;
 
-public class ItemLayerComparator implements Comparator<Item> {
+public class ItemLayerComparator implements Comparator<Item>
+{
     @Override
     public int compare(Item item1, Item item2) {
 
