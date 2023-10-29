@@ -81,4 +81,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Store_screen.class);
         startActivity(intent);
     }
+
+    public void btnSettingsMainClick(View view) {
+        Intent intent = new Intent(this,QuizQuestSettings.class);
+        startActivity(intent);
+    }
 }
