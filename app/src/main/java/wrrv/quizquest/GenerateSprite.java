@@ -52,6 +52,7 @@ public class GenerateSprite {
         Drawable layer5 = Hair.get(iPosH);
         Drawable[] layers = {layer1, layer2, layer3, layer4, layer5};
         imgToPush = new LayerDrawable(layers);
+        imgToPush.setLayerInset(1,4,0,0,0);
         return imgToPush;
     }
     public void NextHair()
