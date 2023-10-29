@@ -94,8 +94,8 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
         items = new ArrayList<>();
 
         try{
-            ArrayList<Item> pants= Database.getItems(5, gender);
-            ArrayList<Item> shoes= Database.getItems(4, gender);
+            ArrayList<Item> pants= Database.getItems(5);
+            ArrayList<Item> shoes= Database.getItems(4);
 
             items.addAll(pants);
             items.addAll(shoes);

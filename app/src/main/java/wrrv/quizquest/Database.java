@@ -437,16 +437,17 @@ public class Database {
         }
     }
 
-    public static ArrayList<Item> getItems(int layerWanted, String gender) {
+    public static ArrayList<Item> getItems(int layerWanted) {
 
         ArrayList<Item> items;
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
+
+
                 resultSet = statement.executeQuery("SELECT * " +
                         "FROM Item " +
-                        "WHERE itemLayer = '" + layerWanted +
-                        "' AND itemGender IN ('"+ gender + "', 'u');");
+                        "WHERE itemLayer = '" + layerWanted + "';");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);

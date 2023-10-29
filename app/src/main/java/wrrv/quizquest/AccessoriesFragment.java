@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
 
         try {
             gender = Database.getGender(savedUsername);
+            Log.d("Store Debugging", "The gender from the db: " + gender);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,7 +98,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         items = new ArrayList<>();
 
         try{
-            items = Database.getItems(8,gender);
+            items = Database.getItems(8);
             System.out.println("This is accessories");
             for(Item i: items){
                 System.out.println(i);

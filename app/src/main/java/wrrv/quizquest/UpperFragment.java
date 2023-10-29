@@ -95,8 +95,8 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
         items = new ArrayList<>();
 
         try{
-            ArrayList<Item> shirts = Database.getItems(6, gender);
-            ArrayList<Item> jackets = Database.getItems(7, gender);
+            ArrayList<Item> shirts = Database.getItems(6);
+            ArrayList<Item> jackets = Database.getItems(7);
 
             items.addAll(shirts);
             items.addAll(jackets);

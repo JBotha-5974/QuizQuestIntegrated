@@ -28,14 +28,7 @@ public class Item implements Serializable {
     //there is also a ItemLayerComparator that sorts by layer
     private int layer;
 
-    //0 body
-    //1 eyes
-    //2 hair
-    //3 shoes
-    //4 lower
-    //5 torso
-    //6 jacket
-    //7 accessories
+    //0 body, 1 head, 2 eyes, 3 hair, 4 shoes, 5 lower, 6 torso, 7 jacket, 8 accessories
 
     //making it so the player just buys 1 item and can have all the colours
     String colors;
@@ -64,23 +57,23 @@ public class Item implements Serializable {
         }
     }
 
-    public Bitmap getItemImage(Context context, String curColor) {
+    public Bitmap getItemImage(Context context, String color) {
 
-        AssetManager assetManager = context.getAssets();
+        String curColor = color.replace(" ", "_");
+        curColor += ".png";
 
         String fileName = "";
         if(Objects.equals(gender, "m")){
-            fileName = "Male/";
 
             if(layer == 5){
                 //if lower item (pants/skirt)
 
                 switch(itemName){
                     case "pantaloons":
-                        fileName = fileName + "lower/pantaloons/" + curColor + ".png";
+                        fileName = "Male/lower/pantaloons/" + curColor;
                         break;
                     case "pants":
-                        fileName = fileName + "lower/pants/" + curColor + ".png";
+                        fileName = "Male/lower/pants/" + curColor;
                         break;
                 }
 
@@ -90,34 +83,34 @@ public class Item implements Serializable {
 
                 switch(itemName){
                     case "longsleeve":
-                        fileName = fileName + "upper/longsleeve/" + curColor + ".png";
+                        fileName = "Male/upper/longsleeve/" + curColor;
                         break;
                     case "shortsleeve":
-                        fileName = fileName + "upper/shortsleeve/" + curColor + ".png";
+                        fileName = "Male/upper/shortsleeve/" + curColor;
                         break;
                     case "sleeveless":
-                        fileName = fileName + "upper/sleeveless/" + curColor + ".png";
+                        fileName = "Male/upper/sleeveless/" + curColor;
                         break;
                     case "vest":
-                        fileName = fileName + "upper/vest/" + curColor + ".png";
+                        fileName = "Male/upper/vest/" + curColor;
                         break;
                 }
             }
 
         }else if(Objects.equals(gender, "f")){
-            fileName = "Female/";
+
             if(layer == 5){
                 //if lower item (pants/skirt)
 
                 switch(itemName){
                     case "leggings":
-                        fileName = fileName + "lower/leggings/" + curColor + ".png";
+                        fileName = "Female/lower/leggings/" + curColor;
                         break;
                     case "pants":
-                        fileName = fileName + "lower/pants/" + curColor + ".png";
+                        fileName = "Female/lower/pants/" + curColor;
                         break;
                     case "skirt":
-                        fileName = fileName + "lower/skirt/" + curColor + ".png";
+                        fileName = "Female/lower/skirt/" + curColor;
                         break;
                 }
 
@@ -126,76 +119,75 @@ public class Item implements Serializable {
 
                 switch(itemName){
                     case "blouse":
-                        fileName = fileName + "upper/blouse/" + curColor + ".png";
+                        fileName= "Female/upper/blouse/" + curColor;
                         break;
                     case "corset":
-                        fileName = fileName + "upper/corset/" + curColor + ".png";
+                        fileName = "Female/upper/corset/" + curColor;
                         break;
                     case "longsleeve":
-                        fileName = fileName + "upper/longsleeve/" + curColor + ".png";
+                        fileName = "Female/upper/longsleeve/" + curColor;
                         break;
                     case "shortsleeve":
-                        fileName = fileName + "upper/shortsleeve/" + curColor + ".png";
+                        fileName = "Female/upper/shortsleeve/" + curColor;
                         break;
                     case "sleeveless":
-                        fileName = fileName + "upper/sleeveless/" + curColor + ".png";
+                        fileName = "Female/upper/sleeveless/" + curColor;
                         break;
                     case "tanktop":
-                        fileName = fileName + "upper/tanktop/" + curColor + ".png";
+                        fileName = "Female/upper/tanktop/" + curColor;
                         break;
                     case "tunic":
-                        fileName = fileName + "upper/tunic/" + curColor + ".png";
+                        fileName = "Female/upper/tunic/" + curColor;
                         break;
                 }
-
             }
 
         }else{
-            fileName = "Unisex/";
 
             switch(itemName){
                 case "collared jacket":
-                    fileName = fileName + "jackets/collared/" + curColor + ".png";
+                    fileName = "Unisex/jackets/collared/" + curColor;
                     break;
                 case "trench coat":
-                    fileName = fileName + "jackets/trench/" + curColor + ".png";
+                    fileName = "Unisex/jackets/trench/" + curColor;
                     break;
                 case "boots":
-                    fileName = fileName + "shoes/boots/" + curColor + ".png";
+                    fileName = "Unisex/shoes/boots/" + curColor;
                     break;
                 case "sandals":
-                    fileName = fileName + "shoes/sandals/" + curColor + ".png";
+                    fileName = "Unisex/shoes/sandals/" + curColor;
                     break;
                 case "shoes":
-                    fileName = fileName + "shoes/shoes/" + curColor + ".png";
+                    fileName = "Unisex/shoes/shoes/" + curColor;
                     break;
                 case "crown":
-                    fileName = fileName + "accessories/crown.png";
+                    fileName = "Unisex/accessories/crown.png";
                     break;
                 case "formal hat":
-                    fileName = fileName + "accessories/formal_hat.png";
+                    fileName = "Unisex/accessories/formal_hat.png";
                     break;
                 case "glasses":
-                    fileName = fileName + "accessories/glasses.png";
+                    fileName = "Unisex/accessories/glasses.png";
                     break;
                 case "pirate hat":
-                    fileName = fileName + "accessories/pirate_hat.png";
+                    fileName = "Unisex/accessories/pirate_hat.png";
                     break;
                 case "round hat":
-                    fileName = fileName + "accessories/round_hat.png";
+                    fileName = "Unisex/accessories/round_hat.png";
                     break;
                 case "sunglasses":
-                    fileName = fileName + "accessories/sunglasses.png";
+                    fileName = "Unisex/accessories/sunglasses.png";
                     break;
                 case "tiara":
-                    fileName = fileName + "accessories/tiara.png";
+                    fileName = "Unisex/accessories/tiara.png";
                     break;
                 case "tricorne":
-                    fileName = fileName + "accessories/tricorne.png";
+                    fileName = "Unisex/accessories/tricorne.png";
                     break;
             }
         }
         try {
+            AssetManager assetManager = context.getAssets();
             InputStream inputStream = assetManager.open(fileName);
             Bitmap temp =  BitmapFactory.decodeStream(inputStream);
             return splitImage(temp);
