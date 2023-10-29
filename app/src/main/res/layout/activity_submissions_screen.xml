@@ -22,6 +22,7 @@
     <Button
         android:id="@+id/btnSubmitAQ"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_marginBottom="48dp"
         android:onClick="submitClick"
         android:text="@string/submitAQ"
@@ -47,6 +48,7 @@
     <Button
         android:id="@+id/btnPrevSubs"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_marginBottom="116dp"
         android:onClick="previousClick"
         android:text="@string/prevSubs"

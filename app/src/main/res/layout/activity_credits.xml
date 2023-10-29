@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background"
+    android:gravity="center_horizontal"
+    android:onClick="leaveCredits"
+    android:orientation="vertical"
+    tools:context=".Credits">
+
+    <TextView
+        android:id="@+id/lblCredits"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Credits" />
+
+    <TextView
+        android:id="@+id/lblTeam"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="Team"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txtTeam"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_horizontal"
+        android:alpha="0.6"
+        android:text="Team leader: Joshua Page, Marisha Ranchod, Joshua Botha"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/lblManager"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="Project Manager"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txtManager"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:alpha="0.6"
+        android:text="Ms Janine Nel"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/lblSpriteImages"
+        style="@style/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Sprite images"
+        android:textSize="15dp" />
+
+    <ScrollView
+        android:layout_width="371dp"
+        android:layout_height="392dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/txtCredits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/btnLeaveCredits"
+        style = "@style/back_button"
+        android:onClick="leaveCredits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/back" />
+
+</LinearLayout>

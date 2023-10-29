@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBackground"
+    android:background="?attr/background"
     tools:context=".Admin_screen">
 
     <Button
         android:id="@+id/btnMaintainStore"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:onClick="storeClick"
         android:text="@string/maintain_store"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,6 +23,7 @@
 
         android:id="@+id/adminHeading"
         style="@style/heading"
+        android:textColor="?attr/font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="212dp"
@@ -36,6 +38,7 @@
     <Button
         android:id="@+id/btnViewSubmissions"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_marginBottom="48dp"
         android:onClick="submissionsClick"
         android:text="@string/submissions"
@@ -61,6 +64,7 @@
     <Button
         android:id="@+id/btnAdminLogOut"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:gravity="center"

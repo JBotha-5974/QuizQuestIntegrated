@@ -11,8 +11,8 @@ public class GameDetails {
         this.questionID = questionID;
         this.gameScore = gameScore;
         this.timeTaken = timeTaken;
+        Database.addGameDetails(gameID,questionID,gameScore,timeTaken);
     }
-
     public int getGameID() {
         return gameID;
     }

@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +24,21 @@ public class Database {
     private static Statement statement = null;
     private static ArrayList<Question> questions;
     private static ArrayList<Player> players;
-
+    public static void addGame(int gameID, String userName, String gameDate){
+        try {
+            if (establishConnection()){
+                String sql = "INSERT INTO Game (gameID,userName,gameDate) VALUES (?,?,?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,gameID);
+                preparedStatement.setString(2,userName);
+                preparedStatement.setString(3,gameDate);
+                preparedStatement.execute();
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static ArrayList<Player> getPlayers() {
         try {
             if (establishConnection()) {
@@ -100,10 +116,53 @@ public class Database {
         }
         return null;
     }
-
+    public static int getLeaderBoardID(){
+        int leaderBoardID = 0;
+        try {
+            if(establishConnection()){
+                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Leaderboard");
+                resultSet.next();
+                leaderBoardID = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return leaderBoardID;
+    }
+    public static int getLatestGameID(){
+        int gameID = 0;
+        try {
+            if (establishConnection()){
+                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Game");
+                resultSet.next();
+                gameID =  resultSet.getInt(1);
+            }
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return gameID;
+    }
+    public static void addGameDetails(int gameID, int questionID, int gameScore, long timeTaken){
+        try {
+            if (establishConnection()){
+                String sql = "INSERT INTO GameDetails (gameID,questionID,gameScore,timeTaken) VALUES (?,?,?,?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,gameID);
+                preparedStatement.setInt(2,questionID);
+                preparedStatement.setInt(3,gameScore);
+                preparedStatement.setInt(4,(int)timeTaken/1000);
+                preparedStatement.execute();
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static ArrayList<Question> LoadQuestions() {
         try {
-
             if (establishConnection()) {
                 questions = new ArrayList<>();
                 resultSet = statement.executeQuery("SELECT COUNT(*) FROM question");
@@ -230,7 +289,6 @@ public class Database {
         }
         return "m,h0,s0,p0,f0";
     }
-
     public static void CreateUser(Player player) {
         String sName = player.getUserName();
         String sPassword = player.getUserPassword();
@@ -325,16 +383,47 @@ public class Database {
         }
     }
 
-    public static ArrayList<Item> getItemsInUse(String userName) {
-        ArrayList<Item> items;
+    public static String getGender(String username) {
+
+        String gender = "";
+
+        try {
+            if (establishConnection()) {
+                resultSet = statement.executeQuery("SELECT * " +
+                        "FROM Inventory" +
+                        "WHERE itemID IN (SELECT itemID FROM Item WHERE itemLayer = 1)" +
+                        "AND userName = '" + username + "'" +
+                        "AND itemInUse = 'true';");
+
+                while (resultSet.next()) {
+                    gender = resultSet.getString(3);
+
+                }
+                disconnect();
+                return gender;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<Map<Item,String>> getItemsInUse(String userName) {
+        ArrayList<Map<Item,String>> items;
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT Item.itemID, Item.itemName, Item.itemPrice, Item.itemGender, Item.itemLayer, Item.itemColors, Item.itemCurColor " +
+                resultSet = statement.executeQuery("SELECT Item.*, Inventory.color " +
                         "FROM Item " +
                         "JOIN Inventory ON Item.itemID = Inventory.itemID " +
-                        "WHERE Inventory.userName = '" + userName +
-                        "' AND Inventory.itemInUse = '1';");
+                        "WHERE Inventory.userName = '" + userName + "' AND Inventory.itemInUse = 'true';");
+                Log.i("info",resultSet.getFetchSize()+"");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
@@ -342,9 +431,14 @@ public class Database {
                     String gender = resultSet.getString(4);
                     int layer = resultSet.getInt(5);
                     String colors = resultSet.getString(6);
+                    String curColor = resultSet.getString(7);
 
                     Item temp = new Item(itemID, name, price, gender, layer, colors);
-                    items.add(temp);
+
+                    Map<Item, String> map = new HashMap<>();
+                    map.put(temp, curColor);
+
+                    items.add(map);
                 }
                 disconnect();
                 return items;
@@ -413,16 +507,20 @@ public class Database {
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT * FROM item WHERE itemLayer = " + layerWanted);
+
+
+                resultSet = statement.executeQuery("SELECT * " +
+                        "FROM Item " +
+                        "WHERE itemLayer = '" + layerWanted + "';");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
                     int price = resultSet.getInt(3);
-                    String gender = resultSet.getString(4);
+                    String g = resultSet.getString(4);
                     int layer = resultSet.getInt(5);
                     String colors = resultSet.getString(6);
 
-                    Item temp = new Item(itemID, name, price, gender, layer, colors);
+                    Item temp = new Item(itemID, name, price, g, layer, colors);
                     items.add(temp);
                 }
                 disconnect();

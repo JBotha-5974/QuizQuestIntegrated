@@ -9,6 +9,7 @@ public class Game {
         this.gameID = gameID;
         this.userName = userName;
         this.gameDate = gameDate;
+        Database.addGame(gameID,userName,gameDate);
     }
 
     public int getGameID() {
@@ -30,7 +31,6 @@ public class Game {
     public String getGameDate() {
         return gameDate;
     }
-
     public void setGameDate(String gameDate) {
         this.gameDate = gameDate;
     }

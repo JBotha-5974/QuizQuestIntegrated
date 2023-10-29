@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8ECA8218"
+    android:background="?attr/background"
     tools:context=".PlayerPerformance">
 
     <nl.dionsegijn.konfetti.xml.KonfettiView
@@ -37,7 +37,7 @@
         android:layout_width="163dp"
         android:layout_height="56dp"
         android:layout_marginBottom="50dp"
-        android:background="@color/orange"
+        android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="returnMainMenu"
         android:text="@string/continue_string"

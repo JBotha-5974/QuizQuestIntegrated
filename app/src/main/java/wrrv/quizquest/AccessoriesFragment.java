@@ -1,12 +1,15 @@
 package wrrv.quizquest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,9 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     RecyclerView rvAccessories;
     ItemAdapter adapter;
 
+    Player player;
+    String gender;
+
     public AccessoriesFragment() {
         // Required empty public constructor
     }
@@ -28,6 +34,17 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+
+        try {
+            gender = Database.getGender(savedUsername);
+            Log.d("Store Debugging", "The gender from the db: " + gender);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accessories, container, false);

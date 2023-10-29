@@ -27,7 +27,8 @@ public class RegisterUser extends AppCompatActivity {
         String sPasswordConfirm = tbxConfirmPassword.getText().toString();
         if(sPassword.equals(sPasswordConfirm) && !sPassword.isEmpty() && !sName.isEmpty())
         {
-            Player newPlayer = new Player(sName, sPassword, null, 0, 20, 1, 5, 1, 0,0);
+            int leaderboardID = Database.getLeaderBoardID();
+            Player newPlayer = new Player(sName, sPassword, null, 0, 20, 1, 5, leaderboardID, 0,0);
             Intent intent = new Intent(this, RegisterSprite.class);
             intent.putExtra("player", newPlayer);
             startActivity(intent);
@@ -41,7 +42,6 @@ public class RegisterUser extends AppCompatActivity {
             toast.show();
         }
     }
-
     public void btnLoginClick(View view) {
         Intent intent = new Intent(this, LogIn_screen.class);
         startActivity(intent);

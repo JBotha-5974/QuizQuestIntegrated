@@ -105,7 +105,7 @@
         android:background="@color/white"
         android:fontFamily="@font/default_font"
         android:gravity="center"
-        android:letterSpacing="0.05"
+        android:letterSpacing="0.1"
         android:text="@string/placeholder_question"
         android:textAllCaps="true"
         android:textColor="@color/brown"

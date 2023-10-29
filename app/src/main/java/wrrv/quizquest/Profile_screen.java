@@ -4,18 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Profile_screen extends AppCompatActivity {
 
     Button submissions;
     ImageButton leave;
     TextView username;
+
+    ImageView sprite;
 
     Player player;
 
@@ -36,6 +42,11 @@ public class Profile_screen extends AppCompatActivity {
         submissions = findViewById(R.id.btnSubmissions);
         leave = findViewById(R.id.btnLeaveProfile);
         username = findViewById(R.id.lblUsername);
+        sprite = findViewById(R.id.imgTest);
+
+        SpriteGenerator sg = new SpriteGenerator(this, savedUsername);
+
+        sprite.setImageBitmap(sg.generate());
 
         username.setText("Hello " + player.getUserName() + "!");
 

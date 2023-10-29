@@ -15,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,6 +37,8 @@ public class GameScreen extends AppCompatActivity {
     private int curIndex = 0;
     private int correct = 0;
     private Player player;
+    private long timeTaken = 0;
+    private int gameID = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +56,17 @@ public class GameScreen extends AppCompatActivity {
         txtTimer = findViewById(R.id.txtTimer);
         tickImg = findViewById(R.id.tickImg);
         crossImg = findViewById(R.id.crossImg);
-        Intent intent = getIntent();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
         try {
             player = Database.getPlayer(savedUsername,savedPassword);
+            gameID = Database.getLatestGameID();
+            gameID++;
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedDate = currentDate.format(dateFormat);
+            Game game = new Game(gameID,player.getUserName(),formattedDate);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,6 +74,7 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 long secondsRemaining = millisUntilFinished / 1000;
+                timeTaken = 21000 - secondsRemaining;
                 txtTimer.setText("00:" + secondsRemaining);
             }
             @Override
@@ -115,6 +126,7 @@ public class GameScreen extends AppCompatActivity {
     }
     private void mapQuestions() throws Exception {
         if (curIndex < questions.size()){
+            GameDetails gameDetails = new GameDetails(gameID,questions.get(curIndex).getQuestionID(),correct,timeTaken);
             resetBtns();
             Question temp = questions.get(curIndex);
             txtQuestion.setText(temp.getQuestionText());

@@ -12,7 +12,7 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
-        android:background="@color/orange"
+        android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="rejectClick"
         android:text="@string/reject"
@@ -28,7 +28,7 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
-        android:background="@color/orange"
+        android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="acceptClick"
         android:text="@string/accept"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="1 of 12"
-        android:textColor="@color/black"
+        android:textColor="?attr/font"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:text="@string/questionLabel"
-            android:textColor="@color/lightFont"
+            android:textColor="?attr/font"
 
             />
 
@@ -124,11 +124,12 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:text="TextView"
-            android:textColor="@color/black"
+            android:textColor="?attr/font"
             android:textSize="14dp" />
 
         <TextView
             android:id="@+id/lblAnswer"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -139,7 +140,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:text="@string/answerLabel"
-            android:textColor="@color/lightFont" />
+            android:textColor="?attr/font"/>
 
         <TextView
             android:id="@+id/txtAnswerView"
@@ -168,7 +169,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:text="@string/categoryLabel"
-            android:textColor="@color/lightFont" />
+            android:textColor="?attr/font" />
 
         <TextView
             android:id="@+id/txtCategoryView"
@@ -197,7 +198,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:text="@string/incorrectLabel"
-            android:textColor="@color/lightFont" />
+            android:textColor="?attr/font" />
 
         <TextView
             android:id="@+id/txtI1View"
@@ -254,7 +255,7 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/default_font"
         android:text="@string/submitAQ"
-        android:textColor="@color/lightFont"
+        android:textColor="?attr/font"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/txtIndex"
         app:layout_constraintStart_toStartOf="parent"
