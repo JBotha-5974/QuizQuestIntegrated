@@ -45,6 +45,8 @@ public class Buy_Item extends AppCompatActivity {
     Set<String> options;
     String color;
 
+    ArrayList<Item> items = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,15 @@ public class Buy_Item extends AppCompatActivity {
         buy = findViewById(R.id.btnBuy);
         leave = findViewById(R.id.btnLeaveBuy);
         colors = findViewById(R.id.spinner);
+
+        // get Items in use
+        try{
+            items = Database.inUseIDs(player.getUserName());
+
+        }catch(Exception e){
+            System.out.println("Error checking inventory: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         // check if the item is already in the player's inventory
         checkInventory();
@@ -105,6 +116,39 @@ public class Buy_Item extends AppCompatActivity {
         });
     }
 
+    public void buyItem(View view){
+
+        //check if player has enough coins
+        if(player.getPlayerCoins() < item.getItemPrice()){
+
+            //display "can't afford this" alert dialog
+            AlertDialog alertDialog = cantAfford();
+            alertDialog.show();
+
+        }else{
+            //update player coins
+            player.setPlayerCoins(player.getUserName(),player.getPlayerCoins() - item.getItemPrice());
+
+            //check if there is already an item in that layer
+            checkItemLayer();
+
+            //add to player inventory
+            try{
+                Database.addToInventory(player.getUserName(),item.getItemID(),color,true);
+
+            }catch(Exception e){
+                System.out.println("Error adding to inventory: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+            //alert dialog with updated sprite
+            AlertDialog alertDialog = changeItemImage();
+            alertDialog.show();
+
+        }
+
+    }
+
     public void updateImage(){
         Bitmap newImage = item.getItemImage(this, color);
         image.setImageBitmap(item.getItemImage(this, color));
@@ -125,47 +169,13 @@ public class Buy_Item extends AppCompatActivity {
 
     }
 
-    public void buyItem(View view){
-
-        //check if player has enough coins
-        if(player.getPlayerCoins() < item.getItemPrice()){
-
-            //display "can't afford this" alert dialog
-            AlertDialog alertDialog = cantAfford();
-            alertDialog.show();
-
-        }else{
-            //update player coins
-            player.setPlayerCoins(player.getUserName(),player.getPlayerCoins() - item.getItemPrice());
-
-            //check if there is already an item in that layer
-            //checkItemLayer();
-
-            //add to player inventory
-            try{
-                Database.addToInventory(player.getUserName(),item.getItemID(),color,true);
-
-            }catch(Exception e){
-                System.out.println("Error adding to inventory: " + e.getMessage());
-                e.printStackTrace();
-            }
-
-            //alert dialog with updated sprite
-            AlertDialog alertDialog = changeItemImage();
-            alertDialog.show();
-
-        }
-
-    }
-
     public void checkInventory(){
         boolean inInventory = false;
-        try{
-            inInventory = Database.inInventory(player.getUserName(),item.getItemID());
 
-        }catch(Exception e){
-            System.out.println("Error checking inventory: " + e.getMessage());
-            e.printStackTrace();
+        for(Item i : items){
+            if(i.getItemID() == item.getItemID()){
+                inInventory = true;
+            }
         }
 
         if(inInventory){
@@ -178,19 +188,28 @@ public class Buy_Item extends AppCompatActivity {
         }
     }
 
-    public AlertDialog cantAfford(){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Insufficient coins");
-        alertDialogBuilder.setMessage("Sorry, it looks like you don't have enough coins to buy this.");
-        alertDialogBuilder.setIcon(R.drawable.coins);
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alertDialog = alertDialogBuilder.create();
+    public void checkItemLayer(){
+        int layer = item.getLayer();
+        Item current = null;
 
-        return alertDialog;
+        for(Item i: items){
+            if(i.getLayer() == layer){
+
+                current = i;
+                break;
+            }
+        }
+
+        if(current != null){
+            //change current to not be in use
+            try{
+                Database.itemNotInUse(player.getUserName(),item.getItemID());
+
+            }catch(Exception e){
+                System.out.println("Error adding to inventory: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 
     public AlertDialog changeItemImage(){
@@ -199,7 +218,7 @@ public class Buy_Item extends AppCompatActivity {
 
         ImageView imageView = customView.findViewById(R.id.alertImageView);
         SpriteGenerator sg = new SpriteGenerator(this, player.getUserName());
-        imageView.setImageBitmap(sg.stand());
+        imageView.setImageBitmap(sg.generate());
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Sprite updated!");
@@ -217,38 +236,20 @@ public class Buy_Item extends AppCompatActivity {
         return alertDialogBuilder.create();
     }
 
-//    public void checkItemLayer(){
-//        ArrayList<Item> inUse = new ArrayList<>();
-//        try{
-//            inUse = Database.getItemsInUse(player.getUserName());
-//
-//        }catch(Exception e){
-//            System.out.println("Error checking inventory: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//
-//        int layer = item.getLayer();
-//        Item current = null;
-//
-//        for(Item i: inUse){
-//            if(i.getLayer() == layer){
-//
-//                current = i;
-//                break;
-//            }
-//        }
-//
-//        if(current != null){
-//            //change current to not be in use
-//            try{
-//                Database.updateItemInventory(player.getUserName(),item.getItemID());
-//
-//            }catch(Exception e){
-//                System.out.println("Error adding to inventory: " + e.getMessage());
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    public AlertDialog cantAfford(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Insufficient coins");
+        alertDialogBuilder.setMessage("Sorry, it looks like you don't have enough coins to buy this.");
+        alertDialogBuilder.setIcon(R.drawable.coins);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        return alertDialog;
+    }
 
     public void leaveClick(View view){
         Intent intent = new Intent(this,Store_screen.class);

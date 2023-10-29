@@ -326,24 +326,33 @@ public class Database {
 
     //region Marisha
 
-    public static boolean inInventory(String userName, int itemID){
+    public static ArrayList<Item> inUseIDs(String userName){
+        ArrayList<Item> items = new ArrayList<>();
+
         try {
             if (establishConnection()) {
-                resultSet = statement.executeQuery("SELECT * " +
-                        "FROM Inventory " +
-                        "WHERE userName = '" + userName + "' " +
-                        "AND itemID = " + itemID + ";");
+                String query = "SELECT Item.* " +
+                        "FROM Item " +
+                        "JOIN Inventory ON Item.itemID = Inventory.itemID " +
+                        "WHERE Inventory.userName = '" + userName + "' AND Inventory.itemInUse = 'true';";
 
+                resultSet = statement.executeQuery(query);
+
+                while (resultSet.next()) {
+                    int itemID = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    int price = resultSet.getInt(3);
+                    String g = resultSet.getString(4);
+                    int layer = resultSet.getInt(5);
+                    String colors = resultSet.getString(6);
+
+                    Item temp = new Item(itemID, name, price, g, layer, colors);
+                    items.add(temp);
                 }
-                disconnect();
-            if (!resultSet.next()) {
-                // No rows were returned, the item is not in the inventory
-                return true;
-            } else {
-                // Rows were returned, the item is in the inventory
-                return false;
-            }
 
+            }
+            disconnect();
+            return items;
         }
         catch(SQLException ex) {
             ex.printStackTrace();
@@ -353,7 +362,7 @@ public class Database {
             e.printStackTrace();
         }
 
-        return true;
+        return null;
     }
 
     public static void addToInventory(String userName, int itemID, String color, boolean inUse){
@@ -455,7 +464,7 @@ public class Database {
         return null;
     }
 
-    public static void updateItemInventory(String userName, int itemID) {
+    public static void itemNotInUse(String userName, int itemID) {
         try {
             if (establishConnection()) {
                 statement.execute("UPDATE Inventory " +
