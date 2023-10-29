@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBuyItem"
-        app:layout_constraintVertical_bias="0.324">
+        app:layout_constraintVertical_bias="0.83">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -40,7 +40,7 @@
         style="@style/heading"
         android:layout_width="333dp"
         android:layout_height="97dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="56dp"
         android:gravity="center"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/imgBuyItem"
@@ -54,10 +54,9 @@
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363"
         app:srcCompat="@drawable/f0" />
 
     <TextView
@@ -96,14 +95,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="18dp"
-        android:layout_marginBottom="526dp"
         android:onClick="leaveClick"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toTopOf="@+id/lblBuyDesc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175"
         app:srcCompat="@drawable/back" />
 
     <LinearLayout
@@ -139,13 +136,13 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="68dp"
-        android:layout_marginBottom="166dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imgBuyItem"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLeaveBuy" />
+        app:layout_constraintTop_toBottomOf="@+id/lblBuyDesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
