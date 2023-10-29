@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -46,8 +47,12 @@ public class QuizQuestSettings extends AppCompatActivity {
     }
 
     public void btnLogOutClick(View view) {
+        Intent intent = new Intent(this, LogIn_screen.class);
+        startActivity(intent);
     }
 
     public void btnSettingsBackClick(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
