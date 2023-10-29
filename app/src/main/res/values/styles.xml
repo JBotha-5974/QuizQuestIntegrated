@@ -5,7 +5,7 @@
         <item name="android:layout_height">100dp</item>
         <item name="android:fontFamily">@font/default_font</item>
         <item name="android:textColor">@color/lightBtnFont</item>
-        <item name="android:background">@color/lightBtnBg</item>
+        <item name="android:background">?attr/colorPrimary</item>
         <item name="android:textSize">16dp</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
@@ -15,7 +15,7 @@
     </style>
     <style name="heading">
         <item name="android:fontFamily">@font/default_font</item>
-        <item name="android:textColor">@color/lightFont</item>
+        <item name="android:textColor">?attr/font</item>
         <item name="android:textSize">24dp</item>
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
@@ -24,7 +24,7 @@
 
     <style name="subheading">
         <item name="android:fontFamily">@font/default_font</item>
-        <item name="android:textColor">@color/lightFont</item>
+        <item name="android:textColor">?attr/font</item>
         <item name="android:textSize">16dp</item>
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>

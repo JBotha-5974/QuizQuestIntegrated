@@ -45,8 +45,6 @@ public class Item implements Serializable {
         setColors();
     }
 
-
-
     private void setColors(){
         String[] c = colors.split(",");
 
@@ -233,6 +231,7 @@ public class Item implements Serializable {
             return splitImage(temp);
 
         } catch (IOException e) {
+            Log.i("info",itemName);
             System.out.println("Error getting item image: "  + e.getMessage());
             e.printStackTrace();
         }
@@ -244,24 +243,16 @@ public class Item implements Serializable {
 
         String curColor = color.replace(" ", "_");
         curColor += ".png";
-
         String fileName = "";
-        if(Objects.equals(gender, "m")){
-
+        Log.i("info",gender);
+        if(gender.equals("m")){
             return getMale(context, curColor);
-
-        }else if(Objects.equals(gender, "f")){
-
+        }else if(gender.equals("f")){
            return getFemale(context, curColor);
-
         }else{
-
             return getUnisex(context, curColor);
-
         }
-
     }
-
     private Bitmap splitImage(Bitmap image){
 
         int columns = 13;

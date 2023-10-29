@@ -175,7 +175,6 @@ public class SpriteGenerator {
 
         try{
             itemsInUse = Database.getItemsInUse(userName);
-
         }catch(Exception e){
             System.out.println("Database error (getting items in use): " + e.getMessage());
             e.printStackTrace();

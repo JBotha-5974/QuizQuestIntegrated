@@ -24,7 +24,21 @@ public class Database {
     private static Statement statement = null;
     private static ArrayList<Question> questions;
     private static ArrayList<Player> players;
-
+    public static void addGame(int gameID, String userName, String gameDate){
+        try {
+            if (establishConnection()){
+                String sql = "INSERT INTO Game (gameID,userName,gameDate) VALUES (?,?,?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,gameID);
+                preparedStatement.setString(2,userName);
+                preparedStatement.setString(3,gameDate);
+                preparedStatement.execute();
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static ArrayList<Player> getPlayers() {
         try {
             if (establishConnection()) {
@@ -102,10 +116,53 @@ public class Database {
         }
         return null;
     }
-
+    public static int getLeaderBoardID(){
+        int leaderBoardID = 0;
+        try {
+            if(establishConnection()){
+                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Leaderboard");
+                resultSet.next();
+                leaderBoardID = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return leaderBoardID;
+    }
+    public static int getLatestGameID(){
+        int gameID = 0;
+        try {
+            if (establishConnection()){
+                resultSet = statement.executeQuery("SELECT COUNT(*) FROM Game");
+                resultSet.next();
+                gameID =  resultSet.getInt(1);
+            }
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return gameID;
+    }
+    public static void addGameDetails(int gameID, int questionID, int gameScore, long timeTaken){
+        try {
+            if (establishConnection()){
+                String sql = "INSERT INTO GameDetails (gameID,questionID,gameScore,timeTaken) VALUES (?,?,?,?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,gameID);
+                preparedStatement.setInt(2,questionID);
+                preparedStatement.setInt(3,gameScore);
+                preparedStatement.setInt(4,(int)timeTaken/1000);
+                preparedStatement.execute();
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static ArrayList<Question> LoadQuestions() {
         try {
-
             if (establishConnection()) {
                 questions = new ArrayList<>();
                 resultSet = statement.executeQuery("SELECT COUNT(*) FROM question");
@@ -362,10 +419,11 @@ public class Database {
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT Item.*, Inventory.color" +
-                        "FROM Item" +
-                        "JOIN Inventory ON Item.itemID = Inventory.itemID" +
+                resultSet = statement.executeQuery("SELECT Item.*, Inventory.color " +
+                        "FROM Item " +
+                        "JOIN Inventory ON Item.itemID = Inventory.itemID " +
                         "WHERE Inventory.userName = '" + userName + "' AND Inventory.itemInUse = 'true';");
+                Log.i("info",resultSet.getFetchSize()+"");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
@@ -605,8 +663,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-//            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
+//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {

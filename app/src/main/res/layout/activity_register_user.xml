@@ -9,164 +9,132 @@
 
     <TextView
         android:id="@+id/txtRegisterUserHeader"
+        style="@style/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginBottom="596dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/default_font"
         android:text="Sign Up"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtRegsterUserUsername"
+        style="@style/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="98dp"
-        android:layout_marginEnd="234dp"
-        android:layout_marginBottom="542dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/default_font"
         android:text="Username:"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRegisterUserHeader" />
 
     <EditText
         android:id="@+id/tbxRegisterUserName"
         android:layout_width="321dp"
         android:layout_height="43dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="491dp"
+        android:layout_marginTop="35dp"
         android:backgroundTint="@android:color/holo_blue_light"
         android:ems="10"
+        android:hint="Enter unique username"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRegsterUserUsername" />
 
     <TextView
         android:id="@+id/txtRegisterUserPassword"
+        style="@style/subheading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="186dp"
-        android:layout_marginEnd="234dp"
-        android:layout_marginBottom="454dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="@font/default_font"
         android:text="Password:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tbxRegisterUserName" />
 
     <EditText
         android:id="@+id/tbxCreateUserPassword"
         android:layout_width="321dp"
         android:layout_height="45dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="398dp"
+        android:layout_marginTop="35dp"
         android:backgroundTint="@android:color/holo_blue_light"
         android:ems="10"
+        android:hint="Enter password"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtRegisterUserConformPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="273dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="367dp"
-        android:fontFamily="@font/default_font"
-        android:text="Re-Enter Password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRegisterUserPassword" />
 
     <EditText
         android:id="@+id/tbxUserConfirmPassword"
         android:layout_width="320dp"
         android:layout_height="47dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="305dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="314dp"
+        android:layout_marginTop="35dp"
         android:backgroundTint="@android:color/holo_blue_light"
         android:ems="10"
+        android:hint="Enter password again"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRegisterUserConformPassword" />
+
+    <TextView
+        android:id="@+id/txtRegisterUserConformPassword"
+        style="@style/subheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/default_font"
+        android:text="Re-Enter Password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbxCreateUserPassword" />
 
     <Button
         android:id="@+id/btnRegisterUserContinue"
         android:layout_width="133dp"
         android:layout_height="48dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="385dp"
-        android:layout_marginEnd="138dp"
-        android:layout_marginBottom="226dp"
+        android:layout_marginTop="50dp"
         android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="btnRegisterUserContinueClick"
         android:text="Continue"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tbxUserConfirmPassword" />
 
     <TextView
         android:id="@+id/txtRegisterUserAccountAlreadyCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="472dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/default_font"
         android:text="Already have an account?"
         android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterUserContinue" />
 
     <TextView
         android:id="@+id/rtxtRegisterUserLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="238dp"
-        android:layout_marginTop="465dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginTop="20dp"
         android:onClick="btnLoginClick"
         android:text="Login"
         android:textColor="@android:color/holo_blue_light"
         android:textIsSelectable="false"
+        android:textSize="18sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRegisterUserAccountAlreadyCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

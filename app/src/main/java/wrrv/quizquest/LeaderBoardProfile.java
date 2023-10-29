@@ -26,12 +26,12 @@ public class LeaderBoardProfile extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null){
             Player player = (Player)intent.getSerializableExtra("player");
-//            SpriteGenerator spriteGenerator = new SpriteGenerator(this, player.getUserName());
-//            Bitmap image = spriteGenerator.stand();
-//            ldbImageView.setImageBitmap(image);
-            GenerateSprite generateSprite = new GenerateSprite(this,player.getPlayerSprite());
-            ldbImageView.setImageDrawable(null);
-            ldbImageView.setBackground(generateSprite.getImage());
+            SpriteGenerator spriteGenerator = new SpriteGenerator(this, player.getUserName());
+            Bitmap image = spriteGenerator.stand();
+            ldbImageView.setImageBitmap(image);
+//            GenerateSprite generateSprite = new GenerateSprite(this,player.getPlayerSprite());
+//            ldbImageView.setImageDrawable(null);
+//            ldbImageView.setBackground(generateSprite.getImage());
             ldbProfileTxtName.setText(player.getUserName());
             ldbPointsTxt.setText(getString(R.string.ldb_points,player.getPlayerScore()));
             ldbLevelTxt.setText(getString(R.string.ldb_level,player.getPlayerLevel()));

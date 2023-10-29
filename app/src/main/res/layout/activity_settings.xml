@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBackground"
+    android:background="?attr/background"
     tools:context=".Settings">
 
     <TextView
@@ -35,7 +35,6 @@
 
     <Button
         android:id="@+id/btnPlayerLogOut"
-
         style="@style/light_button"
         android:text="Log out"
         app:layout_constraintBottom_toTopOf="@+id/btnCredits"
