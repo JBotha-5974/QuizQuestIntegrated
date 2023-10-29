@@ -324,6 +324,37 @@ public class Database {
         }
     }
 
+    public static String getGender(String username) {
+
+        String gender = "";
+
+        try {
+            if (establishConnection()) {
+                resultSet = statement.executeQuery("SELECT * " +
+                        "FROM Inventory" +
+                        "WHERE itemID IN (SELECT itemID FROM Item WHERE itemLayer = 1)" +
+                        "AND userName = '" + username + "'" +
+                        "AND itemInUse = 'true';");
+
+                while (resultSet.next()) {
+                    gender = resultSet.getString(3);
+
+                }
+                disconnect();
+                return gender;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static ArrayList<Item> getItemsInUse(String userName) {
         ArrayList<Item> items;
         try {
@@ -406,22 +437,25 @@ public class Database {
         }
     }
 
-    public static ArrayList<Item> getItems(int layerWanted) {
+    public static ArrayList<Item> getItems(int layerWanted, String gender) {
 
         ArrayList<Item> items;
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT * FROM item WHERE itemLayer = " + layerWanted);
+                resultSet = statement.executeQuery("SELECT * " +
+                        "FROM Item " +
+                        "WHERE itemLayer = '" + layerWanted +
+                        "' AND itemGender IN ('"+ gender + "', 'u');");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);
                     int price = resultSet.getInt(3);
-                    String gender = resultSet.getString(4);
+                    String g = resultSet.getString(4);
                     int layer = resultSet.getInt(5);
                     String colors = resultSet.getString(6);
 
-                    Item temp = new Item(itemID, name, price, gender, layer, colors);
+                    Item temp = new Item(itemID, name, price, g, layer, colors);
                     items.add(temp);
                 }
                 disconnect();

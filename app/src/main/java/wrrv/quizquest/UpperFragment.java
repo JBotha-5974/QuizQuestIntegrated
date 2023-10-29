@@ -1,12 +1,14 @@
 package wrrv.quizquest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,9 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
     RecyclerView rvUpper;
     ItemAdapter adapter;
 
+    Player player;
+    String gender;
+
     public UpperFragment() {
         // Required empty public constructor
     }
@@ -28,6 +33,16 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+
+        try {
+            gender = Database.getGender(savedUsername);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upper, container, false);
@@ -80,8 +95,8 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
         items = new ArrayList<>();
 
         try{
-            ArrayList<Item> shirts = Database.getItems(5);
-            ArrayList<Item> jackets = Database.getItems(5);
+            ArrayList<Item> shirts = Database.getItems(6, gender);
+            ArrayList<Item> jackets = Database.getItems(7, gender);
 
             items.addAll(shirts);
             items.addAll(jackets);
