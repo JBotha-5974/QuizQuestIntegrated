@@ -143,7 +143,7 @@ public class SpriteGenerator {
                    Item item = entry.getKey();
                    String value = entry.getValue();
 
-                   Log.d("Inv Items in use: ", "item -> " + item.getItemName());
+                   Log.d("Inv Items in use: ", "item -> "+ value + " " + item.getItemName());
                    images.add(item.getItemImage(context, value));
                }
            }
