@@ -135,4 +135,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imgBlackCircle"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="305dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/black_circle" />
+
+    <ImageView
+        android:id="@+id/imgWhiteCircle"
+        android:layout_width="136dp"
+        android:layout_height="141dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="263dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="309dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/white_circle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
