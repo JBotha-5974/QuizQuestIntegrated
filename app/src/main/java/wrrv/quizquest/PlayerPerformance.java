@@ -121,12 +121,12 @@ public class PlayerPerformance extends AppCompatActivity {
 
     public void returnMainMenu(View view) {
         Intent intent = new Intent(this,MainActivity.class);
-
         if (player.getPlayerScore() % 20 > player.getPlayerLevel()){
             Intent goLevelUp = new Intent(this, LevelUp.class);
             goLevelUp.putExtra("player",player);
             startActivity(goLevelUp);
         }
+        else
         startActivity(intent);
         finish();
     }
