@@ -360,11 +360,11 @@ public class Database {
         try {
             if (establishConnection()) {
                 items = new ArrayList<>();
-                resultSet = statement.executeQuery("SELECT Item.itemID, Item.itemName, Item.itemPrice, Item.itemGender, Item.itemLayer, Item.itemColors, Item.itemCurColor " +
+                resultSet = statement.executeQuery("SELECT *" +
                         "FROM Item " +
                         "JOIN Inventory ON Item.itemID = Inventory.itemID " +
                         "WHERE Inventory.userName = '" + userName +
-                        "' AND Inventory.itemInUse = '1';");
+                        "' AND Inventory.itemInUse = 'true';");
                 while (resultSet.next()) {
                     int itemID = resultSet.getInt(1);
                     String name = resultSet.getString(2);

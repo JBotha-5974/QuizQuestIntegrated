@@ -8,6 +8,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -166,6 +167,9 @@ public class SpriteGenerator {
 
         try{
             itemsInUse = Database.getItemsInUse(userName);
+            for(Item i :itemsInUse) {
+                Log.d("SpriteGenerator Testing", "The item name is: " + i.getItemName());
+            }
 
         }catch(Exception e){
             System.out.println("Database error (getting items in use): " + e.getMessage());
