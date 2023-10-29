@@ -123,9 +123,9 @@ public class PlayerPerformance extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
 
         if (player.getPlayerScore() % 20 > player.getPlayerLevel()){
-            /*
-            Need to check for player levelling up, from JoshB's use cases
-         */
+            Intent goLevelUp = new Intent(this, LevelUp.class);
+            goLevelUp.putExtra("player",player);
+            startActivity(goLevelUp);
         }
         startActivity(intent);
         finish();
