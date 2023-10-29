@@ -131,6 +131,7 @@
     <Button
         android:id="@+id/btnSubmit"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"

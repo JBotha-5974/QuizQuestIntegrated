@@ -76,6 +76,7 @@
     <Button
         android:id="@+id/btnBuy"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_width="91dp"
         android:layout_height="53dp"
         android:gravity="center"

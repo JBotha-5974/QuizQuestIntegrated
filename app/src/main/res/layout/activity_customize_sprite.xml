@@ -154,6 +154,7 @@
     <Button
         android:id="@+id/btnCustomizeCancel"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -170,6 +171,7 @@
     <Button
         android:id="@+id/btnCustomizeConfirm"
         style="@style/light_button"
+        android:background="?attr/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
