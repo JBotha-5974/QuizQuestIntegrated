@@ -392,24 +392,30 @@ public class Database {
         }
     }
 
-    public static String getGender(String username) {
+    public static Item getGender(String userName) {
 
-        String gender = "";
-
+        Item temp = null;
         try {
             if (establishConnection()) {
-                resultSet = statement.executeQuery("SELECT * " +
-                        "FROM Inventory" +
-                        "WHERE itemID IN (SELECT itemID FROM Item WHERE itemLayer = 1)" +
-                        "AND userName = '" + username + "'" +
-                        "AND itemInUse = 'true';");
+                resultSet = statement.executeQuery("SELECT Item.*\n" +
+                        "FROM Item\n" +
+                        "JOIN Inventory ON Item.itemID = Inventory.itemID\n" +
+                        "WHERE Item.itemLayer = 0 AND Inventory.userName = '" + userName +
+                        "' AND Inventory.itemInUse = 'true';");
 
                 while (resultSet.next()) {
-                    gender = resultSet.getString(3);
+                    int itemID = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    int price = resultSet.getInt(3);
+                    String g = resultSet.getString(4);
+                    int layer = resultSet.getInt(5);
+                    String colors = resultSet.getString(6);
+
+                    temp = new Item(itemID, name, price, g, layer, colors);
 
                 }
                 disconnect();
-                return gender;
+                return temp;
             }
 
         }
@@ -480,6 +486,7 @@ public class Database {
                 statement.execute("UPDATE Inventory " +
                         "SET itemInUse = 'false'" +
                         "WHERE itemID = " + itemID + " AND userName = '" + userName + "';");
+
             }
         }catch (Exception e){
             Log.e("DATABASE",e.getMessage());
@@ -682,8 +689,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
-//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+//            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {

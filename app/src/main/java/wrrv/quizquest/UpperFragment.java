@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
     RecyclerView rvUpper;
     ItemAdapter adapter;
 
-    Player player;
+    Item body;
     String gender;
 
     public UpperFragment() {
@@ -39,10 +40,12 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
         String savedPassword = sharedPreferences.getString("password", "");
 
         try {
-            gender = Database.getGender(savedUsername);
+            body = Database.getGender(savedUsername);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        gender = body.getGender();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upper, container, false);
@@ -103,6 +106,15 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
 
         }catch (Exception e) {
             e.printStackTrace();
+        }
+
+        Log.d("Checking gender: ", "The g is: " + gender);
+        for(int x = 0; x < items.size(); x++){
+
+            Item i = items.get(x);
+            if(i.getGender() != gender || i.getGender() != "u"){
+                items.remove(x);
+            }
         }
     }
 }

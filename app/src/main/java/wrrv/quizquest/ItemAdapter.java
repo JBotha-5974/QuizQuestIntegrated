@@ -74,7 +74,7 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
 
             desc.setText(i.getItemName());
 
-            image.setImageBitmap(i.getItemImage(context,"black"));
+            image.setImageBitmap(i.getItemImage(context,"gray"));
 
         }
     }

@@ -22,7 +22,7 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
     RecyclerView rvLower;
     ItemAdapter adapter;
 
-    Player player;
+    Item body;
     String gender;
 
     public LowerFragment() {
@@ -38,10 +38,12 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
         String savedPassword = sharedPreferences.getString("password", "");
 
         try {
-            gender = Database.getGender(savedUsername);
+            body = Database.getGender(savedUsername);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        gender = body.getGender();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lower, container, false);
@@ -102,6 +104,20 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
 
         }catch (Exception e) {
             e.printStackTrace();
+        }
+
+        String remove;
+        if(gender == "m"){
+            remove = "f";
+        }
+        else{
+            remove = "m";
+        }
+
+        for(int x = 0; x < items.size(); x++){
+            if(items.get(x).getGender() == remove){
+                items.remove(x);
+            }
         }
     }
 }

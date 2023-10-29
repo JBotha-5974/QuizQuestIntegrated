@@ -24,8 +24,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     RecyclerView rvAccessories;
     ItemAdapter adapter;
 
-    Player player;
-    String gender;
+    // accessories unisex so no need for gender
 
     public AccessoriesFragment() {
         // Required empty public constructor
@@ -38,13 +37,6 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
-
-        try {
-            gender = Database.getGender(savedUsername);
-            Log.d("Store Debugging", "The gender from the db: " + gender);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accessories, container, false);
