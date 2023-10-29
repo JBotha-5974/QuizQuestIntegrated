@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class PlayerPerformance extends AppCompatActivity {
     private Player player;
     private int quizzes;
     private int score;
+
+    private Button btnContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +76,13 @@ public class PlayerPerformance extends AppCompatActivity {
                 pointsTxt.setVisibility(View.INVISIBLE);
                 coinsTxt.setVisibility(View.INVISIBLE);
 
+                btnContinue = findViewById(R.id.performanceBtn);
+                btnContinue.setEnabled(false);
+
                 confetti = findViewById(R.id.confettiView);
 
                 EmitterConfig ec = new Emitter(300, TimeUnit.MILLISECONDS).max(300);
+
 
                 confetti.start(
                         new PartyFactory(ec)
@@ -89,7 +96,7 @@ public class PlayerPerformance extends AppCompatActivity {
                 );
 
                 Handler handler = new Handler();
-                int delayMillis = 2500;//I thing we should change this to one second
+                int delayMillis = 1500;
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -98,8 +105,12 @@ public class PlayerPerformance extends AppCompatActivity {
                         questionsCorrectTxt.setVisibility(View.VISIBLE);
                         pointsTxt.setVisibility(View.VISIBLE);
                         coinsTxt.setVisibility(View.VISIBLE);
+
+                        btnContinue.setEnabled(true);
                     }
                 }, delayMillis);
+
+                btnContinue.setEnabled(true);
 
 
             } catch (Exception e) {
