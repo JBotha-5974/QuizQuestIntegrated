@@ -61,5 +61,6 @@ public class Admin_Store extends AppCompatActivity {
     public void leaveClick(View view){
         Intent intent = new Intent(this,Admin_screen.class);
         startActivity(intent);
+        finish();
     }
 }

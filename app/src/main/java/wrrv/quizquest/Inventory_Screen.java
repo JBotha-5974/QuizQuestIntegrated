@@ -49,5 +49,6 @@ public class Inventory_Screen extends AppCompatActivity {
     public void leaveClick(View view){
         Intent intent = new Intent(this,Profile_screen.class);
         startActivity(intent);
+        finish();
     }
 }

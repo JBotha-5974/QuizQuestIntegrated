@@ -61,6 +61,7 @@ public class CustomizeSprite extends AppCompatActivity {
     public void btnCustomizeCancelClick(View view) {
         Intent intent = new Intent(this, Profile_screen.class);
         startActivity(intent);
+        finish();
     }
 
     public void btnCustomizeConfirmClick(View view) throws Exception {
