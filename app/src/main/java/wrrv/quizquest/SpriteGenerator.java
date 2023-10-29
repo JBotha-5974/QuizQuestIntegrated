@@ -20,14 +20,11 @@ public class SpriteGenerator {
 
     ArrayList<Map<Item,String>> itemsInUse;
 
-   Context context;
+    Context context;
 
-   //Player player;
-   String userName;
+    String userName;
 
-   ArrayList<Bitmap> tiles;
-
-   public SpriteGenerator(Context context, String userName){
+    public SpriteGenerator(Context context, String userName){
        this.context = context;
        this.userName = userName;
 
@@ -35,82 +32,26 @@ public class SpriteGenerator {
        sortItems();
        ArrayList<Bitmap> images = getImages();
        Bitmap image = createLayered(images);
-       tiles = splitImage(image);
-   }
 
-   public Bitmap stand(){
-       return tiles.get(26);
-   }
-
-   public AnimationDrawable handUp(){
-
-       Bitmap[] images = new Bitmap[6];
-       int pos = 0;
-
-       for(int i = 26; i < 32; i++){
-
-           images[pos] = tiles.get(i);
-           pos++;
-       }
-
-       return getAnimation(images, context, 40);
-   }
-
-    public AnimationDrawable allRound(Context context){
-
-        Bitmap[] images = new Bitmap[4];
-
-        images[0] = tiles.get(0);
-        images[1] = tiles.get(13);
-        images[2] = tiles.get(26);
-        images[3] = tiles.get(39);
-
-        return getAnimation(images, context,60);
     }
 
-   private AnimationDrawable getAnimation(Bitmap[] images, Context context, int duration){
+    public Bitmap generate(){
+       return createLayered(getImages());
+    }
 
-       AnimationDrawable animationDrawable = new AnimationDrawable();
 
-       Resources resources = context.getResources();
-
-       for(Bitmap bitmap: images){
-           Drawable drawable = new BitmapDrawable(resources, bitmap);
-           animationDrawable.addFrame(drawable, duration);
-       }
-
-       return animationDrawable;
-
-       // start and stop animation
-       // eg. animationDrawable.start();
-   }
-
-   private ArrayList<Bitmap> splitImage(Bitmap image){
-
-       int columns = 13;
-       int rows = 21;
-
-       ArrayList<Bitmap> subImages = new ArrayList<>();
-       int subImageWidth = image.getWidth() / columns;
-       int subImageHeight = image.getHeight() / rows;
-
-       for (int i = 0; i < rows; i++) {
-           for (int j = 0; j < columns; j++) {
-               int x = j * subImageWidth;
-               int y = i * subImageHeight;
-               subImages.add(Bitmap.createBitmap(image, x, y, subImageWidth, subImageHeight));
-           }
-       }
-
-       return subImages;
-   }
-
-   private Bitmap createLayered(ArrayList<Bitmap> images){
+    private Bitmap createLayered(ArrayList<Bitmap> images){
 
        ArrayList<Drawable> drawables = new ArrayList<>();
-       for(Bitmap bitmap : images){
-           Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
-           drawables.add(drawable);
+
+       try {
+           for (Bitmap bitmap : images) {
+               Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
+               drawables.add(drawable);
+           }
+       }catch(Exception e){
+           System.out.println("Error converting Bitmap > Drawable: \n" + e.getMessage());
+           e.printStackTrace();
        }
 
        Drawable[] layers = new Drawable[drawables.size()];
@@ -130,9 +71,9 @@ public class SpriteGenerator {
        layered.draw(canvas);
 
        return bitmap;
-   }
+    }
 
-   private ArrayList<Bitmap> getImages(){
+    private ArrayList<Bitmap> getImages(){
 
        ArrayList<Bitmap> images = new ArrayList<>();
 
@@ -155,7 +96,7 @@ public class SpriteGenerator {
        return images;
    }
 
-   private void sortItems(){
+    private void sortItems(){
        //This is used to sort the arraylist in the order they will be layered
 
        itemsInUse.sort(Comparator.comparingInt(map -> map.keySet().iterator().next().getLayer()));
@@ -169,9 +110,9 @@ public class SpriteGenerator {
        //6 torso
        //7 jacket
        //8 accessories
-   }
+    }
 
-   private void getItems(){
+    private void getItems(){
         itemsInUse = new ArrayList<>();
 
         try{
@@ -183,6 +124,6 @@ public class SpriteGenerator {
             e.printStackTrace();
         }
 
-   }
+    }
 
 }
