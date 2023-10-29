@@ -31,7 +31,7 @@ public class LevelUp extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        tbxDisplay.setText("You are now Level" + iLevel);
+        tbxDisplay.setText("You are now Level " + 2);
     }
 
     public void btnLevelUpContinueClick(View view) {
