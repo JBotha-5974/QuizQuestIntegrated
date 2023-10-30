@@ -75,8 +75,8 @@ public class Profile_screen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void btnInventoryClick(View view) {
-        Intent intent = new Intent(this,Inventory_Screen.class);
+    public void btnStatsticsClick(View view) {
+        Intent intent = new Intent(this,Stats.class);
         startActivity(intent);
     }
 }
