@@ -61,7 +61,7 @@ public class Update_Item extends AppCompatActivity {
 
         Toast.makeText(this, "The item has been updated", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this,Store_screen.class);
+        Intent intent = new Intent(this,Admin_screen.class);
         startActivity(intent);
     }
 
