@@ -166,15 +166,20 @@ public class Buy_Item extends AppCompatActivity {
 
     public void setSpinner(){
 
-        options = item.getColors();
-        if(options.size() == 1){
-            colors.setVisibility(View.INVISIBLE);
+        color = item.getColorsString();
+
+        if(color.equals("default")){
+            colors.setVisibility(View.GONE);
         }
-        ArrayList<String> colorsList = new ArrayList<>(options);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, colorsList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colors.setAdapter(adapter);
-        colors.setSelection(1);
+        else{
+            options = item.getColors();
+            ArrayList<String> colorsList = new ArrayList<>(options);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, colorsList);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            colors.setAdapter(adapter);
+            colors.setSelection(1);
+        }
+
     }
     public void checkInventory(){
         boolean inInventory = false;

@@ -57,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
-        android:onClick="leaveClick" />
+        android:onClick="leaveClick"
+        app:srcCompat="@drawable/back"/>
 
 </LinearLayout>
