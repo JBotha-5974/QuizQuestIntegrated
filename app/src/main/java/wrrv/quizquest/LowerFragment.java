@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
 
     Item body;
     String gender;
+    String activityName;
+    String savedUsername;
 
     public LowerFragment() {
         // Required empty public constructor
@@ -34,16 +37,10 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
                              Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String savedUsername = sharedPreferences.getString("username", "");
+        savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
 
-        try {
-            body = Database.getGender(savedUsername);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        gender = body.getGender();
+        activityName = getActivity().getClass().getSimpleName();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lower, container, false);
@@ -72,11 +69,8 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
         // Handle item click here
         // Start the SecondActivity when an item is clicked
 
-        String activityName = getActivity().getClass().getSimpleName();
-
         if(activityName.equals("Store_screen")){
             //if player
-
             Intent intent = new Intent(getContext(), Buy_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);
@@ -95,29 +89,46 @@ public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickLi
     public void getItems(){
         items = new ArrayList<>();
 
-        try{
-            ArrayList<Item> pants= Database.getItems(5);
-            ArrayList<Item> shoes= Database.getItems(4);
+        if(activityName.equals("Store_screen")){
+            //if player
 
-            items.addAll(pants);
-            items.addAll(shoes);
+            try {
+                body = Database.getGender(savedUsername);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+            gender = body.getGender();
 
-        String remove;
-        if(gender == "m"){
-            remove = "f";
-        }
-        else{
-            remove = "m";
-        }
+            try{
+                ArrayList<Item> shirts = Database.getItemsGender(5, gender);
+                ArrayList<Item> jackets = Database.getItemsGender(4, gender);
 
-        for(int x = 0; x < items.size(); x++){
-            if(items.get(x).getGender() == remove){
-                items.remove(x);
+                items.addAll(shirts);
+                items.addAll(jackets);
+
+            }catch (Exception e) {
+                e.printStackTrace();
             }
         }
+        else if(activityName.equals("Admin_Store")){
+            //if admin
+            try{
+                ArrayList<Item> shirts = Database.getItems(5);
+                ArrayList<Item> jackets = Database.getItems(4);
+
+                items.addAll(shirts);
+                items.addAll(jackets);
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            Toast.makeText(getContext(), "Invalid activity: " + activityName, Toast.LENGTH_SHORT).show();
+        }
+
+        Log.d("Checking gender: ", "The g is: " + gender);
+
     }
 }

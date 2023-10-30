@@ -569,6 +569,58 @@ public class Database {
 
     }
 
+    public static ArrayList<Item> getItemsGender(int layerWanted, String gender) {
+
+        ArrayList<Item> items;
+
+        String remove;
+
+        if(gender.equals("m")) {
+            remove = "f";
+        }else{
+            remove = "m";
+        }
+
+        try {
+            if (establishConnection()) {
+                items = new ArrayList<>();
+
+
+                resultSet = statement.executeQuery("SELECT * " +
+                        "FROM Item " +
+                        "WHERE itemLayer = '" + layerWanted + "' " +
+                        "AND itemGender NOT LIKE '%" + remove + "%';");
+                while (resultSet.next()) {
+                    int itemID = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    int price = resultSet.getInt(3);
+                    String g = resultSet.getString(4);
+                    int layer = resultSet.getInt(5);
+                    String colors = resultSet.getString(6);
+
+                    Item temp = new Item(itemID, name, price, g, layer, colors);
+                    items.add(temp);
+                }
+                disconnect();
+                return items;
+            }
+
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+
+        //for reference
+        //0 body, 1 head, 2 eyes, 3 hair, 4 shoes
+        //5 lower, 6 torso, 7 jacket, 8 accessories
+
+    }
+
     public static boolean setState(String state, int submissionID) {
 
         try {
@@ -661,9 +713,39 @@ public class Database {
     }
 
     public static ArrayList<Submission> getPending() {
-        ArrayList<Submission> submissions = new ArrayList<>(); // Initialize the ArrayList
 
-        return submissions;
+        ArrayList<Submission> submissions;
+        String query = "SELECT * FROM Submission WHERE state = 'pending';";
+
+        try {
+            if (establishConnection()) {
+
+                submissions = new ArrayList<>();
+                resultSet = statement.executeQuery(query);
+
+                while (resultSet.next()) {
+                    int submissionID = resultSet.getInt(1);
+                    String resultUserName = resultSet.getString(2);
+                    String categoryID = resultSet.getString(3);
+                    String questionText = resultSet.getString(4);
+                    String correctAnswer = resultSet.getString(5);
+                    String incorrectAnswer1 = resultSet.getString(6);
+                    String incorrectAnswer2 = resultSet.getString(7);
+                    String incorrectAnswer3 = resultSet.getString(8);
+                    String state = resultSet.getString(9);
+
+                    // Create Submission objects and add them to the list
+                    Submission submission = new Submission(questionText,correctAnswer,categoryID, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, resultUserName, state);
+                    submissions.add(submission);
+                }
+                disconnect();
+                return submissions;
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static boolean moveSubmission(Submission s){
@@ -700,8 +782,8 @@ public class Database {
         StrictMode.setThreadPolicy(policy);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
-//            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
+//            connection = DriverManager.getConnection("jdbc:mysql://10.0.0.101:3306/quizquest", "josh", "josh");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.3:3306/quizquest", "marisha", "marisha");
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return true;
         } catch (Exception e) {

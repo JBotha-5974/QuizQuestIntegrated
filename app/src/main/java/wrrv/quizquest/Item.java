@@ -385,6 +385,10 @@ public class Item implements Serializable {
         return options;
     }
 
+    public String getColorsString(){
+        return colors;
+    }
+
     public int getItemID() {
         return itemID;
     }

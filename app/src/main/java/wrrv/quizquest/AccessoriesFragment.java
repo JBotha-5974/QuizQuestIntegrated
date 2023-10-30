@@ -24,7 +24,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     RecyclerView rvAccessories;
     ItemAdapter adapter;
 
-    // accessories unisex so no need for gender
+    String activityName;
 
     public AccessoriesFragment() {
         // Required empty public constructor
@@ -34,16 +34,14 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String savedUsername = sharedPreferences.getString("username", "");
-        String savedPassword = sharedPreferences.getString("password", "");
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accessories, container, false);
 
         rvAccessories = view.findViewById(R.id.rvAccessories);
         rvAccessories.setLayoutManager(
                 new GridLayoutManager(getContext(),2));
+
+        activityName = getActivity().getClass().getSimpleName();
 
         getItems();
 
@@ -65,19 +63,16 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         // Handle item click here
         // Start the SecondActivity when an item is clicked
 
-        String activityName = getActivity().getClass().getSimpleName();
         Log.d("Buy item check", "Activity -> " + activityName);
 
         if(activityName.equals("Store_screen")){
             //if player
-
             Intent intent = new Intent(getContext(), Buy_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);
         }
         else if(activityName.equals("Admin_Store")){
             //if admin
-
             Intent intent = new Intent(getContext(),Update_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);
@@ -91,11 +86,10 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         items = new ArrayList<>();
 
         try{
+
             items = Database.getItems(8);
-            System.out.println("This is accessories");
-            for(Item i: items){
-                System.out.println(i);
-            }
+
+            System.out.println("Got accessories");
 
         }catch (Exception e) {
             e.printStackTrace();
