@@ -117,6 +117,7 @@
             android:background="@color/white"
             android:fontFamily="@font/default_font"
             android:gravity="center"
+            android:textColor="?attr/textBackground"
             android:text="@string/zeroScore" />
     </LinearLayout>
 
