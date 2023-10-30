@@ -67,9 +67,14 @@ public class Settings extends AppCompatActivity {
         Intent intent = new Intent(this,Credits.class);
         startActivity(intent);
     }
-
     public void leaveSettings(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+        finish();
+    }
+    public void clickedLogOut(View view) {
+        Intent intent = new Intent(this,LogIn_screen.class);
+        startActivity(intent);
+        finish();
     }
 }
