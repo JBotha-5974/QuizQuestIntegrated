@@ -7,224 +7,192 @@
     android:background="?attr/background"
     tools:context=".CustomizeSprite">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="10dp"
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/tbxHair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/default_font"
+        android:text="Hairstyle"
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnHairForward"
+        app:layout_constraintStart_toEndOf="@+id/btnHairBack"
+        app:layout_constraintTop_toBottomOf="@+id/imgSpriteHolder" />
+
+    <ImageView
+        android:id="@+id/btnFeetBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:onClick="btnFeetBackClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPantsBack"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/btnHairBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:onClick="btnHairBackClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSpriteHolder"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/tbxShirt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/default_font"
+        android:text="Shirt"
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnShirtForward"
+        app:layout_constraintStart_toEndOf="@+id/btnShirtBack"
+        app:layout_constraintTop_toBottomOf="@+id/tbxHair" />
+
+    <TextView
+        android:id="@+id/tbxFeet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/default_font"
+        android:text="Shoes"
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnFeetForward"
+        app:layout_constraintStart_toEndOf="@+id/btnFeetBack"
+        app:layout_constraintTop_toBottomOf="@+id/tbxPants" />
+
+    <ImageView
+        android:id="@+id/btnShirtBack"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:onClick="btnShirtBackClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnHairBack"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/btnPantsBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:onClick="btnPantsBackClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShirtBack"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/tbxPants"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/default_font"
+        android:text="Pants"
+        android:textColor="#341D0A"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnPantsForward"
+        app:layout_constraintStart_toEndOf="@+id/btnPantsBack"
+        app:layout_constraintTop_toBottomOf="@+id/tbxShirt" />
+
+    <ImageView
+        android:id="@+id/btnHairForward"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="btnHairForwardClick"
+        android:rotation="180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSpriteHolder"
+        app:srcCompat="@drawable/back" />
+
+    <Button
+        android:id="@+id/btnCustomizeCancel"
+        style="@style/light_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="?attr/colorPrimary"
+        android:onClick="btnCustomizeCancelClick"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCustomizeConfirm"
+        style="@style/light_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="?attr/colorPrimary"
+        android:onClick="btnCustomizeConfirmClick"
+        android:text="Confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnShirtForward"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="btnShirtForwardClick"
+        android:rotation="180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnHairForward"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/btnPantsForward"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="btnPantsForwardClick"
+        android:rotation="180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShirtForward"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/btnFeetForward"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="btnFeetForwardClick"
+        android:rotation="180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPantsForward"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/imgSpriteHolder"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imgSpriteHolder"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="47dp"
-            android:layout_marginBottom="383dp"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnHairBack"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="101dp"
-                android:layout_marginTop="345dp"
-                android:layout_marginEnd="275dp"
-                android:layout_marginBottom="279dp"
-                android:onClick="btnHairBackClick"
-                app:srcCompat="@drawable/back" />
-
-            <TextView
-                android:id="@+id/tbxHair"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="142dp"
-                android:layout_marginTop="382dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="29dp"
-                android:fontFamily="@font/default_font"
-                android:text="Hairstyle"
-                android:textColor="#341D0A"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/btnHairForward"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="277dp"
-                android:layout_marginTop="345dp"
-                android:layout_marginEnd="99dp"
-                android:layout_marginBottom="279dp"
-                android:onClick="btnHairForwardClick"
-                android:rotation="180"
-                app:srcCompat="@drawable/back" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnShirtBack"
-                android:layout_width="35sp"
-                android:layout_height="35sp"
-                android:layout_marginStart="92dp"
-                android:layout_marginTop="420dp"
-                android:layout_marginEnd="266dp"
-                android:layout_marginBottom="258dp"
-                android:onClick="btnShirtBackClick"
-                app:srcCompat="@drawable/back" />
-
-            <TextView
-                android:id="@+id/tbxShirt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="166dp"
-                android:layout_marginTop="428dp"
-                android:layout_marginEnd="42dp"
-                android:layout_marginBottom="34dp"
-                android:fontFamily="@font/default_font"
-                android:text="Shirt"
-                android:textColor="#341D0A"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/btnShirtForward"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="268dp"
-                android:layout_marginTop="420dp"
-                android:layout_marginEnd="90dp"
-                android:layout_marginBottom="258dp"
-                android:onClick="btnShirtForwardClick"
-                android:rotation="180"
-                app:srcCompat="@drawable/back" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnPantsBack"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="92dp"
-                android:layout_marginTop="470dp"
-                android:layout_marginEnd="266dp"
-                android:layout_marginBottom="208dp"
-                android:onClick="btnPantsBackClick"
-                app:srcCompat="@drawable/back" />
-
-            <TextView
-                android:id="@+id/tbxPants"
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
-                android:layout_marginStart="166dp"
-                android:layout_marginTop="479dp"
-                android:layout_marginEnd="42dp"
-                android:layout_marginBottom="28dp"
-                android:fontFamily="@font/default_font"
-                android:text="Pants"
-                android:textColor="#341D0A"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/btnPantsForward"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="268dp"
-                android:layout_marginTop="470dp"
-                android:layout_marginEnd="90dp"
-                android:layout_marginBottom="208dp"
-                android:onClick="btnPantsForwardClick"
-                android:rotation="180"
-                app:srcCompat="@drawable/back" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnFeetBack"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="92dp"
-                android:layout_marginTop="516dp"
-                android:layout_marginEnd="266dp"
-                android:layout_marginBottom="162dp"
-                android:onClick="btnFeetBackClick"
-                app:srcCompat="@drawable/back" />
-
-            <TextView
-                android:id="@+id/tbxFeet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="166dp"
-                android:layout_marginTop="524dp"
-                android:layout_marginEnd="42dp"
-                android:layout_marginBottom="172dp"
-                android:fontFamily="@font/default_font"
-                android:text="Shoes"
-                android:textColor="#341D0A"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/btnFeetForward"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="268dp"
-                android:layout_marginTop="516dp"
-                android:layout_marginEnd="90dp"
-                android:layout_marginBottom="162dp"
-                android:onClick="btnFeetForwardClick"
-                android:rotation="180"
-                app:srcCompat="@drawable/back" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnCustomizeConfirm"
-                style="@style/light_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                android:onClick="btnCustomizeConfirmClick"
-                android:text="Confirm" />
-
-            <Button
-                android:id="@+id/btnCustomizeCancel"
-                style="@style/light_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="579dp"
-                android:layout_marginEnd="43dp"
-                android:layout_marginBottom="86dp"
-                android:background="?attr/colorPrimary"
-                android:onClick="btnCustomizeCancelClick"
-                android:text="Cancel" />
-        </LinearLayout>
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
