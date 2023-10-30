@@ -2,13 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btnNextHair"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background"
     tools:context=".RegisterSprite">
 
+    <ImageButton
+        android:id="@+id/btnSubInfo2"
+        style="@style/back_button"
+        android:layout_width="63dp"
+        android:layout_height="54dp"
+        android:onClick="infoClick"
+        android:src="@drawable/info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
     <TextView
         android:id="@+id/txtRegisterSpriteHeader"
+        style="@style/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
@@ -17,61 +33,13 @@
         android:layout_marginBottom="596dp"
         android:fontFamily="@font/default_font"
         android:text="Sprite"
-        style="@style/heading"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgvSprite"
-        android:layout_width="306dp"
-        android:layout_height="404dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="162dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.389"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/base_male" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="525dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="102dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/rgbRegisterSpriteMale"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10sp"
-            android:buttonTint="@android:color/holo_blue_light"
-            android:checked="true"
-            android:onClick="rgbRegisterSpriteMaleClick"
-            android:paddingHorizontal="10dp"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/rgbRegisterSpriteFemale"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:buttonTint="@android:color/holo_blue_light"
-            android:onClick="rgbRegisterSpriteFemaleClick"
-            android:paddingHorizontal="10dp"
-            android:text="Female" />
-    </RadioGroup>
+        app:layout_constraintVertical_bias="0.116" />
 
     <Button
         android:id="@+id/btnRegisterSpriteContinue"
@@ -88,6 +56,143 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="542dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegisterSpriteContinue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRegisterSpriteHeader">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rgbRegisterSpriteMale"
+                style="@style/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10sp"
+                android:buttonTint="@android:color/holo_blue_light"
+                android:checked="true"
+                android:onClick="rgbRegisterSpriteMaleClick"
+                android:paddingHorizontal="10dp"
+                android:text="Male"
+                android:textSize="14dp" />
+
+            <RadioButton
+                android:id="@+id/rgbRegisterSpriteFemale"
+                style="@style/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:buttonTint="@android:color/holo_blue_light"
+                android:onClick="rgbRegisterSpriteFemaleClick"
+                android:paddingHorizontal="10dp"
+                android:text="Female"
+                android:textSize="14dp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Body color"
+            android:textSize="14dp" />
+
+        <Spinner
+            android:id="@+id/spinnerBody"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Eye color"
+            android:textSize="14dp" />
+
+        <Spinner
+            android:id="@+id/spinnerEye"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Hair"
+            android:textSize="14dp" />
+
+        <Spinner
+            android:id="@+id/spinnerHair"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnPrevHair"
+                style="@style/back_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/imgHairStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/coins" />
+
+            <ImageButton
+                android:id="@+id/btnNext"
+                style="@style/back_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:rotation="180"
+                app:srcCompat="@drawable/back" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
