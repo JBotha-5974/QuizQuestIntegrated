@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -27,9 +28,11 @@ public class Customize extends AppCompatActivity {
     private ArrayList arrItemsInUse;
     private ArrayList arrHead, arrTorso, arrJacket, arrLower, arrShoes;
     private int iPosHead, iPosTorso, iPosJacket, iPosLower, iPosShoes;
+    private int iOGPosHead, iOGPosTorso, iOGPosJacket, iOGPosLower, iOGPosShoes;
     Item head,torso,jacket,lower,shoe;
     private Player player;
     private Bitmap finalImage;
+    String savedUsername;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,7 +40,7 @@ public class Customize extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String savedUsername = sharedPreferences.getString("username", "");
+        savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
         try {
             player = Database.getPlayer(savedUsername,savedPassword);
@@ -61,6 +64,11 @@ public class Customize extends AppCompatActivity {
         jacket = (Item) arrItemsInUse.get(7);
         lower = (Item) arrItemsInUse.get(5);
         shoe = (Item) arrItemsInUse.get(4);
+        iOGPosHead = getItemID(head);
+        iOGPosTorso = getItemID(shoe);
+        iOGPosJacket = getItemID(jacket);
+        iOGPosLower = getItemID(lower);
+        iOGPosShoes = getItemID(torso);
         iPosHead = iSearchForPos(getItemID(head),arrHead);
         iPosShoes = iSearchForPos(getItemID(shoe),arrHead);
         iPosJacket = iSearchForPos(getItemID(jacket),arrHead);
@@ -94,6 +102,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosHead--;
         imgHead.setImageBitmap((Bitmap) arrHead.get(iPosHead));
+        changeInUse(iPosHead, (Inventory) arrHead.get(iPosHead));
     }
 
     public void btnNextHeadClick(View view)
@@ -103,6 +112,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosHead++;
         imgHead.setImageBitmap((Bitmap) arrHead.get(iPosHead));
+        changeInUse(iPosHead, (Inventory) arrHead.get(iPosHead));
     }
 
     public void btnPrevTorsoClick(View view)
@@ -112,6 +122,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosTorso--;
         imgTorso.setImageBitmap((Bitmap) arrTorso.get(iPosTorso));
+        changeInUse(iPosTorso, (Inventory) arrTorso.get(iPosTorso));
     }
 
     public void btnNextTorsoClick(View view)
@@ -121,6 +132,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosTorso++;
         imgTorso.setImageBitmap((Bitmap) arrTorso.get(iPosTorso));
+        changeInUse(iPosTorso, (Inventory) arrTorso.get(iPosTorso));
     }
 
     public void btnPrevJacketClick(View view)
@@ -130,6 +142,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosJacket--;
         imgJacket.setImageBitmap((Bitmap) arrJacket.get(iPosJacket));
+        changeInUse(iPosJacket, (Inventory) arrJacket.get(iPosJacket));
     }
 
     public void btnNextJacketClick(View view)
@@ -139,6 +152,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosJacket++;
         imgJacket.setImageBitmap((Bitmap) arrJacket.get(iPosJacket));
+        changeInUse(iPosJacket, (Inventory) arrJacket.get(iPosJacket));
     }
 
     public void btnPrevLowerClick(View view)
@@ -148,6 +162,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosLower--;
         imgLower.setImageBitmap((Bitmap) arrLower.get(iPosLower));
+        changeInUse(iPosLower, (Inventory) arrLower.get(iPosLower));
     }
 
     public void btnNextLowerClick(View view)
@@ -157,6 +172,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosLower++;
         imgLower.setImageBitmap((Bitmap) arrLower.get(iPosLower));
+        changeInUse(iPosLower, (Inventory) arrLower.get(iPosLower));
     }
 
     public void btnPrevShoesClick(View view)
@@ -166,6 +182,7 @@ public class Customize extends AppCompatActivity {
         else
             iPosShoes--;
         imgShoes.setImageBitmap((Bitmap) arrShoes.get(iPosShoes));
+        changeInUse(iPosShoes, (Inventory) arrShoes.get(iPosShoes));
     }
 
     public void btnNextShoesClick(View view)
@@ -175,13 +192,21 @@ public class Customize extends AppCompatActivity {
         else
             iPosShoes++;
         imgShoes.setImageBitmap((Bitmap) arrShoes.get(iPosShoes));
+        changeInUse(iPosShoes, (Inventory) arrShoes.get(iPosShoes));
     }
 
     public void btnCustomizeFloatingHelpClick(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.sprite_desc)
-                .setTitle(R.string.dialog_title);
-        AlertDialog dialog = builder.create();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle(R.string.sprite_desc);
+        alertDialogBuilder.setMessage(R.string.dialog_title);
+        alertDialogBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Close the app or perform an exit action
+                finish(); // This will close the current activity
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
     private int getItemID(Item item)
     {
@@ -216,5 +241,10 @@ public class Customize extends AppCompatActivity {
         layered.setBounds(0, 0, width, height);
         layered.draw(canvas);
         finalImage = bitmap;
+    }
+    private void changeInUse(int ID, Inventory curPolarity)
+    {
+        boolean bFlag = curPolarity.isItemInUse();
+        Database.switchItemUsageValue(savedUsername,ID,bFlag);
     }
 }

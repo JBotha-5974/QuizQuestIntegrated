@@ -526,7 +526,19 @@ public class Database {
             e.printStackTrace();
         }
     }
-
+    public static void switchItemUsageValue(String userName, int iItemNum, boolean bCur) {
+        try {
+            if (establishConnection()) {
+                if(bCur)
+                    statement.execute("UPDATE inventory SET  itemInUse = false"+ " WHERE userName = '" + userName + "' AND itemID ='" + iItemNum +"'");
+                else
+                    statement.execute("UPDATE inventory SET  itemInUse = true"+ " WHERE userName = '" + userName + "' AND itemID ='" + iItemNum +"'");
+            }
+        }catch (Exception e){
+            Log.e("DATABASE",e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public static ArrayList<Item> getItems(int layerWanted) {
 
         ArrayList<Item> items;
