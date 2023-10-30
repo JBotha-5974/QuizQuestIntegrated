@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemClickListener{
 
+    //Marisha
+
     ArrayList<Item> items;
     RecyclerView rvAccessories;
     ItemAdapter adapter;

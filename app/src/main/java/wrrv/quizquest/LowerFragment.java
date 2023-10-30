@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class LowerFragment extends Fragment implements ItemAdapter.OnItemClickListener{
-
+// Marisha
     ArrayList<Item> items;
     RecyclerView rvLower;
     ItemAdapter adapter;
