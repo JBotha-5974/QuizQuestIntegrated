@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -62,9 +63,11 @@ public class Buy_Item extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Log.d("Buy item check", "The database got player");
         // get Item that was selected
         Intent intent = getIntent();
         item = (Item) intent.getSerializableExtra("Item");
+        Log.d("Buy item check", "Item :" + item.getItemName());
 
         // set views
         description = findViewById(R.id.lblBuyDesc);
@@ -76,12 +79,18 @@ public class Buy_Item extends AppCompatActivity {
         leave = findViewById(R.id.btnLeaveBuy);
         colors = findViewById(R.id.spinner);
 
+
         // get Items in use
         try{
             items = Database.inUseIDs(player.getUserName());
+            Log.d("Buy item check", "Database got items");
+            for(Item i : items){
+                Log.d("Buy item check", "Items name -> " + i.getItemName());
+            }
 
         }catch(Exception e){
             System.out.println("Error checking inventory: " + e.getMessage());
+            Log.d("Buy item check", "Error getting items from database");
             e.printStackTrace();
         }
 
@@ -90,6 +99,7 @@ public class Buy_Item extends AppCompatActivity {
 
         // set view values
         description.setText(item.getItemName());
+        Log.d("Buy item check", "Buy Item color -> " + color);
         image.setImageBitmap(item.getItemImage(this, color));
         price.setText(String.valueOf(item.getItemPrice()));
         coins.setText(String.valueOf(player.getPlayerCoins()));
@@ -175,15 +185,20 @@ public class Buy_Item extends AppCompatActivity {
         for(Item i : items){
             if(i.getItemID() == item.getItemID()){
                 inInventory = true;
+                Log.d("Buy item check", "item in inventory: " + i.getItemName());
             }
+
         }
+        Log.d("Buy item check", "in Inventory -> " + inInventory);
 
         if(inInventory){
+            Log.d("Buy item check", "Item in inventory if statement");
             buy.setEnabled(false);
             int color = ContextCompat.getColor(this, R.color.grayed);
             buy.setBackgroundColor(color);
             txtInfo.setVisibility(View.VISIBLE);
         }else{
+            Log.d("Buy item check", "Not in iventory");
             txtInfo.setVisibility(View.GONE);
         }
     }
@@ -191,7 +206,7 @@ public class Buy_Item extends AppCompatActivity {
     public void checkItemLayer(){
         int layer = item.getLayer();
         Item current = null;
-
+        Log.d("Buy item check", "Checking layers");
         for(Item i: items){
             if(i.getLayer() == layer){
 
@@ -204,9 +219,11 @@ public class Buy_Item extends AppCompatActivity {
             //change current to not be in use
             try{
                 Database.itemNotInUse(player.getUserName(),item.getItemID());
+                Log.d("Buy item check", "changed item in use");
 
             }catch(Exception e){
                 System.out.println("Error adding to inventory: " + e.getMessage());
+                Log.d("Buy item check", "couldn't change item in use");
                 e.printStackTrace();
             }
         }

@@ -32,7 +32,7 @@
             android:layout_width="180dp"
             android:layout_height="56dp"
             android:gravity="center"
-            android:text="0" />
+            android:text="20" />
     </LinearLayout>
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_height="97dp"
         android:layout_marginBottom="56dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="Shoe"
         app:layout_constraintBottom_toTopOf="@+id/imgBuyItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -58,19 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/f0" />
-
-    <TextView
-        android:id="@+id/lblInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="The item is in your inventory"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBuy"
-        app:layout_constraintVertical_bias="0.222" />
 
     <Button
         android:id="@+id/btnBuy"
@@ -135,14 +122,28 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_width="300dp"
+        android:layout_height="37dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="68dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/imgBuyItem"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblBuyDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/lblBuyDesc"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <TextView
+        android:id="@+id/lblInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The item is already in your inventory"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

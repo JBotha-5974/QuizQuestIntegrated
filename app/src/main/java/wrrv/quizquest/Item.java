@@ -58,9 +58,13 @@ public class Item implements Serializable {
 
     public Bitmap getItemImage(Context context, String color) {
 
-        String curColor = color.replace(" ", "_");
-        curColor += ".png";
+        String curColor = "";
+        if(color != null) {
+            curColor = color.replace(" ", "_");
+            curColor += ".png";
 
+            Log.d("Buy item check", "curColor -> " + curColor);
+        }
         String fileName = "";
         if(Objects.equals(gender, "m")){
 

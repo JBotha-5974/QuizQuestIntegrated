@@ -66,6 +66,7 @@ public class AccessoriesFragment extends Fragment implements ItemAdapter.OnItemC
         // Start the SecondActivity when an item is clicked
 
         String activityName = getActivity().getClass().getSimpleName();
+        Log.d("Buy item check", "Activity -> " + activityName);
 
         if(activityName.equals("Store_screen")){
             //if player

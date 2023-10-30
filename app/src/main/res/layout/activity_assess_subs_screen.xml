@@ -123,9 +123,9 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:text="Who won the 2019 Rugby World Cup?"
             android:textColor="?attr/font"
-            android:textSize="14dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/lblAnswer"
@@ -153,9 +153,9 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:text="South Africa"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/lblCategory"
@@ -182,9 +182,9 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:text="Sport"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/lblIncorrect"
@@ -211,9 +211,9 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:text="New Zealand"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtI2View"
@@ -226,9 +226,9 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:text="England"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtI3View"
@@ -241,9 +241,9 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:text="Wales"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
