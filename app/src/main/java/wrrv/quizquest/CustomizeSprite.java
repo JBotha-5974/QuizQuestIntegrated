@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -11,26 +12,17 @@ import android.widget.ImageView;
 
 public class CustomizeSprite extends AppCompatActivity {
     private ImageView imgHolder;
-    private GenerateSprite custom;
-    private SharedPreferences sharedPreferences;
-    private Player player;
-    private String sCode;
+    private SpriteGenerator generator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customize_sprite);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedUsername = sharedPreferences.getString("username", "");
-        String savedPassword = sharedPreferences.getString("password", "");
-        try {
-            player = Database.getPlayer(savedUsername,savedPassword);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        sCode = player.getPlayerSprite();
-        custom = new GenerateSprite(this, sCode);
+        generator = new SpriteGenerator(this,savedUsername);
+        setContentView(R.layout.activity_customize_sprite);
         imgHolder = findViewById(R.id.imgSpriteHolder);
+        imgHolder.setImageBitmap(generator.generate());
     }
 
     public void btnFeetBackClick(View view) {
