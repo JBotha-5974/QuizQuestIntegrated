@@ -43,6 +43,8 @@
     <string name="quiz_num_for_today">Quiz %d/3 for today</string>
     <string name="total_coins">Coins: %d></string>
     <string name="games_played">Games played: %d</string>
+    <string name="dialog_title">Sprite?</string>
+    <string name="sprite_desc">Each player gets a character "sprite", which is kind of like a mini avatar. Throughout the game you can purchase items for your sprite such as clothing or accesories. You will also be able to earn special items for your sprite.</string>
 
     <string-array name="categories">
         <item>Entertainment</item>
