@@ -7,22 +7,98 @@
     android:background="?attr/background"
     tools:context=".CustomizeSprite">
 
-    <TextView
-        android:id="@+id/tbxHair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="382dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="29dp"
-        android:fontFamily="@font/default_font"
-        android:text="Hairstyle"
-        android:textColor="#341D0A"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/tbxShirt"
-        app:layout_constraintEnd_toStartOf="@+id/btnHairForward"
+    <ImageView
+        android:id="@+id/imgSpriteHolder"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="383dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/base_male" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btnEyesBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="516dp"
+                android:layout_marginEnd="266dp"
+                android:layout_marginBottom="162dp"
+                android:layout_weight="1"
+                android:onClick="btnFeetBackClick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btnHairBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginTop="345dp"
+                android:layout_marginEnd="275dp"
+                android:layout_marginBottom="279dp"
+                android:onClick="btnHairBackClick"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:id="@+id/tbxHair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="142dp"
+                android:layout_marginTop="382dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="29dp"
+                android:fontFamily="@font/default_font"
+                android:text="Hairstyle"
+                android:textColor="#341D0A"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/btnHairForward"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="277dp"
+                android:layout_marginTop="345dp"
+                android:layout_marginEnd="99dp"
+                android:layout_marginBottom="279dp"
+                android:onClick="btnHairForwardClick"
+                android:rotation="180"
+                app:srcCompat="@drawable/back" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/btnFeetBack"
@@ -33,21 +109,6 @@
         android:layout_marginEnd="266dp"
         android:layout_marginBottom="162dp"
         android:onClick="btnFeetBackClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
-
-    <ImageView
-        android:id="@+id/btnHairBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="345dp"
-        android:layout_marginEnd="275dp"
-        android:layout_marginBottom="279dp"
-        android:onClick="btnHairBackClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,22 +196,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/btnHairForward"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="277dp"
-        android:layout_marginTop="345dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="279dp"
-        android:onClick="btnHairForwardClick"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
-
     <Button
         android:id="@+id/btnCustomizeCancel"
         style="@style/light_button"
@@ -232,19 +277,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
-
-    <ImageView
-        android:id="@+id/imgSpriteHolder"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="383dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

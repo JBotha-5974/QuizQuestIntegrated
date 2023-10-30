@@ -41,7 +41,7 @@ public class GenerateSprite {
         iPosH = Integer.parseInt(sHair.substring(1));
         iPosP = Integer.parseInt(sPants.substring(1));
         iPosS = Integer.parseInt(sShirt.substring(1));
-        AddToArrays(context);
+        //AddToArrays(context);
     }
     public LayerDrawable getImage()
     {
@@ -116,7 +116,7 @@ public class GenerateSprite {
         String sLine = sGender+",h"+iPosH+",s"+iPosS+",p"+iPosP+",f"+iPosF;
         return sLine;
     }
-    private void AddToArrays(Context context)
+    /*private void AddToArrays(Context context)
     {
         Gender = new ArrayList<>();
         Hair = new ArrayList<>();
@@ -224,5 +224,5 @@ public class GenerateSprite {
             Integer resourceId = PantsResourceMap.get(sTempPants);
             Pants.add(AppCompatResources.getDrawable(context, resourceId));
         }
-    }
+    }*/
 }
