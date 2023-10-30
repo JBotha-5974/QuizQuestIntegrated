@@ -27,13 +27,13 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        Service music = new MainActivityMusicManager();
-        music.onCreate();
+        //Service music = new MainActivityMusicManager();
+        //music.onCreate();
         musicLevel = findViewById(R.id.musicLevel);
         logOut = findViewById(R.id.btnPlayerLogOut);
         credits = findViewById(R.id.btnCredits);
         leave = findViewById(R.id.btnLeaveSettings);
-        @SuppressLint("WrongConstant") AudioManager manager = (AudioManager) getSystemService("MainActivityMusicManager");
+        /*@SuppressLint("WrongConstant") AudioManager manager = (AudioManager) getSystemService("MainActivityMusicManager");
 
         if (manager == null) {
             // Handle the case where the service is not available
@@ -61,7 +61,7 @@ public class Settings extends AppCompatActivity {
                     // Do Nothing
                 }
             });
-        }
+        }*/
     }
     public void openCredits(View view){
         Intent intent = new Intent(this,Credits.class);

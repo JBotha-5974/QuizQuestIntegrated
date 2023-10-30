@@ -14,7 +14,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         startService(new Intent(this,MusicManager.class));
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LogIn_screen.class);
             stopService(new Intent(this,MusicManager.class));
             startActivity(intent);
             finish();
