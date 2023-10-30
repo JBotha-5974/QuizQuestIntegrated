@@ -26,6 +26,8 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
 
     Item body;
     String gender;
+    String activityName;
+    String savedUsername;
 
     public UpperFragment() {
         // Required empty public constructor
@@ -36,16 +38,10 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
                              Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String savedUsername = sharedPreferences.getString("username", "");
+        savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
 
-        try {
-            body = Database.getGender(savedUsername);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        gender = body.getGender();
+        activityName = getActivity().getClass().getSimpleName();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upper, container, false);
@@ -74,11 +70,8 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
         // Handle item click here
         // Start the SecondActivity when an item is clicked
 
-        String activityName = getActivity().getClass().getSimpleName();
-
         if(activityName.equals("Store_screen")){
             //if player
-
             Intent intent = new Intent(getContext(), Buy_Item.class);
             intent.putExtra("Item", item);
             startActivity(intent);
@@ -97,24 +90,47 @@ public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickLi
     public void getItems(){
         items = new ArrayList<>();
 
-        try{
-            ArrayList<Item> shirts = Database.getItems(6);
-            ArrayList<Item> jackets = Database.getItems(7);
+        if(activityName.equals("Store_screen")){
+            //if player
 
-            items.addAll(shirts);
-            items.addAll(jackets);
+            try {
+                body = Database.getGender(savedUsername);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        }catch (Exception e) {
-            e.printStackTrace();
+            gender = body.getGender();
+
+            try{
+
+                ArrayList<Item> shirts = Database.getItemsGender(6, gender);
+                ArrayList<Item> jackets = Database.getItemsGender(7, gender);
+
+                items.addAll(shirts);
+                items.addAll(jackets);
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(activityName.equals("Admin_Store")){
+            //if admin
+            try{
+                ArrayList<Item> shirts = Database.getItems(6);
+                ArrayList<Item> jackets = Database.getItems(7);
+
+                items.addAll(shirts);
+                items.addAll(jackets);
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            Toast.makeText(getContext(), "Invalid activity: " + activityName, Toast.LENGTH_SHORT).show();
         }
 
         Log.d("Checking gender: ", "The g is: " + gender);
-        for(int x = 0; x < items.size(); x++){
 
-            Item i = items.get(x);
-            if(i.getGender() != gender || i.getGender() != "u"){
-                items.remove(x);
-            }
-        }
     }
 }
