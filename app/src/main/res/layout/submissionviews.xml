@@ -5,16 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     app:cardCornerRadius="10dp"
-    app:cardElevation="10dp">
+    app:cardElevation="10dp"
+    android:background="@color/white">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/txtDisplayQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="63dp"
+            android:layout_width="310dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:background="@drawable/border"
@@ -28,13 +31,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgStoreItem"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_wrapBehaviorInParent="vertical_only" />
 
         <ImageView
             android:id="@+id/imgStoreItem"
             android:layout_width="35dp"
             android:layout_height="38dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

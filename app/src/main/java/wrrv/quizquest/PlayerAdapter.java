@@ -55,7 +55,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         }
         public void setPlayer(Player player, int position){
             this.player = player;
-            GenerateSprite generateSprite = new GenerateSprite(context,player.getPlayerSprite());
             SpriteGenerator spriteGenerator = new SpriteGenerator(context, player.getUserName());
             recyclerSprite.setImageBitmap(spriteGenerator.generate());
             userName.setText(player.getUserName());

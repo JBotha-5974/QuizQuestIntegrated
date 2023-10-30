@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,19 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrevSubs_screen extends AppCompatActivity {
-
-    Player player;
-
+    private Player player;
     private List<Submission> submissions;
     private submissionAdapter adapter;
     ImageButton btnBack;
-    ImageButton info;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prev_subs_screen);
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedUsername = sharedPreferences.getString("username", "");
         String savedPassword = sharedPreferences.getString("password", "");
@@ -38,13 +34,12 @@ public class PrevSubs_screen extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         submissions = Database.getSubmissionList(player.getUserName());
-        adapter = new submissionAdapter(submissions);
         RecyclerView listSubmissions = findViewById(R.id.RVlistSubmissions);
+        adapter = new submissionAdapter(submissions);
         RecyclerView.LayoutManager layoutManager;
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-
+        layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
+        listSubmissions.addItemDecoration(new EqualSpaceItem(20));
         listSubmissions.setLayoutManager(layoutManager);
         listSubmissions.setAdapter(adapter);
         btnBack = findViewById(R.id.btnBackSubmissions);
