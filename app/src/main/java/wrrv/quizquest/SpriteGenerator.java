@@ -18,21 +18,30 @@ import java.util.Map;
 public class SpriteGenerator {
     // Marisha's version
 
+
+
     ArrayList<Map<Item,String>> itemsInUse;
 
     Context context;
 
     String userName;
 
+    Bitmap imgOut;
+
     public SpriteGenerator(Context context, String userName){
        this.context = context;
        this.userName = userName;
-
        getItems();
        sortItems();
        ArrayList<Bitmap> images = getImages();
-       Bitmap image = createLayered(images);
-
+       imgOut = createLayered(images);
+    }
+    public Bitmap getImgOut()
+    {
+        return imgOut;
+    }
+    public ArrayList<Map<Item, String>> getItemsInUse() {
+        return itemsInUse;
     }
 
     public Bitmap generate(){
@@ -122,7 +131,6 @@ public class SpriteGenerator {
 
             e.printStackTrace();
         }
-
     }
 
 }

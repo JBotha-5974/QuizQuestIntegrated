@@ -7,19 +7,12 @@
     android:background="?attr/background"
     tools:context=".Customize">
 
-    <ImageButton
-        android:id="@+id/btnSubInfo2"
-        style="@style/back_button"
-        android:layout_width="63dp"
-        android:layout_height="54dp"
-        android:onClick="infoClick"
-        android:src="@drawable/info"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/help" />
 
     <TextView
         android:id="@+id/txtRegisterSpriteHeader"
@@ -41,7 +34,7 @@
         app:layout_constraintVertical_bias="0.218" />
 
     <Button
-        android:id="@+id/btnSaveCustomize"
+        android:id="@+id/btnSaveCustomizeSprite"
         android:layout_width="130dp"
         android:layout_height="58dp"
         android:layout_marginEnd="44dp"
@@ -55,16 +48,17 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/buttonCancel"
+        android:id="@+id/buttonCancelCustomizeSprite"
         android:layout_width="130dp"
         android:layout_height="58dp"
         android:layout_marginBottom="40dp"
         android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
+        android:onClick="btnCancelCustomizeSpriteClick"
         android:text="Cancel"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSaveCustomize"
+        app:layout_constraintEnd_toStartOf="@+id/btnSaveCustomizeSprite"
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -74,7 +68,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSaveCustomize"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveCustomizeSprite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +94,7 @@
                 android:textSize="14dp" />
 
             <Spinner
-                android:id="@+id/spinnerBodyCustomize"
+                android:id="@+id/spinnerBodyColorCustomize"
                 android:layout_width="350dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
@@ -118,7 +112,7 @@
                 android:textSize="14dp" />
 
             <Spinner
-                android:id="@+id/spinnerEyeCustomize"
+                android:id="@+id/spinnerEyeColorCustomize"
                 android:layout_width="350dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
@@ -152,29 +146,158 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnPrevHairCustomize"
+                    android:id="@+id/btnPrevHead"
                     style="@style/back_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
+                    android:onClick="btnPrevHeadClick"
                     app:srcCompat="@drawable/back" />
 
                 <ImageView
-                    android:id="@+id/imgHair"
+                    android:id="@+id/imgHead"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/coins" />
 
                 <ImageButton
-                    android:id="@+id/btnNextCustomize"
+                    android:id="@+id/btnNextHead"
                     style="@style/back_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
+                    android:onClick="btnNextHeadClick"
                     android:rotation="180"
                     app:srcCompat="@drawable/back" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrevTorso"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnPrevTorsoClick"
+                    app:srcCompat="@drawable/back" />
+
+                <ImageView
+                    android:id="@+id/imgTorso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/coins" />
+
+                <ImageButton
+                    android:id="@+id/btnNextTorso"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnNextTorsoClick"
+                    android:rotation="180"
+                    app:srcCompat="@drawable/back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrevJacket"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnPrevJacketClick"
+                    app:srcCompat="@drawable/back" />
+
+                <ImageView
+                    android:id="@+id/imgJacket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/coins" />
+
+                <ImageButton
+                    android:id="@+id/btnNextJacket"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnNextJacketClick"
+                    android:rotation="180"
+                    app:srcCompat="@drawable/back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrevLower"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnPrevLowerClick"
+                    app:srcCompat="@drawable/back" />
+
+                <ImageView
+                    android:id="@+id/imgLower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/coins" />
+
+                <ImageButton
+                    android:id="@+id/btnNextLower"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnNextLowerClick"
+                    android:rotation="180"
+                    app:srcCompat="@drawable/back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrevShoes"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnPrevShoesClick"
+                    app:srcCompat="@drawable/back" />
+
+                <ImageView
+                    android:id="@+id/imgShoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/coins" />
+
+                <ImageButton
+                    android:id="@+id/btnNextShoes"
+                    style="@style/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="btnNextShoesClick"
+                    android:rotation="180"
+                    app:srcCompat="@drawable/back" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
