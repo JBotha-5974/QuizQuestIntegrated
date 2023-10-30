@@ -8,10 +8,13 @@
     tools:context=".Customize">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/btnCustomizeFloatHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
         android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRegisterSpriteHeader"
         app:srcCompat="@drawable/help" />
 
     <TextView
@@ -19,9 +22,9 @@
         style="@style/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="596dp"
         android:fontFamily="@font/default_font"
         android:text="Customize Sprite"
@@ -37,8 +40,8 @@
         android:id="@+id/btnSaveCustomizeSprite"
         android:layout_width="130dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="20dp"
         android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="btnRegisterSpriteContinueClick"
@@ -51,7 +54,8 @@
         android:id="@+id/buttonCancelCustomizeSprite"
         android:layout_width="130dp"
         android:layout_height="58dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="20dp"
         android:background="?attr/colorPrimary"
         android:fontFamily="@font/default_font"
         android:onClick="btnCancelCustomizeSpriteClick"
@@ -65,15 +69,13 @@
     <ScrollView
         android:layout_width="412dp"
         android:layout_height="642dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSaveCustomizeSprite"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/btnSaveCustomizeSprite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRegisterSpriteHeader"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@id/txtRegisterSpriteHeader">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -20,7 +20,7 @@ public class RegisterSprite extends AppCompatActivity {
         {
             player = (Player) extras.getSerializable("player");
         }
-        imgHolder = findViewById(R.id.i);
+        imgHolder = findViewById(R.id.imgHairStyle);
         player.setPlayerSprite("m,h0,s0,p0,f0");
         //player.setPlayerSprite(getDrawable(R.drawable.base_male));
     }
