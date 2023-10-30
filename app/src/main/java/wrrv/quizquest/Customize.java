@@ -7,6 +7,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -21,8 +24,10 @@ import java.util.Set;
 
 public class Customize extends AppCompatActivity {
     private ImageView imgHead, imgTorso, imgJacket, imgLower, imgShoes;
-    private ArrayList arrAllItems;
+    private ArrayList arrItemsInUse;
     private ArrayList arrHead, arrTorso, arrJacket, arrLower, arrShoes;
+    private int iPosHead, iPosTorso, iPosJacket, iPosLower, iPosShoes;
+    Item head,torso,jacket,lower,shoe;
     private Player player;
     private Bitmap finalImage;
 
@@ -44,26 +49,32 @@ public class Customize extends AppCompatActivity {
         imgJacket = findViewById(R.id.imgJacket);
         imgLower = findViewById(R.id.imgLower);
         imgShoes = findViewById(R.id.imgShoes);
-        arrAllItems = new ArrayList<>(Database.getItemsInUse(savedUsername));
         arrHead = new ArrayList<>(Database.getItems(1));
         arrTorso = new ArrayList<>(Database.getItems(6));
         arrJacket = new ArrayList<>(Database.getItems(7));
         arrLower = new ArrayList<>(Database.getItems(5));
         arrShoes = new ArrayList<>(Database.getItems(4));
-        Set<String> options;
-        Spinner colors;
-
-        ArrayList<String> colorsList = new ArrayList<>(options);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, colorsList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colors.setAdapter(adapter);
-        colors.setSelection(1);
-
         SpriteGenerator sg = new SpriteGenerator(this, savedUsername);
-        ArrayList usedItems = sg.getItemsInUse();
+        arrItemsInUse = sg.getItemsInUse();
+        head = (Item) arrItemsInUse.get(1);
+        torso = (Item) arrItemsInUse.get(6);
+        jacket = (Item) arrItemsInUse.get(7);
+        lower = (Item) arrItemsInUse.get(5);
+        shoe = (Item) arrItemsInUse.get(4);
+        iPosHead = iSearchForPos(getItemID(head),arrHead);
+        iPosShoes = iSearchForPos(getItemID(shoe),arrHead);
+        iPosJacket = iSearchForPos(getItemID(jacket),arrHead);
+        iPosLower = iSearchForPos(getItemID(lower),arrHead);
+        iPosTorso = iSearchForPos(getItemID(torso),arrHead);
+        imgShoes.setImageBitmap((Bitmap) arrShoes.get(iPosShoes));
+        imgLower.setImageBitmap((Bitmap) arrLower.get(iPosLower));
+        imgJacket.setImageBitmap((Bitmap) arrJacket.get(iPosJacket));
+        imgTorso.setImageBitmap((Bitmap) arrTorso.get(iPosTorso));
+        imgHead.setImageBitmap((Bitmap) arrHead.get(iPosHead));
     }
 
     public void btnRegisterSpriteContinueClick(View view) {
+        getFinalImage();
         Intent intent = new Intent(this, Profile_screen.class);
         intent.putExtra("img", finalImage);
         startActivity(intent);
@@ -78,50 +89,92 @@ public class Customize extends AppCompatActivity {
     }
 
     public void btnPrevHeadClick(View view) {
-        imgHead.setImageBitmap((Bitmap) arrHead.get(0));
+        if(iPosHead == 0)
+            iPosHead = arrHead.size()-1;
+        else
+            iPosHead--;
+        imgHead.setImageBitmap((Bitmap) arrHead.get(iPosHead));
     }
 
     public void btnNextHeadClick(View view)
     {
-        imgHead.setImageBitmap((Bitmap) arrHead.get(0));
+        if(iPosHead == arrHead.size()-1)
+            iPosHead = 0;
+        else
+            iPosHead++;
+        imgHead.setImageBitmap((Bitmap) arrHead.get(iPosHead));
     }
 
     public void btnPrevTorsoClick(View view)
     {
-        imgTorso.setImageBitmap((Bitmap) arrTorso.get(0));
+        if(iPosTorso == 0)
+            iPosTorso = arrTorso.size()-1;
+        else
+            iPosTorso--;
+        imgTorso.setImageBitmap((Bitmap) arrTorso.get(iPosTorso));
     }
 
     public void btnNextTorsoClick(View view)
     {
-        imgTorso.setImageBitmap((Bitmap) arrTorso.get(0));
+        if(iPosTorso == arrTorso.size()-1)
+            iPosTorso = 0;
+        else
+            iPosTorso++;
+        imgTorso.setImageBitmap((Bitmap) arrTorso.get(iPosTorso));
     }
 
-    public void btnPrevJacketClick(View view) {
-        imgJacket.setImageBitmap((Bitmap) arrJacket.get(0));
+    public void btnPrevJacketClick(View view)
+    {
+        if(iPosJacket == 0)
+            iPosJacket = arrTorso.size()-1;
+        else
+            iPosJacket--;
+        imgJacket.setImageBitmap((Bitmap) arrJacket.get(iPosJacket));
     }
 
-    public void btnNextJacketClick(View view) {
-        imgJacket.setImageBitmap((Bitmap) arrJacket.get(0));
+    public void btnNextJacketClick(View view)
+    {
+        if(iPosJacket == arrJacket.size()-1)
+            iPosJacket = 0;
+        else
+            iPosJacket++;
+        imgJacket.setImageBitmap((Bitmap) arrJacket.get(iPosJacket));
     }
 
     public void btnPrevLowerClick(View view)
     {
-        imgLower.setImageBitmap((Bitmap) arrLower.get(0));
+        if(iPosLower == 0)
+            iPosLower = arrLower.size()-1;
+        else
+            iPosLower--;
+        imgLower.setImageBitmap((Bitmap) arrLower.get(iPosLower));
     }
 
     public void btnNextLowerClick(View view)
     {
-        imgLower.setImageBitmap((Bitmap) arrLower.get(0));
+        if(iPosLower == arrLower.size()-1)
+            iPosLower = 0;
+        else
+            iPosLower++;
+        imgLower.setImageBitmap((Bitmap) arrLower.get(iPosLower));
     }
 
     public void btnPrevShoesClick(View view)
     {
-        imgShoes.setImageBitmap((Bitmap) arrShoes.get(0));
+        if(iPosShoes == 0)
+            iPosShoes = arrShoes.size()-1;
+        else
+            iPosShoes--;
+        imgShoes.setImageBitmap((Bitmap) arrShoes.get(iPosShoes));
     }
 
     public void btnNextShoesClick(View view)
     {
-        imgShoes.setImageBitmap((Bitmap) arrShoes.get(0));
+        if(iPosShoes == arrShoes.size()-1)
+            iPosShoes = 0;
+        else
+            iPosShoes++;
+        imgShoes.setImageBitmap((Bitmap) arrShoes.get(iPosShoes));
     }
 
     public void btnCustomizeFloatingHelpClick(View view) {
@@ -130,8 +183,38 @@ public class Customize extends AppCompatActivity {
                 .setTitle(R.string.dialog_title);
         AlertDialog dialog = builder.create();
     }
-    public int getItemID(Item item)
+    private int getItemID(Item item)
     {
         return item.getItemID();
+    }
+    private int iSearchForPos(int iID, ArrayList arrIn)
+    {
+        int iTemp = 0;
+        for(int k = 0; k<arrIn.size();k++)
+        {
+            Item temp = (Item) arrIn.get(k);
+            if (getItemID(temp) == iID)
+                iTemp = k;
+        }
+        return iTemp;
+    }
+    private void getFinalImage()
+    {
+        ArrayList<Drawable> drawables = new ArrayList<>();
+        drawables.add((Drawable) arrHead.get(iPosHead));
+        drawables.add((Drawable) arrShoes.get(iPosHead));
+        drawables.add((Drawable) arrLower.get(iPosHead));
+        drawables.add((Drawable) arrTorso.get(iPosHead));
+        drawables.add((Drawable) arrJacket.get(iPosHead));
+        Drawable[] layers = new Drawable[drawables.size()];
+        layers = drawables.toArray(layers);
+        LayerDrawable layered =  new LayerDrawable(layers);
+        int width = layered.getIntrinsicWidth();
+        int height = layered.getIntrinsicHeight();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        layered.setBounds(0, 0, width, height);
+        layered.draw(canvas);
+        finalImage = bitmap;
     }
 }
