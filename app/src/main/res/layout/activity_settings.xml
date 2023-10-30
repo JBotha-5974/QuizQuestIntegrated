@@ -36,6 +36,7 @@
     <Button
         android:id="@+id/btnPlayerLogOut"
         style="@style/light_button"
+        android:onClick="clickedLogOut"
         android:text="Log out"
         app:layout_constraintBottom_toTopOf="@+id/btnCredits"
         app:layout_constraintEnd_toEndOf="parent"

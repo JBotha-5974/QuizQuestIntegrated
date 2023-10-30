@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+//Marisha
 public class View_Item extends AppCompatActivity {
 
     Player player;

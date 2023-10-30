@@ -71,46 +71,46 @@ public class PlayerPerformance extends AppCompatActivity {
                 pointsTxt.setText(getString(R.string.points,score));
                 coinsTxt.setText(getString(R.string.coins,score*2));
 
-                performance.setVisibility(View.INVISIBLE);
-                questionsCorrectTxt.setVisibility(View.INVISIBLE);
-                pointsTxt.setVisibility(View.INVISIBLE);
-                coinsTxt.setVisibility(View.INVISIBLE);
+//                performance.setVisibility(View.INVISIBLE);
+//                questionsCorrectTxt.setVisibility(View.INVISIBLE);
+//                pointsTxt.setVisibility(View.INVISIBLE);
+//                coinsTxt.setVisibility(View.INVISIBLE);
+//
+//                btnContinue = findViewById(R.id.performanceBtn);
+//                btnContinue.setEnabled(false);
 
-                btnContinue = findViewById(R.id.performanceBtn);
-                btnContinue.setEnabled(false);
+//                confetti = findViewById(R.id.confettiView);
+//
+//                EmitterConfig ec = new Emitter(300, TimeUnit.MILLISECONDS).max(300);
+//
+//
+//                confetti.start(
+//                        new PartyFactory(ec)
+//                                .shapes(Shape.Circle.INSTANCE, Shape.Square.INSTANCE)
+//                                .spread(360)
+//                                .position(0.5,0.25,1,1)
+//                                .sizes(new Size(8,50,10))
+//                                .timeToLive(3000)
+//                                .fadeOutEnabled(true)
+//                                .build()
+//                );
 
-                confetti = findViewById(R.id.confettiView);
-
-                EmitterConfig ec = new Emitter(300, TimeUnit.MILLISECONDS).max(300);
-
-
-                confetti.start(
-                        new PartyFactory(ec)
-                                .shapes(Shape.Circle.INSTANCE, Shape.Square.INSTANCE)
-                                .spread(360)
-                                .position(0.5,0.25,1,1)
-                                .sizes(new Size(8,50,10))
-                                .timeToLive(3000)
-                                .fadeOutEnabled(true)
-                                .build()
-                );
-
-                Handler handler = new Handler();
-                int delayMillis = 1500;
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        performance.setVisibility(View.VISIBLE);
-                        questionsCorrectTxt.setVisibility(View.VISIBLE);
-                        pointsTxt.setVisibility(View.VISIBLE);
-                        coinsTxt.setVisibility(View.VISIBLE);
-
-                        btnContinue.setEnabled(true);
-                    }
-                }, delayMillis);
-
-                btnContinue.setEnabled(true);
+//                Handler handler = new Handler();
+//                int delayMillis = 1500;
+//
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        performance.setVisibility(View.VISIBLE);
+//                        questionsCorrectTxt.setVisibility(View.VISIBLE);
+//                        pointsTxt.setVisibility(View.VISIBLE);
+//                        coinsTxt.setVisibility(View.VISIBLE);
+//
+//                        btnContinue.setEnabled(true);
+//                    }
+//                }, delayMillis);
+//
+//                btnContinue.setEnabled(true);
 
 
             } catch (Exception e) {

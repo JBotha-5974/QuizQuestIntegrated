@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+// Marisha
 public class StoreAdapter extends FragmentStateAdapter {
     public StoreAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);

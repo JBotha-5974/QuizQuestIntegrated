@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
+//Marisha
 public class UpperFragment extends Fragment implements ItemAdapter.OnItemClickListener{
 
     ArrayList<Item> items;

@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+//Marisha
 public class Update_Item extends AppCompatActivity {
 
     Item item;
@@ -60,7 +61,7 @@ public class Update_Item extends AppCompatActivity {
 
         Toast.makeText(this, "The item has been updated", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this,Store_screen.class);
+        Intent intent = new Intent(this,Admin_screen.class);
         startActivity(intent);
     }
 

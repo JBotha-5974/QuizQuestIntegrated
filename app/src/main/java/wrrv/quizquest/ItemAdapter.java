@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+//Marisha
+
 public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolder> {
 
     private ArrayList<Item> items;
@@ -74,8 +76,14 @@ public class ItemAdapter extends RecyclerView.Adapter <ItemAdapter.itemViewHolde
 
             desc.setText(i.getItemName());
 
-            image.setImageBitmap(i.getItemImage(context,"gray"));
+//            if(item.getLayer() == 8){
+//                image.setImageBitmap(i.getItemImage(context,"default"));
+//            }else{
+//                image.setImageBitmap(i.getItemImage(context,"gray"));
+//            }
 
+
+            image.setImageBitmap(i.getItemImage(context,"gray"));
         }
     }
 

@@ -30,6 +30,7 @@ import java.util.Set;
 
 public class Buy_Item extends AppCompatActivity {
 
+    //Marisha
     Player player;
     Item item;
 
@@ -105,10 +106,6 @@ public class Buy_Item extends AppCompatActivity {
         coins.setText(String.valueOf(player.getPlayerCoins()));
 
         setSpinner();
-
-        if(options.size() == 1){
-            color = "default";
-        }
 
         colors.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
