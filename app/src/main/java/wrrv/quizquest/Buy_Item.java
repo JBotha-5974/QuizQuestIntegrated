@@ -106,10 +106,6 @@ public class Buy_Item extends AppCompatActivity {
 
         setSpinner();
 
-        if(options.size() == 1){
-            color = "default";
-        }
-
         colors.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
